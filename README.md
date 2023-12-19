@@ -19,18 +19,18 @@ Necessario estabelecer uma conexão com o banco de dados e o servidor (o qual é
 
 # Estrutura do projeto
 
-| src
-| | controller
-| | model
-|  WebContent
-| | styles
-| | WEB-INF
-| | lib
-| | index.html
-| | main.jsp
-| | login.jsp
-| | app.jsp
-| | signup.jsp 
+- src
+ -- controller
+ -- model
+- WebContent
+ -- styles
+ -- WEB-INF
+ -- lib
+ -- index.html
+ -- main.jsp
+ -- login.jsp
+ -- app.jsp
+ -- signup.jsp 
 
 # Contato
 Email para contato: Gabrielth1104@gmail.com
