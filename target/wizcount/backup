@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>WizCont</title>
+  <link href="./styles/style.css" rel="stylesheet" type="text/css" />
+  <script src="./styles/tools.js"></script>
+  <script src="./styles/userTools.js"></script>
+</head>
+
+<body id="background">
+  <div id="main_background">
+  </div>
+
+  <!--Cabeçalho-->
+  
+  <header>
+
+    <nav id="cab">
+
+      <ul>
+
+        <li class="home"><a style="float: left;" id="home" href="./index.html">Home</a></li>
+        <li class="user">
+          <span id="linkSpan" style="float: right; position: relative;">
+            <img src="icons/icon.svg" id="user" width="35px" height="35px">
+            <div class="user-options" id="userOptions" style="display: none; position: absolute; top: 40px; right: 0;">
+              <a href="./LoginScreen/login.html">Entrar</a>
+              <a href="./SignUpScreen/signup.html">Cadastrar</a>
+            </div>
+          </span>
+        </li>        
+        
+      </ul>
+        
+    </nav>
+
+  </header>
+
+  <!--Conteúdo principal-->
+
+  <div id="main_content">
+    <h1 id="title">WizCont.</h1>
+    <p id="subtitle">Hello World!!!</p>
+  </div>
+
+  <div id="botoes">
+      <a href="main" class="comecar" type="submit">Começar</a>
+    </form>
+  </div>
+</body>
+
+</html>

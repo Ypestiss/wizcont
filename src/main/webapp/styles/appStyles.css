@@ -1,0 +1,371 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  background-color: #0a0a0a;
+}
+
+.container {
+  position: fixed;
+  bottom: 20px; /* Distância do fundo */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.navigation {
+  width: 400px;
+  height: 70px;
+  background-color: rgb(0, 0, 0, 0.9);
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0,);;
+}
+
+.navigation ul {
+  display: flex;
+  width: 350px;
+  padding: 0px;
+}
+
+.navigation ul li {
+  position: relative;
+  list-style: none;
+  width: 70px;
+  height: 70px;
+  z-index: 1;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  line-height: 75px;
+  font-size: 1.5em;
+  text-align:center;
+  transition: 0.5s;
+  color: #222;
+}
+
+.navigation ul li.active a .icon {
+  transform: translateY(-32px);
+}
+
+.navigation ul li a .text {
+  position: absolute;
+  color: #fff;
+  font-weight: 400;
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+  transition: 0.5s;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.navigation ul li.active a .text {
+  opacity: 1;
+  transform: translateY(10px);
+}
+
+.indicator {
+  position: absolute;
+  top: -50%;
+  width: 70px;
+  height: 70px;
+  background-color: #EC953F;
+  border-radius: 50%;
+  border: 6px solid #000;
+  transition: 0.5s;
+}
+
+.indicator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -22px;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(0, 0, 0, 0.9);
+  border-top-right-radius: 20px;
+  box-shadow: 1px -10px 0 0 transparent;
+}
+
+.indicator::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -22px;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(0, 0, 0, 0.9);
+  border-top-left-radius: 20px;
+  box-shadow: -1px -10px 0 0 transparent;
+}
+
+.navigation ul li:nth-child(1).active ~ .indicator {
+  transform: translateX(calc(70px * 0));
+}
+.navigation ul li:nth-child(2).active ~ .indicator {
+  transform: translateX(calc(70px * 1));
+}
+.navigation ul li:nth-child(3).active ~ .indicator {
+  transform: translateX(calc(70px * 2));
+}
+.navigation ul li:nth-child(4).active ~ .indicator {
+  transform: translateX(calc(70px * 3));
+}
+.navigation ul li:nth-child(5).active ~ .indicator {
+  transform: translateX(calc(70px * 4));
+}
+
+/* Estilo das opções de navegação*/
+
+#estoque {
+  color: #fff;
+}
+
+#metas {
+  color: #fff;
+}
+
+#configuracao {
+  color: #fff;
+}
+
+#notificacao {
+  color: #fff;
+}
+
+#perfil {
+  color: #fff;
+}
+
+/*Estilo da aba de conteúdo*/
+
+#conteudo {
+  color: #fff;
+  background-color: #0a0a0a0a;
+  background-image: url('../backgrounds/Interface Estoque2.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  display: flex; /* Adiciona display flex para centralizar o #configuracao */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+}
+
+/* Estilo de Configurações */
+
+#configuracao {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* Para ajustar os elementos verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  background-color: #222;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px; /* Define a largura do contêiner de configurações */
+  max-width: 90%; /* Adiciona uma largura máxima para responsividade */
+  height: 300px;
+  max-height: 90%;
+  padding: 20px;
+}
+
+.setting-item {
+  margin-bottom: 10px;
+}
+
+label {
+  display: inline-block;
+  width: 150px;
+}
+
+#sair {
+  color: #fff;
+  outline-style: none;
+}
+
+/* Estilo para a seção de Gerenciamento de Estoque */
+
+#estoque {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* Para ajustar os elementos verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  background-color: #222;
+  border-radius: 8px;
+  border: 2px solid #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 800px; /* Define a largura do contêiner de configurações */
+  max-width: 90%; /* Adiciona uma largura máxima para responsividade */
+  height: 500px;
+  max-height: 90%;
+  padding: 20px;
+}
+
+.category {
+  margin-bottom: 30px;
+}
+
+.category h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #fff; /* Ajuste a cor do texto conforme seu estilo */
+}
+
+.category ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 15px;
+}
+
+.category button {
+  padding: 8px 12px;
+  margin-top: 8px;
+  cursor: pointer;
+  background-color: #4CAF50; /* Cor do botão */
+  color: #fff; /* Cor do texto do botão */
+  border: none;
+  border-radius: 4px;
+}
+
+.category button:hover {
+  background-color: #45a049;
+}
+
+/* Estilo para o conteúdo das categorias */
+.category li {
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #fff; /* Ajuste a cor do texto conforme seu estilo */
+}
+
+/* Estilo para o conteúdo da página de Estoque */
+#estoque {
+  display: none;
+  color: #fff; /* Ajuste a cor do texto conforme seu estilo */
+  overflow-y: auto;
+}
+
+#titleestoque {
+  width: 100%;
+  text-align: center;
+  font-size: 28px;
+  color: #EC953F;
+  font-family: Arial, sans-serif;
+}
+
+.subtitleestoque h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+#estoque p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Estilo para o botão de exclusão */
+.botao-excluir {
+  padding: 8px 12px;
+  margin-top: 8px;
+  cursor: pointer;
+  background-color: #ff0000; /* Cor vermelha */
+  color: #fff; /* Cor do texto do botão */
+  border: none;
+  border-radius: 4px;
+}
+
+.botao-excluir:hover {
+  background-color: #cc0000; /* Cor vermelha mais escura no hover */
+}
+
+/* Estilo para o texto do item */
+.texto-item {
+  margin-right: 10px; /* Espaçamento entre texto e botão */
+}
+
+/* Estilo para o conteúdo das categorias */
+.category {
+  margin-bottom: 30px;
+}
+
+.category h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.category .card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-height: 300px; /* Altura máxima do contêiner para a barra de rolagem */
+  overflow-y: auto; /* Adiciona barra de rolagem quando necessário */
+  padding-right: 10px; /* Adiciona espaço para a barra de rolagem não se sobrepor aos cards */
+}
+
+.card {
+  background-color: #101010;
+  padding: 10px;
+  border-radius: 25px;
+  border: 2px solid #EC953F;
+  color: #fff;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card input {
+  margin-top: 10px;
+  padding: 8px;
+  margin-left: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-style: none;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 18px;
+  background-color: transparent !important; /* Adicionando !important para forçar a prioridade */
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+}
+
+
+/*Estiliza o input de adicionar categoria*/
+
+.darkInput {
+  background-color: #333; /* Cor de fundo escura */
+  color: white; /* Cor do texto */
+  border-radius: 5px; /* Bordas arredondadas */
+  border: none; /* Remove a borda padrão */
+  padding: 8px; /* Espaçamento interno */
+  /* Adicione mais estilos conforme desejado */
+}
+
