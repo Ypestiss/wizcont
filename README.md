@@ -7,30 +7,30 @@ Wizcont é uma plataforma de gerenciamento de Estoque com banco de dados feito e
 atualmente em desenvolvimento, wizcont é um projeto da minha escola Arlindo Fávaro, na qual venho desenvolvendo junto com mais dois colegas, Fui responsavel pela parte da
 back-end do projeto em Java com banco de dados etc...
 
-#Tecnologias Utilizadas
+# Tecnologias Utilizadas
 - Java
 - JSP 
 - HTML
 - MySQL
 - Tomcat
 
-#Como executar
+# Como executar
 Necessario estabelecer uma conexão com o banco de dados e o servidor (o qual é o meu proprio computador), no navegador se conectar ao localhost usando a porta nativa do tomcat (8080)
 
-#Estrutura do projeto
+# Estrutura do projeto
 
-|src
-| |controller
-| |model
-| WebContent
-| |styles
-| |WEB-INF
-| |lib
-| |index.html
-| |main.jsp
-| |login.jsp
-| |app.jsp
-| |signup.jsp
+| src
+| | controller
+| | model
+|  WebContent
+| | styles
+| | WEB-INF
+| | lib
+| | index.html
+| | main.jsp
+| | login.jsp
+| | app.jsp
+| | signup.jsp 
 
-#Contato
+# Contato
 Email para contato: Gabrielth1104@gmail.com
