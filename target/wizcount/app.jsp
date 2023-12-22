@@ -64,6 +64,10 @@
     <!-- Conteúdos -->
 
     <div id="conteudo">
+      <!-- aqui seria a div para acessar os bancos de dados, cada tabela vai ter uma senha e um nome
+           o usuario pode criar até 3 tabelas diferentes, cada uma com senha e nome etc -->
+     
+     
       <!-- Conteúdo da página de Estoque -->
       <div id="estoque" style="display: none;">
         <h2 id="titleestoque">Estoque</h2>
@@ -127,7 +131,8 @@
       <!-- Conteúdo da página de Perfil -->
       
       <div id="perfil" style="display: none;">
-        <h2>Perfil</h2>
+        <h2>Perfil</h2> <!-- A intenção é carregar as informações do usuario e quantas tabelas
+                          ele tem no perfil dele -->
         <p id='perfil-nome'  name='perfil-nome'>Nome: <%=usuario.get(0).getNome_usuario()%></p>
         <p id='perfil-senha' name='perfil-senha'>Senha: <%=usuario.get(0).getSenha_usuario()%></p>
         <p id='perfil-email' name='perfil-email'>Email: <%=usuario.get(0).getEmail_usuario()%></p>

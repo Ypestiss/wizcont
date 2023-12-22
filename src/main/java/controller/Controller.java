@@ -1,7 +1,6 @@
 package controller;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -100,7 +99,13 @@ public class Controller extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("user_email", email);
         
-        response.sendRedirect("main");
+        dados = connDAO.dados;
+        if(dados == 1){
+            response.sendRedirect("main");
+        }
+        else{
+            response.sendRedirect("login");
+        }
 
     }
 
@@ -133,7 +138,7 @@ public class Controller extends HttpServlet {
             response.sendRedirect("main");
         }
         else{
-            response.sendRedirect("login");
+            response.sendRedirect("signup");
         }
         
 	}

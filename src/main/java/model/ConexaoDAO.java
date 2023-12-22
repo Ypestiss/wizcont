@@ -1,7 +1,6 @@
 package model;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -69,26 +68,28 @@ public class ConexaoDAO {
 		}
     }
     
-    public boolean fazerLogin(UsuarioDAO usuario){
+    public void fazerLogin(UsuarioDAO usuario){
         try{
         String sql = "SELECT COUNT(*) FROM usuarios WHERE email_usuario = ? AND senha_usuario = ?";
             try{
-                
-                Connection conn = openDatabase();
-                PreparedStatement pstm = conn.prepareStatement(sql);
-                pstm.setString(1, usuario.getEmail_usuario());
-                pstm.setString(2, usuario.getSenha_usuario());
-                ResultSet rs = pstm.executeQuery();
-                rs.next();
-                int count = rs.getInt(1);
-                dados = 1;
-                return count > 0;
+                if(dadosJaExistem(usuario)){
+                    System.out.println("[_/] - Encontrou conta");
+                    Connection conn = openDatabase();
+                    PreparedStatement pstm = conn.prepareStatement(sql);
+                    pstm.setString(1, usuario.getEmail_usuario());
+                    pstm.setString(2, usuario.getSenha_usuario());
+                    ResultSet rs = pstm.executeQuery();
+                    rs.next();
+                    dados = 1;
+                }else{
+                    dados = 0;
+                    System.out.println("[!] - Conta não encontrada");
+                }
             }finally{
-                System.out.println("sla");
+                System.out.println("[_/] - Logou na conta!!");
             }
         }catch (SQLException e){
             e.printStackTrace();
-            return true;
         }
     
     

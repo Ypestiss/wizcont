@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="./styles/loginStyles.css">
   <script src="./styles/loginTools.js"></script>
   <script src="./styles/loginUserTools.js"></script>
-  
 </head>
 
 <body>
