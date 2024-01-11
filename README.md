@@ -15,7 +15,10 @@ back-end do projeto em Java com banco de dados etc...
 - Tomcat
 
 # Como executar
-Necessario estabelecer uma conexão com o banco de dados e o servidor (o qual é o meu proprio computador), no navegador se conectar ao localhost usando a porta nativa do tomcat (8080)
+- Setar nas váriaveis ambientes do sistema o PATH do java e do Maven
+- Baixar a versão 9.0.84 do Apache-Tomcat 
+- digitar o seguinte comando no terminal: mvn war:war -f "CAMINHO_DO_PROJETO\wizcount\pom.xml" 
+- Executar arquivo wizcont gerado na pasta target no servidor Apache - Tomcat
 
 # Estrutura do projeto
 
@@ -30,7 +33,7 @@ Necessario estabelecer uma conexão com o banco de dados e o servidor (o qual é
  -- main.jsp
  -- login.jsp
  -- app.jsp
- -- signup.jsp 
-
+ -- signup.jsp
+  
 # Contato
-Email para contato: Gabrielth1104@gmail.com
+Email para contato: Gabrielth1104@gmail.com / Discord: ypestis.
