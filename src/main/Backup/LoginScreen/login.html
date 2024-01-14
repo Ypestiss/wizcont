@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Página de Login</title>
+  <link rel="stylesheet" href="loginStyles.css">
+  <script src="loginTools.js"></script>
+  <script src="loginUserTools.js"></script>
+  
+</head>
+
+<body>
+  <header>
+
+    <nav id="cab">
+
+      <ul>
+
+        <li class="home"><a style="float: left;" id="home" href="C:/Users/Lenovo22/Desktop/WizCont/index.html">Home</a></li>
+
+        <li class="user">
+          <span id="linkSpan" style="float: right; position: relative;">
+            <img src="icons/icon.svg" id="user" width="35px" height="35px">
+            <div class="user-options" id="userOptions" style="display: none; position: absolute; top: 40px; right: 0;">
+              <a href="login.html">Entrar</a>
+              <a href="./SignUpScreen/signup.html">Cadastrar</a>
+            </div>
+          </span>
+        </li>        
+        
+      </ul>
+        
+    </nav>
+
+  </header>
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="username">Nome de Usuário ou E-mail:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="input-group">
+        <button type="submit">Entrar</button>
+      </div>
+    </form>
+    <p id="loginMessage"></p>
+  </div>
+  
+</body>
+
+</html>

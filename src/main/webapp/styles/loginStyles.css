@@ -10,7 +10,7 @@ body {
 }
 
 body {
-  background-image: url("../backgrounds/CozyRoom.jpeg");
+  background-image: url("/src/main/webapp/backgrounds/CozyRoom.jpeg");
   background-size: cover;
   background-position: center;
 }

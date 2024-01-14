@@ -1,11 +1,14 @@
 package model;
 
+import javafx.beans.property.IntegerProperty;
+
 public class UsuarioDAO {
   
     private String id_user;
     private String nome_usuario;
     private String senha_usuario;
     private String email_usuario;
+
 
     public UsuarioDAO(){
         super();

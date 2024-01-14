@@ -9,15 +9,62 @@ public class ConexaoDAO {
 
     Connection conn;
     public Integer dados = 0;
+    public Integer itens = 0;
 
     public Connection openDatabase() {
         System.out.println("[><] Função chamada: OpenDatabase:");
         try {
             System.out.println("[_/] Trying to OpenDatabase:");
             Class.forName("com.mysql.cj.jdbc.Driver");
+             // Criar o banco de dados se não existir
+            createDatabase(conn, "db_wizcont");
+
+            // Usar o banco de dados
+            conn.setCatalog("db_wizcont");
+
+            // Criar tabelas se não existirem
+            createTables(conn);
             return DriverManager.getConnection("jdbc:mysql://192.168.0.117:3306/db_wizcont", "admin", "admin");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException("[!] - Erro: Erro ao acessar o banco de dados: " + e);
+        }
+    }
+
+    private void createDatabase(Connection conn, String dbName) {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "CREATE DATABASE IF NOT EXISTS " + dbName;
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createTables(Connection conn) {
+        try {
+            Statement stmt = conn.createStatement();
+
+            // Tabela bancos_usuarios
+            String sqlBancosUsuarios = "CREATE TABLE IF NOT EXISTS bancos_usuarios (" +
+                    "id_user VARCHAR(45) NOT NULL," +
+                    "nome_item VARCHAR(45)," +
+                    "quantidade_item INT," +
+                    "categoria_item VARCHAR(45)," +
+                    "PRIMARY KEY (id_user)" +
+                    ")";
+            stmt.executeUpdate(sqlBancosUsuarios);
+
+            // Tabela usuarios
+            String sqlUsuarios = "CREATE TABLE IF NOT EXISTS usuarios (" +
+                    "id VARCHAR(45) PRIMARY KEY NOT NULL UNIQUE," +
+                    "nome_usuario VARCHAR(45)," +
+                    "senha_usuario VARCHAR(45)," +
+                    "email_usuario VARCHAR(45) UNIQUE" +
+                    ")";
+            stmt.executeUpdate(sqlUsuarios);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -68,6 +115,50 @@ public class ConexaoDAO {
 		}
     }
     
+    public void salvarBanco(BancoDAO bancouser){
+        conn = openDatabase();
+        String sql = "INSERT INTO bancos_usuarios (id_user, nome_item, quantidade_item, categoria_item) VALUES (?,?,?,?)";
+        String upsql = "UPDATE bancos_usuarios SET quantidade_item = ? WHERE nome_item = ? AND id_user = ? AND categoria_item = ? ";
+            try{
+                if(!itensJaExistem(bancouser)){
+                    PreparedStatement pstm = conn.prepareStatement(sql);
+                    pstm.setString(1, bancouser.getId_user());
+                    pstm.setString(2, bancouser.getNome_item());
+                    pstm.setInt(3, bancouser.getQtd_item());
+                    pstm.setString(4, bancouser.getCategoria_item());
+                    pstm.executeUpdate();
+                    System.out.println("Itens salvos com sucesso!!");
+                }else{
+                    PreparedStatement pstm = conn.prepareStatement(upsql);
+                    pstm.setInt(1, bancouser.getQtd_item());
+                    pstm.setString(2, bancouser.getNome_item());
+                    pstm.setString(3, bancouser.getId_user());
+                    pstm.setString(4, bancouser.getCategoria_item());
+                    pstm.executeUpdate();
+                    System.out.println("Itens editados com sucesso!!");
+                    itens =1;
+                }
+            }catch (SQLException e){
+                System.out.println("[!] - Erro ao salvar dados do armazem: " + e);
+            }    
+    }
+
+    public void deletarItem(BancoDAO bancouser){
+        conn = openDatabase();
+        String sql = "DELETE FROM bancos_usuarios WHERE nome_item = ? AND quantidade_item = ? AND id_user = ? AND categoria_item = ? ";
+        try{
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, bancouser.getNome_item());
+            pstmt.setInt(2, bancouser.getQtd_item());
+            pstmt.setString(3, bancouser.getId_user());
+            pstmt.setString(4, bancouser.getCategoria_item());
+            pstmt.executeUpdate();
+            
+        }catch(SQLException e){
+            System.out.println("[!] - Erro ao deletar item" + e);
+        }
+    }
+
     public void fazerLogin(UsuarioDAO usuario){
         try{
         String sql = "SELECT COUNT(*) FROM usuarios WHERE email_usuario = ? AND senha_usuario = ?";
@@ -115,6 +206,7 @@ public class ConexaoDAO {
                 String senhauser = rs.getString(3);
                 String emailuser = rs.getString(4);
                 usuario.add(new UsuarioDAO(iduser, nomeuser, senhauser, emailuser));
+                session.setAttribute("user_id", iduser);
                 System.out.println("Perfil do usuario: " + "\n" 
                     +iduser + "\n" + nomeuser+ "\n" + senhauser + "\n" + emailuser);
             }
@@ -123,6 +215,35 @@ public class ConexaoDAO {
             System.out.println(e);
             return null;
         }
+    }
+
+    public ArrayList<BancoDAO> listarItems(HttpServletRequest request){
+        ArrayList<BancoDAO> itens = new ArrayList<>();
+        String sql = "SELECT * FROM bancos_usuarios WHERE id_user = ?";
+        try{
+            Connection conn = openDatabase();
+            HttpSession session = request.getSession();
+            String id_user = (String) session.getAttribute("user_id");
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, id_user);
+            ResultSet rs = pstm.executeQuery();
+            while(rs.next()){
+                String iduser = rs.getString(1);
+                String nome_item = rs.getString(2);
+                Integer quantidade_item = rs.getInt(3);
+                String categoria_item = rs.getString(4);
+                itens.add(new BancoDAO(iduser, nome_item, quantidade_item, categoria_item));
+                session.setAttribute("itens", itens);
+            }
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+        return itens;
+    }
+
+    public String getIdUsuario(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return (String) session.getAttribute("user_id");
     }
 
     private boolean dadosJaExistem(UsuarioDAO userDAO) {
@@ -141,8 +262,28 @@ public class ConexaoDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return true; // Considere tratar esse erro adequadamente no seu código
+            return true;
         }
+    }
+    private boolean itensJaExistem(BancoDAO bancouser) {
+        conn = openDatabase();
+        int items;
+        try{
+            String sql = "SELECT COUNT(*) FROM bancos_usuarios WHERE id_user = ? AND nome_item = ? AND categoria_item = ?";
+            try(PreparedStatement stmt = conn.prepareStatement(sql)){
+                stmt.setString(1, bancouser.getId_user());
+                stmt.setString(2, bancouser.getNome_item());
+                stmt.setString(3, bancouser.getCategoria_item());
+                ResultSet resultado = stmt.executeQuery();
+                resultado.next();
+                items = resultado.getInt(1);
+                return items > 0;
+            }
+        }catch ( SQLException e) {
+            e.printStackTrace();
+            return true;
+        }
+        
     }
 
 }
