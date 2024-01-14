@@ -1,0 +1,7 @@
+controller\Controller.class
+model\ConexaoDAO.class
+controller\Controller$1.class
+controller\Controller$Data.class
+model\UsuarioDAO.class
+controller\Controller$OldData.class
+model\BancoDAO.class
