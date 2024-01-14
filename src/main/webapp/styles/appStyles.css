@@ -26,7 +26,7 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0,);;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.9);
 }
 
 .navigation ul {
@@ -162,7 +162,7 @@ body {
 #conteudo {
   color: #fff;
   background-color: #0a0a0a0a;
-  background-image: url('../backgrounds/Interface Estoque2.png');
+  background-image: url('./backgrounds/Interface_Preta.png');
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -174,23 +174,24 @@ body {
 
 /* Estilo de Configurações */
 
-#configuracao {
+.config-content {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column; /* Para ajustar os elementos verticalmente */
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #222;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 400px; /* Define a largura do contêiner de configurações */
-  max-width: 90%; /* Adiciona uma largura máxima para responsividade */
+  width: 400px;
+  max-width: 90%;
   height: 300px;
   max-height: 90%;
   padding: 20px;
 }
+
 
 .setting-item {
   margin-bottom: 10px;
@@ -206,6 +207,159 @@ label {
   outline-style: none;
 }
 
+/* Botão de Tema escuro/claro */
+
+.darklight {
+  height: 20px;
+  width: 45px;
+  background-color: #222;
+  appearance: none;
+  border-radius: 20px;
+  box-shadow: inset 0 8px 60px rgb(0 , 0 , 0 , 0.1),
+              inset 0 8px 8px rgb(0 , 0 , 0 , 0.1),
+              inset 0 -4px 4px rgb(0 , 0 , 0 , 0.1);
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.darklight::before {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  color: #EC953F;
+  background: linear-gradient(to bottom, #444, #222);
+  border-radius: 20px;
+  transform: scale(0.9);
+  transition: 0.5s;
+  box-shadow: 0 8px 40px rgb(0, 0, 0, 0.5),
+              inset 1px 1px rgb(236, 149, 63, 0.3),
+              inset -1px 1px rgb(236, 149, 63, 0.3);
+}
+
+.darklight:checked {
+  background: #fff;
+  box-shadow: inset 0 2px 60px rgba(0, 0, 0, 0.1),
+              inset 0 2px 8px rgb(0, 0, 0, 0.1),
+              inset 0 2px 8px rgb(0, 0, 0, 0.5);
+}
+
+.darklight:checked::before {
+  left: 20px;
+  box-shadow: 0 8px 20px rgb(0 , 0 , 0 , 0.1),
+  inset 4px 4px rgb(255, 255, 255, 1),
+  inset -4px 4px rgb(255, 255, 255, 1);
+  background: linear-gradient(to bottom, #eaeaea, #f9f9f9);
+
+}
+
+.darklight::after {
+  content: "";
+  position: absolute;
+  background: #2b2b2b;
+  top: 80px;
+  left: 160px;
+  z-index: -1;
+  transform: translate(-50%, 50%);
+  transition: 0.5s;
+}
+
+.darklight:checked::after{
+  background: #f8f8f8;
+}
+
+/* Estilo de Perfil */
+
+#perfil {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* Para ajustar os elementos verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  background-color: #222;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px; /* Define a largura do contêiner de Perfil */
+  max-width: 90%; /* Adiciona uma largura máxima para responsividade */
+  height: 300px;
+  max-height: 90%;
+  padding: 20px;
+}
+
+.setting-item {
+  margin-bottom: 10px;
+}
+
+/* Ajuste no tamanho da imagem e estilização do input de arquivo */
+.profile-info {
+  display: flex;
+  align-items: flex-end; /* Alinha verticalmente */
+}
+
+/* Estilos para a imagem */
+.profile-picture {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  margin-right: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra ao redor da imagem */
+}
+
+
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Estilos para o nome do usuário */
+.user-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 10px;
+}
+
+
+input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+#nomeUsuario {
+  font-size: 20px;
+  color: #EC953F;
+}
+
+#opcoesPerfil {
+  padding-top: 20px;
+}
+
+#opcoesPerfil p {
+  padding-top: 10px;
+}
+
+#opcoesPerfil a {
+  color: #fff;
+  text-decoration: none;
+}
+
+
+
 /* Estilo para a seção de Gerenciamento de Estoque */
 
 #estoque {
@@ -218,7 +372,6 @@ label {
   align-items: center; /* Centraliza verticalmente */
   background-color: #222;
   border-radius: 8px;
-  border: 2px solid #000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 800px; /* Define a largura do contêiner de configurações */
   max-width: 90%; /* Adiciona uma largura máxima para responsividade */
@@ -275,7 +428,6 @@ label {
   width: 100%;
   text-align: center;
   font-size: 28px;
-  color: #EC953F;
   font-family: Arial, sans-serif;
 }
 
@@ -317,7 +469,7 @@ label {
 .category h2 {
   font-size: 24px;
   margin-bottom: 10px;
-  color: #fff;
+  color: #000;
 }
 
 .category .card-container {
@@ -330,16 +482,19 @@ label {
 }
 
 .card {
-  background-color: #101010;
+  background-color: rgba(255, 255, 255);
   padding: 10px;
   border-radius: 25px;
-  border: 2px solid #EC953F;
-  color: #fff;
+  border: 2px solid #000000;
+  color: #000000;
   width: 150px;
   height: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: inset 0 2px 60px rgba(0, 0, 0, 0.1),
+  inset 0 2px 8px rgb(0, 0, 0, 0.1),
+  inset 0 2px 8px rgb(0, 0, 0, 0.5);
 }
 
 .card input {
@@ -354,7 +509,7 @@ label {
   font-size: 18px;
   background-color: transparent !important; /* Adicionando !important para forçar a prioridade */
   font-family: 'Arial', sans-serif;
-  color: #fff;
+  color: #000000;
 }
 
 
@@ -367,5 +522,169 @@ label {
   border: none; /* Remove a borda padrão */
   padding: 8px; /* Espaçamento interno */
   /* Adicione mais estilos conforme desejado */
+}
+
+div::-webkit-scrollbar {
+  width: 10px;               /* width of the entire scrollbar */
+}
+
+div::-webkit-scrollbar-track {
+  background: transparent;        /* color of the tracking area */
+}
+
+div::-webkit-scrollbar-thumb {
+  background-color: #EC953F;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+}
+
+/* Estoque - Limpeza */
+#estoque-limp {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* Para ajustar os elementos verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  background-color: #222;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 800px; /* Define a largura do contêiner de configurações */
+  max-width: 90%; /* Adiciona uma largura máxima para responsividade */
+  height: 500px;
+  max-height: 90%;
+  padding: 20px;
+}
+
+.category-limp {
+  margin-bottom: 30px;
+}
+
+.category-limp h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #fff; /* Ajuste a cor do texto conforme seu estilo */
+}
+
+.category-limp ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 15px;
+}
+
+.category-limp button {
+  padding: 8px 12px;
+  margin-top: 8px;
+  cursor: pointer;
+  background-color: #4CAF50; /* Cor do botão */
+  color: #fff; /* Cor do texto do botão */
+  border: none;
+  border-radius: 4px;
+}
+
+.category-limp button:hover {
+  background-color: #45a049;
+}
+
+/* Estilo para o conteúdo das categorias */
+.category-limp li {
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #fff; /* Ajuste a cor do texto conforme seu estilo */
+}
+
+/* Estilo para o conteúdo da página de Estoque */
+#estoque-limp {
+  display: none;
+  color: #fff; /* Ajuste a cor do texto conforme seu estilo */
+  overflow-y: auto;
+}
+
+#titleLimp {
+  width: 100%;
+  text-align: center;
+  font-size: 28px;
+  font-family: Arial, sans-serif;
+}
+
+.subtitleLimp h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+#estoque-limp p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Estilo para o botão de exclusão */
+.botao-excluir {
+  padding: 8px 12px;
+  margin-top: 8px;
+  cursor: pointer;
+  background-color: #ff0000; /* Cor vermelha */
+  color: #fff; /* Cor do texto do botão */
+  border: none;
+  border-radius: 4px;
+}
+
+.botao-excluir:hover {
+  background-color: #cc0000; /* Cor vermelha mais escura no hover */
+}
+
+/* Estilo para o texto do item */
+.texto-item {
+  margin-right: 10px; /* Espaçamento entre texto e botão */
+}
+
+/* Estilo para o conteúdo das categorias */
+.category {
+  margin-bottom: 30px;
+}
+
+.category h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.category .card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-height: 300px; /* Altura máxima do contêiner para a barra de rolagem */
+  overflow-y: auto; /* Adiciona barra de rolagem quando necessário */
+  padding-right: 10px; /* Adiciona espaço para a barra de rolagem não se sobrepor aos cards */
+}
+
+.card {
+  background-color: rgba(255, 255, 255);
+  padding: 10px;
+  border-radius: 25px;
+  border: 2px solid #000000;
+  color: #000000;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: inset 0 2px 60px rgba(0, 0, 0, 0.1),
+  inset 0 2px 8px rgb(0, 0, 0, 0.1),
+  inset 0 2px 8px rgb(0, 0, 0, 0.5);
+}
+
+.card input {
+  margin-top: 10px;
+  padding: 8px;
+  margin-left: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-style: none;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 18px;
+  background-color: transparent !important; /* Adicionando !important para forçar a prioridade */
+  font-family: 'Arial', sans-serif;
+  color: #000000;
 }
 

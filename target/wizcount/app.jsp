@@ -1,11 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ page import="model.UsuarioDAO"%>
+<%@ page import="model.BancoDAO"%>
+<%@ page import="model.ConexaoDAO"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ page import="com.google.gson.Gson"%>
 <%
-	@ SuppressWarnings ("unchecked")
-	ArrayList<UsuarioDAO> usuario = (ArrayList<UsuarioDAO>) request.getAttribute("usuario");
+  @ SuppressWarnings ("unchecked")
   UsuarioDAO userDAO = new UsuarioDAO();
+	BancoDAO bancoDAO = new BancoDAO();
+  ConexaoDAO connDAO = new ConexaoDAO();
+  ArrayList<UsuarioDAO> usuario = (ArrayList<UsuarioDAO>) request.getAttribute("usuario");
+  ArrayList<BancoDAO> itensPerfil = (ArrayList<BancoDAO>) request.getAttribute("itens_perfil");
+  Gson gson = new Gson();
+  String jsonItensPerfil = gson.toJson(itensPerfil);
 %>
 <!DOCTYPE html>
 <html>
@@ -13,13 +21,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Área de Estoque</title>
-    <link href="styles/appStyles.css" rel="stylesheet" type="text/css" />
-    <script src="styles/appTools.js"></script>
-    <script src="styles/appConfig.js"></script>
-    <script src="styles/appStock.js"></script>
+    <link href="./styles/appStyles.css" rel="stylesheet" type="text/css" />
+    <script>
+      var itens = <%=jsonItensPerfil%>;
+    </script>
     
+
   </head>
-  <body>
+  <body id="light-theme">
     <!-- Barra de Navegação -->
     <div class="container">
       <div class="navigation">
@@ -64,17 +73,14 @@
     <!-- Conteúdos -->
 
     <div id="conteudo">
-      <!-- aqui seria a div para acessar os bancos de dados, cada tabela vai ter uma senha e um nome
-           o usuario pode criar até 3 tabelas diferentes, cada uma com senha e nome etc -->
-     
-     
       <!-- Conteúdo da página de Estoque -->
+      <!------- Alimentos ------->
       <div id="estoque" style="display: none;">
-        <h2 id="titleestoque">Estoque</h2>
+        <h2 id="titleestoque">Alimentos</h2>
 
         <div class="category">
-          <h2 class="subtitleestoque">Carnesl</h2>
-          <div class="card-container" id="carnes-list"></div>
+          <h2 class="subtitleestoque">Proteína animal</h2>
+          <div class="card-container" id='carnes-list'></div>
           <button onclick="adicionarItem('carnes')">+</button>
         </div>
 
@@ -108,12 +114,45 @@
           <button onclick="adicionarItem('verduras')">+</button>
         </div>
 
-        <div class="category">
-          <h2 class="subtitleestoque">Adicionar Categoria</h2>
-          <input type="text" id="novaCategoriaInput" placeholder="Digite o nome da nova categoria">
-          <button onclick="adicionarCategoria()">Adicionar</button>
+        
+        <div class="container">
+          <button onclick="trocarSecao()">Trocar Seção</button>
+          <button onclick="setArrays()">Salvar</button>
         </div>
+        
+      </div>
+
+      <!------- Limpeza ------->
+
+      <div id="estoque-limp" style="display: none;">
+        <h2 id="titleLimp">Limpeza</h2>
       
+        <div class="category-limp">
+          <h2 class="subtitleLimp">Piso</h2>
+          <div class="card-container" id="piso-list"></div>
+          <button onclick="adicionarItemLimp('piso')">+</button>
+        </div>
+        
+        <div class="category-limp">
+          <h2 class="subtitleLimp">Superfície de vidro</h2>
+          <div class="card-container" id="vidro-list"></div>
+          <button onclick="adicionarItemLimp('vidro')">+</button>
+        </div>
+
+        <div class="category-limp">
+          <h2 class="subtitleLimp">Superfície de metálica</h2>
+          <div class="card-container" id="metal-list"></div>
+          <button onclick="adicionarItemLimp('metal')">+</button>
+        </div>
+
+        <div class="container">
+          <button onclick="trocarSecao()">Trocar Seção</button>
+        </div>
+
+        <div class="container">
+          <a href="getarray">sarvar</a>
+        </div>
+
       </div>
 
       <!-- Conteúdo da página de Metas -->
@@ -129,30 +168,41 @@
       </div>
 
       <!-- Conteúdo da página de Perfil -->
-      
       <div id="perfil" style="display: none;">
-        <h2>Perfil</h2> <!-- A intenção é carregar as informações do usuario e quantas tabelas
-                          ele tem no perfil dele -->
-        <p id='perfil-nome'  name='perfil-nome'>Nome: <%=usuario.get(0).getNome_usuario()%></p>
-        <p id='perfil-senha' name='perfil-senha'>Senha: <%=usuario.get(0).getSenha_usuario()%></p>
-        <p id='perfil-email' name='perfil-email'>Email: <%=usuario.get(0).getEmail_usuario()%></p>
-        <form action='logout'>
-          <button type='submit'>Desconectar</button>
-        </form>
+        <div class="profile-info">
+          <label for="fileInput" class="profile-picture">
+            <input type="file" id="fileInput" accept="image/*" onchange="previewImage(event)">
+            <img id="preview" src="icons/icon.png" alt="Foto de Perfil" onclick="alterarImagem()">
+          </label>
+          <div class="user-details">
+            <p id='perfil-nome'  name='perfil-nome'>Usuario: <%=usuario.get(0).getNome_usuario()%></p>
+            <p id='perfil-email' name='perfil-email'>Email: <%=usuario.get(0).getEmail_usuario()%></p>
+          </div>
+        </div>
+            <div id="opcoesPerfil">
+              <p id="assinatura"><a href="#">Assinatura</a></p>
+              <p id="altNome"><a href="altenick">Alterar Nome</a></p>
+              <p id="altSenha"><a href="altpass">Alterar senha</a></p>
+            </div>
+            <form action='logout'>
+              <button type='submit'>Desconectar</button>
+            </form>
+
       </div>
 
       <!-- Conteúdo da página de Configuração -->
-      <div id="configuracao" style="display: none;">
+      <div id="configuracao" class="config-content" style="display: none;">
         <h2>Configuração</h2>
-        <p>Conteúdo da página de Configuração...</p>
+
+        <input type="checkbox" id="darklight" class="darklight">
 
         <div class="setting-item">
-          <a id="sair" href="/index.html">Sair</a>
-        </div>
+          <a id="sair" href="index.html">Sair</a>
       </div>
       <!-- Adicione outras seções conforme necessário -->
     </div>
 
 
   </body>
+  <script src="./styles/appTools.js"></script>
 </html>

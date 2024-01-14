@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Página de Login</title>
+  <link rel="stylesheet" href="loginStyles.css">
+
+  <script src="loginTools.js"></script>
+  
+</head>
+
+<body>
+  <header>
+
+    <nav id="cab">
+
+      <ul>
+
+        <li class="home"><a style="float: left;" id="home" href="../index.html">Home</a></li>
+        <li class="user">
+          <span id="linkSpan" style="float: right;"><img src="icons/icon.svg" id="user" width="35px"
+              height="35px"></span>
+        </li>
+
+      </ul>
+
+    </nav>
+
+  </header>
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="username">Nome de Usuário ou E-mail:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="input-group">
+        <button type="submit">Entrar</button>
+      </div>
+    </form>
+    <p id="loginMessage"></p>
+  </div>
+  
+</body>
+
+</html>
