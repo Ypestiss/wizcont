@@ -167,7 +167,7 @@ nav a {
 /* Tela Inicial */
 
 #main_background {
-  background-image: url("../backgrounds/loja.png");
+  background-image: url("../backgrounds/WC.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -195,36 +195,6 @@ nav a {
   text-shadow: 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F;
   animation: flicker 4s infinite alternate;
   z-index: -1;
-}
-
-
-/* Animação do titulo */
-
-@keyframes flicker {
-  0% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F;
-    /* Initial shadow settings */
-  }
-
-  25% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F, 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F;
-    /* Additional shadows for flickering effect */
-  }
-
-  50% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F;
-    /* Reset to original shadows */
-  }
-
-  75% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F, 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F;
-    /* Additional shadows for flickering effect */
-  }
-
-  100% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F;
-    /* Final shadow settings */
-  }
 }
 
 /* Subtitulo */
