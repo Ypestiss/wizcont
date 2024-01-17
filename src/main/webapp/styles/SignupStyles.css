@@ -162,6 +162,7 @@ nav a {
 
 h2 {
   color: #EC953F;
+  font-size: 18px;
 }
 
 label {
@@ -174,7 +175,7 @@ label {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 250px;
-  height: 300px;
+  height: 400px;
 }
 
 .input-group {
@@ -213,7 +214,7 @@ label {
   color:#fff;
 }
 
-#linkCadastro {
+#linkLogin {
   color: #FF914D;
   text-decoration: none;
 }

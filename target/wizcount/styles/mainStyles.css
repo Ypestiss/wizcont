@@ -192,7 +192,7 @@ nav a {
   font-family: 'Medula One';
   letter-spacing: 2px;
   margin-top: 170px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   font-size: 150px;
   display: inline-block;
   position: relative;
@@ -210,42 +210,11 @@ nav a {
   z-index: -1;
 }
 
-
-/* Animação do titulo */
-
-/*@keyframes flicker {
-  0% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F;
-    /* Initial shadow settings */
-/*  }
-
-  25% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F, 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F;
-    /* Additional shadows for flickering effect */
-/*  }
-
-  50% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F;
-    /* Reset to original shadows */
- /* }
-
-  75% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F, 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F;
-    /* Additional shadows for flickering effect */
- /* }
-
-  100% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F;
-    /* Final shadow settings */
-/*  }
-}
-
 /* Subtitulo */
 
 #subtitle {
   color: #fff;
   font-size: 20px;
-  margin-top: 5px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -255,7 +224,7 @@ nav a {
   display: flex;
   justify-content: center;
   align-items: right;
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 .comecar {

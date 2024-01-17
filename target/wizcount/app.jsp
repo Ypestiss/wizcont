@@ -55,7 +55,7 @@
           </li>
           <li class="list active">
             <a href="#" onclick="mostrarPerfil()">
-              <span class="icon"><img src="icons/icon.png" id="metaIcon" width="30px" height="30px"></span>
+              <span class="icon"><img src="icons/icon.svg" id="metaIcon" width="30px" height="30px"></span>
               <span class="text">Perfil</span>
             </a>
           </li>
