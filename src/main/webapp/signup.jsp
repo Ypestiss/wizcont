@@ -5,8 +5,8 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Página de Login</title>
-  <link rel="stylesheet" href="./styles/loginStyles.css">
+  <title>Página de Cadastro</title>
+  <link rel="stylesheet" href="./styles/SignupStyles.css">
   <script src="./styles/loginTools.js"></script>
   <script src="./styles/loginUserTools.js"></script>
 </head>
@@ -39,7 +39,7 @@
   
   <form name="loginForm" method="post" action="registrar">
     <div class="login-container">
-      <h2>Login</h2>
+      <h2>Junte-se a nós! ;)</h2>
       <div class="input-group">
         <label for="email">E-mail:</label>
         <input type="text" id="email" name='email' required>
@@ -54,6 +54,9 @@
       </div>
       <div class="input-group">
         <button type="submit" >Registrar</button>
+      </div>
+      <div>
+      <p id="msg">Já é cadastrado? <a id="linkLogin">Entre!</a><p>
       </div>
     </div>
   </form>

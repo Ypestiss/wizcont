@@ -12,14 +12,28 @@ public class ConexaoDAO {
     public Integer itens = 0;
 
     public Connection openDatabase() {
-        System.out.println("[><] Função chamada: OpenDatabase:");
+        Connection conn = null;
+
         try {
-            System.out.println("[_/] Trying to OpenDatabase:");
+            // Carregando o driver JDBC
             Class.forName("com.mysql.cj.jdbc.Driver");
-            return DriverManager.getConnection("jdbc:mysql://192.168.0.117:3306/db_wizcont", "admin", "admin");
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException("[!] - Erro: Erro ao acessar o banco de dados: " + e);
+
+            // URL de conexão com o banco de dados
+            String url = "jdbc:mysql://localhost:3306/";
+            String dbName = "db_wizcont";
+            String username = "root";
+            String password = "admin";
+
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_wizcont", username, password);
+
+            // Criar tabelas se não existirem
+            createTables(conn);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        return conn;
     }
 
     private void createDatabase(Connection conn, String dbName) {

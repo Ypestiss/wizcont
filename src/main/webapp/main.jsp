@@ -13,8 +13,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>WizCont</title>
-  <link href="./styles/style.css" rel="stylesheet" type="text/css" />
-  <script src="./styles/tools.js"></script>
+  <link href="./styles/MainStyles.css" rel="stylesheet" type="text/css" />
+  <script src="./styles/mainTools.js"></script>
   <script src="./styles/userTools.js"></script>
 </head>
 
@@ -58,13 +58,17 @@
       <button class="comecar" type="submit">Começar</button>
     </div>
   </form>
-  
+
+<div id="veja_mais">
+    <pq id="veja">Veja mais!</p><a id="seta"><img src="./icons/arrow.png" width="10px" height="10px" alt="seta"></a>
+  </div>
 
   <div id="more">
-    <h1 id="more_title">O que é WizCont?</h1>
-    <p id="more_subtitle">WizCont é uma ferramenta gratuita<br> que te ajuda a gerenciar seu estoque<br> e seus
+    <h1 id="more_title"  class="hidden">O que é WizCont?</h1>
+    <p id="more_subtitle"  class="hidden">WizCont é uma ferramenta gratuita<br> que te ajuda a gerenciar seu estoque<br> e seus
       produtos, além de calcular<br>preços e descontos! Incrível né?</p>
   </div>
+
 </body>
 
 </html>

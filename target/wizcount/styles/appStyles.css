@@ -162,7 +162,7 @@ body {
 #conteudo {
   color: #fff;
   background-color: #0a0a0a0a;
-  background-image: url('./backgrounds/Interface_Preta.png');
+  background-image: url('../backgrounds/Interface Preta.png');
   background-size: cover;
   background-position: center;
   height: 100vh;

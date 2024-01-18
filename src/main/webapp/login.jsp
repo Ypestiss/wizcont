@@ -12,7 +12,7 @@
 <head>
   <meta charset="utf-8">
   <title>Página de Login</title>
-  <link rel="stylesheet" href="./styles/loginStyles.css">
+  <link rel="stylesheet" href="./styles/LoginStyles.css">
   <script src="./styles/loginTools.js"></script>
   <script src="./styles/loginUserTools.js"></script>
   
@@ -49,7 +49,7 @@
       <h2>Login</h2>
       <div class="input-group">
         <label for="username">E-mail:</label>
-        <input type="text" id="email" name='email' required>''
+        <input type="text" id="email" name='email' required>
       </div>
       <div class="input-group">
         <label for="password">Senha:</label>
@@ -57,6 +57,9 @@
       </div>
       <div class="input-group">
         <button type="submit" >Entrar</button>
+      </div>
+      <div>
+      <p id="msg">Não é cadastrado? <a id="linkCadastro" href="./signup">Cadastrar-se</a><p>
       </div>
     </div>
   </form>
