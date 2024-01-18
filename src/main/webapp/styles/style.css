@@ -42,7 +42,7 @@ header {
 
   box-shadow: 0px 0px 10px #000000;
 
-  font-family: sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
 
@@ -167,7 +167,7 @@ nav a {
 /* Tela Inicial */
 
 #main_background {
-  background-image: url("../backgrounds/loja.png");
+  background-image: url("../backgrounds/WC.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -182,76 +182,86 @@ nav a {
 
 /* Estilo do titulo */
 
+#main_content {
+  text-align: center;
+}
+
 #title {
-  color: #EC953F;
-  font-size: 200px;
+  color: #fff;
+  font-size: 150px;
   font-family: 'Medula One';
   letter-spacing: 2px;
-  text-align: left;
-  padding-bottom: -50px;
-  margin-top: 200px;
-  margin-left: 5%;
+  margin-top: 170px;
   margin-bottom: 0px;
-  text-shadow: 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F;
-  animation: flicker 4s infinite alternate;
+  font-size: 150px;
+  display: inline-block;
+  position: relative;
+}
+
+#title:after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5px; /* Altura da borda */
+  background: linear-gradient(to right, #FF3131, #FF914D);
   z-index: -1;
 }
 
 
 /* Animação do titulo */
 
-@keyframes flicker {
+/*@keyframes flicker {
   0% {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F;
     /* Initial shadow settings */
-  }
+/*  }
 
   25% {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F, 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F;
     /* Additional shadows for flickering effect */
-  }
+/*  }
 
   50% {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F;
     /* Reset to original shadows */
-  }
+ /* }
 
   75% {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F, 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F;
     /* Additional shadows for flickering effect */
-  }
+ /* }
 
   100% {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #EC953F, 0 0 35px #EC953F, 0 0 40px #EC953F, 0 0 50px #EC953F;
     /* Final shadow settings */
-  }
+/*  }
 }
 
 /* Subtitulo */
 
 #subtitle {
   color: #fff;
-  font-size: 25px;
-  text-align: left;
-  margin-left: 5%;
-  margin-top: 0px;
-  font-family: sans-serif;
+  font-size: 20px;
+  margin-top: 5px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 /* Botão */
 
 #botoes {
   display: flex;
-  justify-content: right;
+  justify-content: center;
   align-items: right;
   margin-top: 5%;
-  margin-right: 10%;
 }
 
 .comecar {
-  background-color: rgb(0, 0, 0, 0.5);
-  color: #EC953F;
-  border-radius: 12px;
+  background: linear-gradient(to right, #FF3131, #FF914D);
+  color: #ffffff;
+  border-radius: 20px;
   border: none;
   font-size: 18px;
   padding: 15px;
@@ -260,16 +270,15 @@ nav a {
 }
 
 .comecar:hover {
-  background-color: #EC953F;
-  color: #fff;
   box-shadow: 0 12px 16px 0 rgb(0, 0, 0, 0.24), 0 17px 50px 0 rgb(0, 0, 0, 0.19);
-  transition: 0.3s;
+  transition: 1s;
 }
 
 #more {
   height: 1500px;
   width: 100%;
   position: relative;
+  text-align: center;
 }
 
 #more_background {
@@ -283,30 +292,56 @@ nav a {
 }
 
 #more_title {
-  color: #EC953F;
+  color: transparent;
+  background: linear-gradient(to right, #FF3131, #FF914D);
+  -webkit-background-clip: text;
+  background-clip: text;
   position: absolute;
-  font-family: sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 40px;
-  letter-spacing: 1px;
-  position: absolute;
-  right: 10%;
+  width: 1000px;
   top: 10%;
-  text-align: right;
-  text-shadow: 0 0 50px #EC953F;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 #more_subtitle {
   color: #ffff;
   position: absolute;
-  font-family: sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 20px;
   position: absolute;
-  right: 10%;
-  top: 15%;
-  text-align: right;
+  width: 1000px;
+  top: 17%; /* Ajuste a porcentagem conforme necessário */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  justify-content: center;
   line-height: 1.4;
 
 }
+
+#veja_mais {
+  text-align: center;
+  padding-top: 30px;
+  color:#fff;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 12px;
+}
+
+.hidden {
+  opacity: 0;
+  filter: blur(5px);
+  transition: all 1s;
+}
+
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transition: all 1s;
+}
+
 
 /* Adaptação para telas menores */
 @media screen and (max-width: 768px) {

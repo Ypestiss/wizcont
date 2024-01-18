@@ -335,39 +335,50 @@ for(var i = 0; i < itens.length; i++){
   quantidadeInput.value = Number(item.qtd_item);
   card.appendChild(quantidadeInput);
 
+  const novoItem = [
+    textoItem.textContent,
+    quantidadeInput.value.toString(),
+    categoria
+  ];
+
   const botaoExcluir = document.createElement('button');
     botaoExcluir.style.backgroundColor = 'transparent';
     botaoExcluir.style.color = 'red';
     botaoExcluir.textContent = 'Excluir';
     botaoExcluir.onclick = function() {
       this.parentNode.remove();  
-      // const index = nomeItensArray.findIndex(item => item[0] === novoItem[0] && item[1] === novoItem[1] && item[2] === novoItem[2]);
-      // console.log("Teste index:" + index);
-      // console.log("Teste item: " + item);
-      // console.log("Teste itens array:" + nomeItensArray)
+      const index = nomeItensArray.findIndex(item => item[0] === novoItem[0] && item[1] === novoItem[1] && item[2] === novoItem[2]);
+      console.log("Teste index:" + index);
+      console.log("Teste item: " + item);
+      console.log("Teste itens array:" + nomeItensArray)
 
-      // if(index !== -1){
-      //   nomeItensArray.splice(index,  1);
-      //   console.log("Teste index2:" + index);
-      //   console.log("Teste item2: " + item);
-      //   console.log("Teste itens array2:" + nomeItensArray)
-      //   console.log(novoItem)
-      //   fetch('delitem', {
-      //     method: 'POST',
-      //     headers: {'Content-Type': 'application/json'},
-      //     body: JSON.stringify(novoItem)
-      //   })
-      //   .then(response => {
-      //     if(!response.ok) {
-      //       throw new Error(`HTTP error! Status ${response.status}`);
-      //     }
-      //     return response.json();
-      //   }) 
-      //   this.parentNode.remove();  
-      // }
+      if(index !== -1){
+        nomeItensArray.splice(index,  1);
+        console.log("Teste index2:" + index);
+        console.log("Teste item2: " + item);
+        console.log("Teste itens array2:" + nomeItensArray)
+        console.log(novoItem)
+        fetch('delitem', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(novoItem)
+        })
+        .then(response => {
+          if(!response.ok) {
+            throw new Error(`HTTP error! Status ${response.status}`);
+          }
+          return response.json();
+        }) 
+        this.parentNode.remove();  
+      }
     };
   card.appendChild(botaoExcluir);
+  nomeItensArray.push(novoItem);
 
+  quantidadeInput.addEventListener('input', function() {
+    // Obtém o valor atualizado do campo de quantidade e adiciona à array global
+    novoItem[1] = quantidadeInput.value.toString();
+  });
   if (cardContainer) {
     cardContainer.appendChild(card);
   } else {
@@ -375,7 +386,7 @@ for(var i = 0; i < itens.length; i++){
   }
 }
 
-// Adiciona uma nova categoria 
+// Adiciona uma nova categ------------------------jnoria 
 //function adicionarCategoria() {
 //  const novaCategoriaInput = document.getElementById('novaCategoriaInput');
 //  const novaCategoriaNome = novaCategoriaInput.value.trim(); // Obtém o valor da nova categoria

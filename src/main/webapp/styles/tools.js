@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Armazena as fontes das imagens
   const imageSources = [
-    '../icons/icon.svg',
-    '../icons/alticon.svg'
+    './icons/icon.svg',
+    './icons/alticon.svg'
   ];
 
   // Adiciona um evento de mouseover para trocar a fonte da imagem
@@ -19,4 +19,21 @@ document.addEventListener('DOMContentLoaded', function() {
     userImage.src = imageSources[0]; // Troca para a imagem branca
   });
 
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      console.log(entry)
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      } else {
+        entry.target.classList.remove('show');
+      }
+    });
+  });
+
+  const hiddenElements = document.querySelectorAll('.hidden');
+  hiddenElements.forEach((el) => observer.observe(el));
 });

@@ -16,14 +16,6 @@ public class ConexaoDAO {
         try {
             System.out.println("[_/] Trying to OpenDatabase:");
             Class.forName("com.mysql.cj.jdbc.Driver");
-             // Criar o banco de dados se não existir
-            createDatabase(conn, "db_wizcont");
-
-            // Usar o banco de dados
-            conn.setCatalog("db_wizcont");
-
-            // Criar tabelas se não existirem
-            createTables(conn);
             return DriverManager.getConnection("jdbc:mysql://192.168.0.117:3306/db_wizcont", "admin", "admin");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException("[!] - Erro: Erro ao acessar o banco de dados: " + e);
