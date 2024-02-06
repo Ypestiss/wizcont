@@ -1,6 +1,7 @@
 # Wizcont - em desenvolvimento
 
-![image](https://github.com/Ypestiss/wizcount/assets/106290708/80dcb1aa-1d00-4956-8e39-76812fe4b192)
+![image](https://github.com/Ypestiss/wizcont/assets/106290708/7adefc23-e9ea-4dcb-9266-db256edd390c)
+
 
 # Descrição
 Wizcont é uma plataforma de gerenciamento de Estoque com banco de dados feito em Java. 
