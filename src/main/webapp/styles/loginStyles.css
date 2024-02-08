@@ -158,7 +158,7 @@ nav a {
   background-color: #101010;
 }
 
-
+/*aaaaaa*/
 
 h2 {
   color: #EC953F;
@@ -168,15 +168,20 @@ label {
   color: #fff;
 }
 
-.login-container {
+.login {
   background-color: #222;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 250px;
-  height: 300px;
+  width: 800px;
+  height: 400px;
 }
 
+.login-form {
+  width: 50%;
+  height: 100%;
+  margin-left: 50%;
+}
 .input-group {
   margin-bottom: 15px;
 }

@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width">
   <title>WizCont</title>
   <link href="./styles/MainStyles.css" rel="stylesheet" type="text/css" />
-  <script src="./styles/mainTools.js"></script>
+  <script src="./styles/MainTools.js"></script>
   <script src="./styles/userTools.js"></script>
 </head>
 
@@ -50,7 +50,7 @@
   <!--Conteúdo principal-->
 
   <div id="main_content">
-    <h1 id="title">WizCont.</h1>
+    <h1 id="title"></h1>
     <p id="subtitle">O melhor site de gerenciamento de <br> estoque do Brasil.</p>
   </div>
   <form id="botoes" action="perfil">
