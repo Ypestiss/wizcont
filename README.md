@@ -1,6 +1,7 @@
 # Wizcont - em desenvolvimento
 
-![image](https://github.com/Ypestiss/wizcount/assets/106290708/80dcb1aa-1d00-4956-8e39-76812fe4b192)
+![image](https://github.com/Ypestiss/wizcont/assets/106290708/7adefc23-e9ea-4dcb-9266-db256edd390c)
+
 
 # Descrição
 Wizcont é uma plataforma de gerenciamento de Estoque com banco de dados feito em Java. 
@@ -22,10 +23,7 @@ back-end do projeto em Java com banco de dados etc...
 - Tomcat
 
 # Como executar
-- Setar nas váriaveis ambientes do sistema o PATH do java e do Maven
-- Baixar a versão 9.0.84 do Apache-Tomcat 
-- digitar o seguinte comando no terminal: mvn war:war -f "CAMINHO_DO_PROJETO\wizcount\pom.xml" 
-- Executar arquivo wizcont gerado na pasta target no servidor Apache - Tomcat
+- No momento estou verificando alguns bugs na hora de acessar o servidor e criar o banco de dados para quem não tiver criado anteriormente.
 
 # Estrutura do projeto
 
