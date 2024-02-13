@@ -12,7 +12,7 @@
 <head>
   <meta charset="utf-8">
   <title>Página de Login</title>
-  <link rel="stylesheet" href="./styles/LoginStyles.css">
+  <link rel="stylesheet" href="./styles/loginStyles.css">
   <script src="./styles/loginTools.js"></script>
   <script src="./styles/loginUserTools.js"></script>
   
@@ -47,9 +47,9 @@
     <div><img src="."></div>
     <div class="login-form">
       <form name="loginForm" method="post" action="logar">
-            <h2>Login</h2>
+            <h2>LOGIN</h2>
             <div class="input-group">
-              <label for="username">E-mail:</label>
+              <label for="username">Usuário ou E-mail:</label>
               <input type="text" id="email" name='email' required>
             </div>
             <div class="input-group">

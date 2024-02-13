@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Inter';
+  src: url("../fonts/Inter-VariableFont_slnt\,wght.ttf");
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -162,6 +167,14 @@ nav a {
 
 h2 {
   color: #EC953F;
+  text-align: center;
+  font-size: 50px;
+  margin-left: 5%;
+  margin-bottom: 5%;
+  margin-top: 0;
+  padding-bottom: 5%;
+  padding-top: 2%;
+  font-family: 'Inter'
 }
 
 label {
@@ -171,7 +184,7 @@ label {
 .login {
   background-color: #222;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 800px;
   height: 400px;
@@ -184,6 +197,8 @@ label {
 }
 .input-group {
   margin-bottom: 15px;
+  margin-left: 15%;
+  margin-top: 5%;
 }
 
 .input-group label {
@@ -195,10 +210,10 @@ label {
 .input-group input[type="password"] {
   background-color: #0000;
   color: #fff;
-  width: 95%;
+  width: 85%;
   padding: 8px;
-  border-radius: 3px;
-  border: 1px solid #000;
+  border-radius: 15px;
+  border: 1px solid #fff;
 }
 
 .input-group input[type="text"]:hover,
@@ -207,15 +222,25 @@ label {
 }
 
 .input-group button {
-  padding: 8px 15px;
+  padding: 4px 7px;
   border: none;
   background: linear-gradient(to right, #FF3131 , #FF914D);
   color: #fff;
   cursor: pointer;
+  border-radius: 20px;
+  margin-left: 35%;
+  margin-top: 5%;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 40px;
+  width: 80px;
 }
 
 #msg {
   color:#fff;
+  text-align: center;
+  padding-top: 4%;
+  padding-left: 2%;
 }
 
 #linkCadastro {
