@@ -193,22 +193,48 @@ nav a {
   letter-spacing: 2px;
   margin-top: 170px;
   margin-bottom: 0;
-  font-size: 150px;
   display: inline-block;
   position: relative;
 }
 
-#title:after {
-  content: "";
-  display: block;
+/* Animações do Título */
+
+#title::after,
+#title::before {
+  content: "WizCont.";
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+#title::before {
+  width: 0;
+  transition: width 0.1s ease-out;
+}
+
+#title.animate::before {
+  width: 100%;
+}
+
+#title::after {
+  width: 0;
+  transition: width 0.1s ease-out;
+}
+
+#title.animate::after {
+  width: 100%;
+}
+
+#title::after {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 5px; /* Altura da borda */
+  height: 5px;
   background: linear-gradient(to right, #FF3131, #FF914D);
   z-index: -1;
 }
+
 
 /* Subtitulo */
 

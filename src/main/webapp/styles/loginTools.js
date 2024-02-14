@@ -31,7 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(userImage.src);
   });
 
+});
 
+document.addEventListener('DOMContentLoaded', function () {
   const loginForm = document.getElementById('loginForm');
   const loginMessage = document.getElementById('loginMessage');
 
@@ -51,5 +53,4 @@ document.addEventListener('DOMContentLoaded', function() {
       loginMessage.textContent = 'Nome de usuário ou senha incorretos. Tente novamente.';
     }
   });
-
 });

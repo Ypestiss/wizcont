@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Pré-carregamento da imagem
 const preloadedImage = new Image();
 preloadedImage.src = "./icons/icon.svg";
@@ -8,6 +9,8 @@ preloadedImage.onload = function() {
 };
 
 
+=======
+>>>>>>> 2b3198b06be63aa0b68b7d0b003f53f8009ea277
 document.addEventListener('DOMContentLoaded', function() {
 
   // Seleciona a imagem
@@ -15,8 +18,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Armazena as fontes das imagens
   const imageSources = [
+<<<<<<< HEAD
     "./icons/icon.svg",
     "./icons/alticon.svg"
+=======
+    './icons/icon.svg',
+    './icons/alticon.svg'
+>>>>>>> 2b3198b06be63aa0b68b7d0b003f53f8009ea277
   ];
 
   // Adiciona um evento de mouseover para trocar a fonte da imagem
@@ -31,7 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(userImage.src);
   });
 
+});
 
+document.addEventListener('DOMContentLoaded', function () {
   const loginForm = document.getElementById('loginForm');
   const loginMessage = document.getElementById('loginMessage');
 
@@ -51,5 +61,4 @@ document.addEventListener('DOMContentLoaded', function() {
       loginMessage.textContent = 'Nome de usuário ou senha incorretos. Tente novamente.';
     }
   });
-
 });

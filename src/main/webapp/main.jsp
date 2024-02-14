@@ -50,7 +50,7 @@
   <!--Conteúdo principal-->
 
   <div id="main_content">
-    <h1 id="title">WizCont.</h1>
+    <h1 id="title"></h1>
     <p id="subtitle">O melhor site de gerenciamento de <br> estoque do Brasil.</p>
   </div>
   <form id="botoes" action="perfil">

@@ -14,6 +14,8 @@
   <title>Página de Login</title>
   <meta name="viewport" content="width=device-width">
   <link type="text/css" rel="stylesheet" href="./styles/loginStyles.css">
+  <link rel="stylesheet" href="./styles/loginStyles.css">
+  <script src="./styles/loginTools.js"></script>
   <script src="./styles/loginUserTools.js"></script>
   <script src="./styles/loginTools.js"></script>
   
@@ -44,18 +46,30 @@
     </nav>
 
   </header>
-  
-  <form name="loginForm" method="post" action="logar">
-    <div class="login-container">
-      <h2>Login</h2>
-      <div class="input-group">
-        <label for="username">E-mail:</label>
-        <input type="text" id="email" name='email' required>''
-      </div>
-      <div class="input-group">
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name='password' required>
-      </div>
-      <div class="input-group">
-        <button type="submit" >Entrar</button>
-      </div>
+
+  <div class="login">
+    <div><img src="."></div>
+    <div class="login-form">
+      <form name="loginForm" method="post" action="logar">
+            <h2>LOGIN</h2>
+            <div class="input-group">
+              <label for="username">Usuário ou E-mail:</label>
+              <input type="text" id="email" name='email' required>
+            </div>
+            <div class="input-group">
+              <label for="password">Senha:</label>
+              <input type="password" id="password" name='password' required>
+            </div>
+            <div class="input-group">
+              <button type="submit">Entrar</button>
+            </div>
+            <div>
+            <p id="msg">Não é cadastrado? <a id="linkCadastro" href="./signup">Cadastrar-se</a><p>
+            </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+
+</html>

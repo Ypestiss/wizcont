@@ -16,9 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Função para aplicar estilos com base no modo escuro/claro
   function applyStyles(isDarkMode) {
-    const backgroundColor = isDarkMode ? '#f9f9f9' : '#222';
+    const backgroundColor = isDarkMode ? 'rgba(255, 255, 255)' : 'rgba(34, 34, 34)';
     const textColor = isDarkMode ? '#000' : '#fff';
-    const backgroundImage = isDarkMode ? 'url("./backgrounds/Interface_Preta.png")' : 'url("./backgrounds/Interface_Branca.png")';
+    const video = document.createElement("video");
+    const backgroundImage = isDarkMode ? 'url("./backgrounds/Interface_Branca.png")' : 'url("./backgrounds/Interface_Preta.png")';
 
     body.style.backgroundColor = backgroundColor;
     body.style.color = textColor;
@@ -96,8 +97,6 @@ function previewImage(event) {
     reader.readAsDataURL(input.files[0]);
   }
 }
-
-  
   
 // ------------------------------------Barra de Navegação------------------------------------//
   document.addEventListener('DOMContentLoaded', function() {
@@ -124,13 +123,13 @@ function previewImage(event) {
     document.getElementById('estoque').style.display = 'block';
   }
 
-  function mostrarMetas() {
+  function mostrarCardapio() {
     // Oculta todas as divs de conteúdo
     document.querySelectorAll('#conteudo > div').forEach(div => {
       div.style.display = 'none';
     });
     // Exibe a div de conteúdo específica para Metas
-    document.getElementById('metas').style.display = 'block';
+    document.getElementById('cardapio').style.display = 'block';
   }
 
   function mostrarNotificacao() {
@@ -207,9 +206,21 @@ function adicionarItem(categoria) {
     quantidadeInput.style.width = '80px';
     quantidadeInput.style.backgroundColor = '#f2f2f2';
 
+    const medidaSelect = document.createElement('select');
+    const medidas = ['Un', 'Kg', 'L', 'mL']; // Adicione as medidas que desejar
+    for (const medida of medidas) {
+      const option = document.createElement('option');
+      option.value = medida;
+      option.textContent = medida;
+      medidaSelect.appendChild(option);
+    }
+
+    medidaSelect.style.backgroundColor = 'transparent';
+    medidaSelect.style.fontSize = '12px'
+
     novoCard.appendChild(textoItem);
     novoCard.appendChild(quantidadeInput);
-
+    novoCard.appendChild(medidaSelect);
     
     const novoItem = [
       nomeItem,
@@ -381,43 +392,6 @@ for(var i = 0; i < itens.length; i++){
   }
 }
 
-// Adiciona uma nova categ------------------------jnoria 
-//function adicionarCategoria() {
-//  const novaCategoriaInput = document.getElementById('novaCategoriaInput');
-//  const novaCategoriaNome = novaCategoriaInput.value.trim(); // Obtém o valor da nova categoria
-
-//  if (novaCategoriaNome !== '') {
-//    const novaCategoriaDiv = document.createElement('div');
-//    novaCategoriaDiv.classList.add('category');
-
-//    const novoTituloCategoria = document.createElement('h2');
-//    novoTituloCategoria.textContent = capitalizeFirstLetter(novaCategoriaNome);
-//    novaCategoriaDiv.appendChild(novoTituloCategoria);
-
-//    const novoCardContainer = document.createElement('div');
-//    novoCardContainer.classList.add('card-container');
-//    novoCardContainer.id = `${novaCategoriaNome.toLowerCase()}-list`;
-//    novaCategoriaDiv.appendChild(novoCardContainer);
-
-//    const novoBotaoAdicionar = document.createElement('button');
-//    novoBotaoAdicionar.textContent = '+';
-//    novoBotaoAdicionar.onclick = function() {
-//      adicionarItem(novaCategoriaNome.toLowerCase());
-//    };
-//    novaCategoriaDiv.appendChild(novoBotaoAdicionar);
-
-//    const conteudoEstoque = document.getElementById('estoque');
-
-    // Encontra a primeira categoria existente (o primeiro elemento com a classe 'category')
-//    const primeiraCategoria = conteudoEstoque.querySelector('.category');
-
-    // Insere a nova categoria antes da primeira categoria existente
-//    conteudoEstoque.insertBefore(novaCategoriaDiv, primeiraCategoria);
-
-//    novaCategoriaInput.value = ''; // Limpa o campo de entrada após adicionar a categoria
-//  }
-//}
-
 function trocarSecao() {
   const estoque = document.getElementById('estoque');
   const estoqueLimp = document.getElementById('estoque-limp');
@@ -520,6 +494,63 @@ function setArrays(){
   const jsonArray = JSON.stringify(arrayObj);
   xhr.send(jsonArray);
 }
+
+//-----------------------Configurações do Cardápio------------------//
+
+document.addEventListener("DOMContentLoaded", function() {
+  const menuList = document.getElementById("menu-list");
+  const addProductForm = document.getElementById("add-product-form");
+  const productNameInput = document.getElementById("product-name");
+  const productQuantityInput = document.getElementById("product-quantity");
+
+  // Array que armazenará os produtos do cardápio
+  let cardapio = [];
+
+  // Função para renderizar o cardápio
+  function renderMenu() {
+      menuList.innerHTML = ''; // Limpa a lista antes de renderizar novamente
+
+      // Renderiza os itens do cardápio
+      cardapio.forEach(item => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+              <span><strong>${item.nome}</strong></span>
+              <input type="number" class="quantity-input" value="${item.quantidade}" min="0">
+          `;
+          menuList.appendChild(li);
+      });
+
+      // Adiciona event listener para alterar a quantidade
+      const quantityInputs = document.querySelectorAll('.quantity-input');
+      quantityInputs.forEach(input => {
+          input.addEventListener('change', function() {
+              const index = Array.from(quantityInputs).indexOf(this);
+              cardapio[index].quantidade = parseInt(this.value);
+          });
+      });
+  }
+
+  // Adiciona um novo produto ao cardápio
+  function addProduct() {
+      const productName = productNameInput.value.trim();
+      const productQuantity = parseInt(productQuantityInput.value);
+
+      if (productName !== '' && !isNaN(productQuantity) && productQuantity >= 0) {
+          cardapio.push({ nome: productName, quantidade: productQuantity });
+          renderMenu();
+          productNameInput.value = ''; // Limpa o input do nome do produto
+          productQuantityInput.value = '0'; // Reseta o input da quantidade para 0
+      } else {
+          alert("Por favor, insira um nome de produto válido e uma quantidade válida.");
+      }
+  }
+
+  // Adiciona evento de clique ao botão "Adicionar Produto"
+  document.getElementById("add-product-btn").addEventListener("click", addProduct);
+
+});
+
+
 
 
 

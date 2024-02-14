@@ -38,3 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
   hiddenElements.forEach((el) => observer.observe(el));
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+  const titleElement = document.getElementById("title");
+
+  // Aguarde 1 segundo antes da animação iniciar
+  setTimeout(function(){
+    titleElement.classList.add("animate");
+  }, 300);
+});
+
