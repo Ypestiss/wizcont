@@ -36,20 +36,20 @@
           <li class="list active">
             <a href="#" onclick="mostrarEstoque()">
               <span class="icon">
-                <img src="icons/StockWhite.png" id="stockIcon" width="25px" height="25px">
+                <img src="./icons/StockWhite.svg" id="stockIcon" width="25px" height="25px">
               </span>
               <span class="text">Estoque</span>
             </a>
           </li>
           <li class="list active">
             <a href="#" onclick="mostrarMetas()">
-              <span class="icon"><img src="icons/MetaIcon.png" id="metaIcon" width="25px" height="25px"></span>
+              <span class="icon"><img src="icons/MetaIcon.svg" id="metaIcon" width="25px" height="25px"></span>
               <span class="text">Metas</span>
             </a>
           </li>
           <li class="list active">
             <a href="#" onclick="mostrarNotificacao()">
-              <span class="icon"><img src="icons/BellIcon.png" id="metaIcon" width="25px" height="25px"></span>
+              <span class="icon"><img src="icons/BellIcon.svg" id="metaIcon" width="25px" height="25px"></span>
               <span class="text">Notificações</span>
             </a>
           </li>
@@ -61,7 +61,7 @@
           </li>
           <li class="list active">
             <a href="#" onclick="mostrarConfiguracao()">
-              <span class="icon"><img src="icons/ConfigIcon.png" id="metaIcon" width="25px" height="25px"></span>
+              <span class="icon"><img src="icons/ConfigIcon.svg" id="metaIcon" width="25px" height="25px"></span>
               <span class="text">Configurações</span>
             </a>
           </li>

@@ -5,6 +5,6 @@
 <web-app>
   <display-name>WizCont</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>main.jsp</welcome-file>
   </welcome-file-list>
 </web-app>

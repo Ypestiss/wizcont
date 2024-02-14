@@ -95,11 +95,6 @@ function previewImage(event) {
   if (input.files && input.files[0]) {
     reader.readAsDataURL(input.files[0]);
   }
-
-  const nomeUsuario = "Estevão Cruz"; 
-
-  document.getElementById('nomeUsuario').textContent = nomeUsuario;
-
 }
 
   

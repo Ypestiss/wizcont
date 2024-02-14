@@ -64,7 +64,7 @@ public class Controller extends HttpServlet {
                 acessarcanal("login.jsp", request, response);
             }
         }else{
-            response.sendRedirect("index.html");    
+            response.sendRedirect("main.jsp");    
             System.out.println(action);
         }
     }

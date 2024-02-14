@@ -56,7 +56,7 @@
         <button type="submit" >Registrar</button>
       </div>
       <div>
-      <p id="msg">Já é cadastrado? <a id="linkLogin">Entre!</a><p>
+      <p id="msg">Já é cadastrado? <a href= "login"id="linkLogin">Entre!</a><p>
       </div>
     </div>
   </form>
