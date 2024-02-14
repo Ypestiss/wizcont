@@ -147,10 +147,7 @@
 
         <div class="container">
           <button onclick="trocarSecao()">Trocar Seção</button>
-        </div>
-
-        <div class="container">
-          <a href="getarray">sarvar</a>
+          <button onclick="setArrays()">Salvar</button>
         </div>
 
       </div>
