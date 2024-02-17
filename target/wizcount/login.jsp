@@ -12,13 +12,10 @@
 <head>
   <meta charset="utf-8">
   <title>Página de Login</title>
-<<<<<<< HEAD
   <meta name="viewport" content="width=device-width">
   <link type="text/css" rel="stylesheet" href="./styles/loginStyles.css">
-=======
   <link rel="stylesheet" href="./styles/loginStyles.css">
   <script src="./styles/loginTools.js"></script>
->>>>>>> 2b3198b06be63aa0b68b7d0b003f53f8009ea277
   <script src="./styles/loginUserTools.js"></script>
   <script src="./styles/loginTools.js"></script>
   
@@ -49,23 +46,6 @@
     </nav>
 
   </header>
-<<<<<<< HEAD
-  
-  <form name="loginForm" method="post" action="logar">
-    <div class="login-container">
-      <h2>Login</h2>
-      <div class="input-group">
-        <label for="username">E-mail:</label>
-        <input type="text" id="email" name='email' required>''
-      </div>
-      <div class="input-group">
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name='password' required>
-      </div>
-      <div class="input-group">
-        <button type="submit" >Entrar</button>
-      </div>
-=======
 
   <div class="login">
     <div><img src="."></div>
@@ -93,4 +73,3 @@
 </body>
 
 </html>
->>>>>>> 2b3198b06be63aa0b68b7d0b003f53f8009ea277

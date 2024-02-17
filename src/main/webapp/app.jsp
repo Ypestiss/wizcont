@@ -21,7 +21,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>WizCont.</title>
-    <link href="./styles/AppStyles.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/appStyles.css" rel="stylesheet" type="text/css" />
     <script>
       var itens = <%=jsonItensPerfil%>;
     </script>
@@ -42,16 +42,14 @@
             </a>
           </li>
           <li class="list active">
-            <a href="#" onclick="mostrarMetas()">
+            <a href="#" onclick="mostrarCardapio()">
               <span class="icon"><img src="icons/MetaIcon.svg" id="metaIcon" width="25px" height="25px"></span>
-              <span class="text">Metas</span>
+              <span class="text">Cardápio</span>
             </a>
           </li>
           <li class="list active">
             <a href="#" onclick="mostrarNotificacao()">
-              <span class="icon"><img src="icons/BellIcon.svg" id="metaIcon" width="25px" height="25px"></span>
-              <span class="icon"><img src="icons/BellIcon.svg" id="metaIcon" width="25px" height="25px"></span>
-              <span class="text">Notificações</span>
+              <span class="icon"><img src="icons/BellIcon.svg" id="metaIcon" width="25px" height="25px"></span>              <span class="text">Notificações</span>
             </a>
           </li>
           <li class="list active">
@@ -61,8 +59,7 @@
             </a>
           </li>
           <li class="list active">
-            <a href="#" onclick="mostrarConfiguracao()">
-              <span class="icon"><img src="icons/ConfigIcon.svg" id="metaIcon" width="25px" height="25px"></span>
+            <a href="#" onclick="mostrarConfiguracao()">           
               <span class="icon"><img src="icons/ConfigIcon.svg" id="metaIcon" width="25px" height="25px"></span>
               <span class="text">Configurações</span>
             </a>
@@ -182,7 +179,7 @@
         <!-- Conteúdo da página de Perfil -->
         <div id="perfil" style="display: none;">
           <div class="profile-info">
-            <label for="fileInput" class="profile-picture">
+            <label for="fileInput" class="profile-picture"> 
               <input type="file" id="fileInput" accept="image/*" onchange="previewImage(event)">
               <img id="preview" src="icons/icon.png" alt="Foto de Perfil" onclick="alterarImagem()">
             </label>

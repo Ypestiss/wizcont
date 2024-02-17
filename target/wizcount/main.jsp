@@ -13,13 +13,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>WizCont</title>
-<<<<<<< HEAD
   <link href="./styles/mainStyles.css" rel="stylesheet" type="text/css" />
   <script src="./styles/mainTools.js"></script>
-=======
-  <link href="./styles/MainStyles.css" rel="stylesheet" type="text/css" />
-  <script src="./styles/MainTools.js"></script>
->>>>>>> 2b3198b06be63aa0b68b7d0b003f53f8009ea277
   <script src="./styles/userTools.js"></script>
 </head>
 
