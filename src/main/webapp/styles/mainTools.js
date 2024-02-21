@@ -44,6 +44,6 @@ document.addEventListener("DOMContentLoaded", function() {
   // Aguarde 1 segundo antes da animação iniciar
   setTimeout(function(){
     titleElement.classList.add("animate");
-  }, 300);
+  }, 1000);
 });
 

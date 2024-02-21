@@ -179,7 +179,7 @@
         <!-- Conteúdo da página de Perfil -->
         <div id="perfil" style="display: none;">
           <div class="profile-info">
-            <label for="fileInput" class="profile-picture">
+            <label for="fileInput" class="profile-picture"> 
               <input type="file" id="fileInput" accept="image/*" onchange="previewImage(event)">
               <img id="preview" src="icons/icon.png" alt="Foto de Perfil" onclick="alterarImagem()">
             </label>
