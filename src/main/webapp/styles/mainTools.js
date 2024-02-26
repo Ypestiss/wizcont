@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+// Animação do subtitle
+
 document.addEventListener('DOMContentLoaded', function() {
 
   const observer = new IntersectionObserver((entries) => {
@@ -37,6 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const hiddenElements = document.querySelectorAll('.hidden');
   hiddenElements.forEach((el) => observer.observe(el));
 });
+
+// Animação do título 
 
 document.addEventListener("DOMContentLoaded", function() {
   const titleElement = document.getElementById("title");

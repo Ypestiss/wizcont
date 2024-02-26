@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
   function applyStyles(isDarkMode) {
     const backgroundColor = isDarkMode ? 'rgba(255, 255, 255)' : 'rgba(34, 34, 34)';
     const textColor = isDarkMode ? '#000' : '#fff';
-    const video = document.createElement("video");
     const backgroundImage = isDarkMode ? 'url("./backgrounds/Interface_Branca.png")' : 'url("./backgrounds/Interface_Preta.png")';
 
     body.style.backgroundColor = backgroundColor;
@@ -498,61 +497,70 @@ function setArrays(){
 //-----------------------Configurações do Cardápio------------------//
 
 document.addEventListener("DOMContentLoaded", function() {
-  const menuList = document.getElementById("menu-list");
-  const addProductForm = document.getElementById("add-product-form");
-  const productNameInput = document.getElementById("product-name");
-  const productQuantityInput = document.getElementById("product-quantity");
+  const menuData = [
+    { name: "Hamburguer", price: "15.00", description: "Delicioso hamburguer com queijo, alface e tomate." },
+    { name: "Pizza", price: "20.00", description: "Pizza margherita feita com ingredientes frescos." },
+    { name: "Salada", price: "10.00", description: "Salada fresca com alface, tomate, pepino e azeitonas." },
+    { name: "Sushi", price: "25.00", description: "Sushi variado com peixe fresco e arroz temperado." }
+  ];
 
-  // Array que armazenará os produtos do cardápio
-  let cardapio = [];
+  const menuContainer = document.getElementById("menu");
 
-  // Função para renderizar o cardápio
-  function renderMenu() {
-      menuList.innerHTML = ''; // Limpa a lista antes de renderizar novamente
+  function createMenuItem(item) {
+    const menuItem = document.createElement("div");
+    menuItem.classList.add("menu-item");
 
-      // Renderiza os itens do cardápio
-      cardapio.forEach(item => {
-          const li = document.createElement("li");
-          li.innerHTML = `
-              <span><strong>${item.nome}</strong></span>
-              <input type="number" class="quantity-input" value="${item.quantidade}" min="0">
-          `;
-          menuList.appendChild(li);
-      });
+    const name = document.createElement("input");
+    name.setAttribute("type", "text");
+    name.setAttribute("placeholder", "Nome do item");
+    name.value = item.name;
 
-      // Adiciona event listener para alterar a quantidade
-      const quantityInputs = document.querySelectorAll('.quantity-input');
-      quantityInputs.forEach(input => {
-          input.addEventListener('change', function() {
-              const index = Array.from(quantityInputs).indexOf(this);
-              cardapio[index].quantidade = parseInt(this.value);
-          });
-      });
+    const price = document.createElement("input");
+    price.setAttribute("type", "number");
+    price.setAttribute("step", "0.01");
+    price.setAttribute("placeholder", "Preço");
+    price.value = item.price;
+
+    const quantity = document.createElement("input");
+    quantity.setAttribute("type", "number");
+    quantity.setAttribute("step", "1");
+    quantity.setAttribute("min", "0");
+    quantity.setAttribute("placeholder", "Quantidade");
+    quantity.value = 0;
+
+    const description = document.createElement("input");
+    description.setAttribute("type", "text");
+    description.setAttribute("placeholder", "Descrição");
+    description.value = item.description;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Excluir";
+    deleteButton.addEventListener("click", function() {
+      menuItem.remove();
+    });
+
+    menuItem.appendChild(name);
+    menuItem.appendChild(price);
+    menuItem.appendChild(quantity);
+    menuItem.appendChild(description);
+    menuItem.appendChild(deleteButton);
+
+    return menuItem;
   }
 
-  // Adiciona um novo produto ao cardápio
-  function addProduct() {
-      const productName = productNameInput.value.trim();
-      const productQuantity = parseInt(productQuantityInput.value);
-
-      if (productName !== '' && !isNaN(productQuantity) && productQuantity >= 0) {
-          cardapio.push({ nome: productName, quantidade: productQuantity });
-          renderMenu();
-          productNameInput.value = ''; // Limpa o input do nome do produto
-          productQuantityInput.value = '0'; // Reseta o input da quantidade para 0
-      } else {
-          alert("Por favor, insira um nome de produto válido e uma quantidade válida.");
-      }
+  function addNewMenuItem() {
+    const newItem = createMenuItem({ name: "", price: "", description: "" });
+    menuContainer.appendChild(newItem);
   }
 
-  // Adiciona evento de clique ao botão "Adicionar Produto"
-  document.getElementById("add-product-btn").addEventListener("click", addProduct);
+  menuData.forEach(item => {
+    const menuItem = createMenuItem(item);
+    menuContainer.appendChild(menuItem);
+  });
 
+  const addNewButton = document.createElement("button");
+  addNewButton.textContent = "Adicionar Novo Produto";
+  addNewButton.addEventListener("click", addNewMenuItem);
+  menuContainer.appendChild(addNewButton);
 });
-
-
-
-
-
-
 

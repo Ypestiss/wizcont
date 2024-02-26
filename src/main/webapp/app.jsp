@@ -21,7 +21,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>WizCont.</title>
-    <link href="./styles/appStyles.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/AppStyles.css" rel="stylesheet" type="text/css" />
     <script>
       var itens = <%=jsonItensPerfil%>;
     </script>
@@ -33,6 +33,7 @@
     <div class="container">
       <div class="navigation">
         <ul>
+          <!-----------------------------Indicador do estoque------------------------------>
           <li class="list active">
             <a href="#" onclick="mostrarEstoque()">
               <span class="icon">
@@ -41,6 +42,7 @@
               <span class="text">Estoque</span>
             </a>
           </li>
+          <!-----------------------------Indicador do cardápio------------------------------>
           <li class="list active">
             <a href="#" onclick="mostrarCardapio()">
               <span class="icon"><img src="icons/MetaIcon.svg" id="metaIcon" width="25px" height="25px"></span>
@@ -52,6 +54,7 @@
               <span class="icon"><img src="icons/BellIcon.svg" id="metaIcon" width="25px" height="25px"></span>              <span class="text">Notificações</span>
             </a>
           </li>
+          <!-----------------------------Indicador do perfil------------------------------>
           <li class="list active">
             <a href="#" onclick="mostrarPerfil()">
               <span class="icon"><img src="icons/icon.svg" id="metaIcon" width="25px" height="25px"></span>
@@ -152,22 +155,11 @@
         </div>
 
         <!-- Conteúdo da página de Cardápio -->
-        <div id="cardapio" style="display: none;">
-          <h2>Cardápio</h2>                   
-            <div class="menu">
-              <div id="add-product-form">
-                <label for="product-name">Nome do Produto:</label>
-                <input type="text" id="product-name">
-                <label for="product-quantity">Quantidade:</label>
-                <input type="number" id="product-quantity" min="0" value="0">
-                <button id="add-product-btn">Adicionar Produto</button>
-              </div>
-              <div>
-                  <ul id="menu-list">
-                      <!-- Itens do cardápio serão adicionados aqui via JavaScript -->
-                  </ul>
-              </div>
-            </div>
+        <div id="cardapio" style="display: none;">                   
+          <div class="menu-container">
+            <h1>Cardápio</h1>
+            <div id="menu"></div>
+          </div>
         </div>
 
         <!-- Conteúdo da página de Notificação -->
