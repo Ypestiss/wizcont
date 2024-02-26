@@ -498,8 +498,8 @@ input[type="file"] {
   border-radius: 25px;
   border: 2px solid #000000;
   color: #000000;
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -703,38 +703,30 @@ div::-webkit-scrollbar-thumb {
 
 /* ---------------------Cardápio------------------*/
 
-.menu {
+.menu-container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 20px;
-}
-
-.menu h1 {
   text-align: center;
 }
 
-.menu ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.menu li {
-  margin-bottom: 20px;
+.menu-item {
   border: 1px solid #ccc;
+  border-radius: 5px;
   padding: 10px;
-  background-color: #f9f9f9;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-bottom: 10px;
 }
 
-.menu li:hover {
-  background-color: #eaeaea;
+.menu-item input {
+  margin-bottom: 5px;
 }
 
-.quantity-input {
-  width: 40px;
-  text-align: center;
+.menu-item h2 {
+  margin-top: 0;
 }
+
+.menu-item p {
+  margin-bottom: 0;
+}
+
 
 
