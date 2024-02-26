@@ -33,24 +33,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  const loginForm = document.getElementById('loginForm');
-  const loginMessage = document.getElementById('loginMessage');
 
-  loginForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
-
-    // Simulando lógica de login (aqui você validaria os dados com um backend)
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-
-    // Verificação simples de usuário e senha (simulação)
-    if (username === 'usuario' && password === 'senha') {
-      // Se as credenciais estiverem corretas, redirecione para a página principal
-      window.location.href = 'pagina_principal.html';
-    } else {
-      // Se as credenciais estiverem incorretas, exiba uma mensagem de erro
-      loginMessage.textContent = 'Nome de usuário ou senha incorretos. Tente novamente.';
-    }
-  });
-});

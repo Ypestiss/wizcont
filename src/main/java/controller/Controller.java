@@ -29,13 +29,13 @@ import com.google.gson.reflect.TypeToken;
                             "/getarray", "/delitem","/signup", "/registrar", "/perfil"})
 public class Controller extends HttpServlet {
 
-    Integer dados;
 
     private static final long serialVersionUID = 1L;
     ConexaoDAO connDAO = new ConexaoDAO();
     UsuarioDAO userDAO = new UsuarioDAO();
     BancoDAO bancoDAO = new BancoDAO();
 
+    Integer pass;
     Connection conn;
     
     public Controller() {
@@ -43,8 +43,12 @@ public class Controller extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        HttpSession session = request.getSession();
+        pass = (Integer) session.getAttribute("dados");
+        System.out.println(session.getAttribute("dados"));
+        System.out.println(pass);
         String action = request.getServletPath();
-        System.out.println("Método: " + action + "\nValor de dados: " + connDAO.dados);
+        System.out.println("Método: " + action);
         if (action.equals("/main")){
             acessarcanal("main.jsp", request, response);
             System.out.println("\n[T] - Teste /main");
@@ -57,7 +61,7 @@ public class Controller extends HttpServlet {
             acessarcanal("signup.jsp", request, response);
             System.out.println("[T] - Teste /signup");
         }else if(action.equals("/perfil")){
-            if(connDAO.dados == 1){
+            if(pass != null){
                 comecar(request,response); 
                 System.out.println("\n[T] - Teste /perfil");
             }else{
@@ -76,7 +80,7 @@ public class Controller extends HttpServlet {
             System.out.println("\n[T] - Logado");
         }else if(action.equals("/registrar")){
             registrar(request, response);
-            System.out.println("\n[T] - Registrado ");
+            System.out.println("\n[T] - Registrado ");  
         }else if(action.equals("/getarray")){
             setarArrays(request, response);
             System.out.println("\n[T] - Arrays salvas");
@@ -123,18 +127,20 @@ public class Controller extends HttpServlet {
         userDAO.setEmail_usuario(email);
         userDAO.setNome_usuario(username);
         userDAO.setSenha_usuario(password);
-        connDAO.fazerLogin(userDAO);
+        
+        int dados = connDAO.fazerLogin(userDAO);
 
         System.out.println("função logar o id é :" + idUser);
         
         session.setAttribute("user_email", email);
-        
-        dados = connDAO.dados;
         if(dados == 1){
             response.sendRedirect("main");
-        }
-        else{
+            session.setAttribute("dados", dados);
+        }else {
             response.sendRedirect("login");
+            System.out.println("Dados value = 0");
+            dados = 0; // ou outro valor que indique um erro específico
+            request.setAttribute("error", dados);
         }
 
     }
@@ -227,7 +233,7 @@ public class Controller extends HttpServlet {
 		userDAO.setSenha_usuario(password);
 
         
-		connDAO.inserirRegistro(userDAO);
+		int dados = connDAO.inserirRegistro(userDAO);
 
         HttpSession session = request.getSession();
         session.setAttribute("user_id", id_user);
@@ -235,6 +241,7 @@ public class Controller extends HttpServlet {
         dados = connDAO.dados;
         if(dados == 1){
             response.sendRedirect("main");
+            session.setAttribute("dados", dados);
         }
         else{
             response.sendRedirect("signup");

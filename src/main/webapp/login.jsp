@@ -5,6 +5,7 @@
 <%
 	@ SuppressWarnings ("unchecked")
 	ArrayList<UsuarioDAO> perfil = (ArrayList<UsuarioDAO>) request.getAttribute("usuario");
+  Integer dados_err = ( Integer ) request.getAttribute("error");
 %>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -47,15 +48,24 @@
 
   </header>
 
+
+
+
   <div class="login">
     <div><img src="."></div>
     <div class="login-form">
+    <% System.out.println("teste 1: " + dados_err); %>
+    <% if (dados_err != null && dados_err == 0) { %>
+    <div class="erro">Email ou senha inválidos. Tente novamente.</div>
+    <% System.out.println("teste 2: " + dados_err); %>
+    <% } %>
       <form name="loginForm" method="post" action="logar">
             <h2>LOGIN</h2>
+            <label id="loginMessage"> 
             <div class="input-group">
               <label for="username">Usuário ou E-mail:</label>
               <input type="text" id="email" name='email' required>
-            </div>
+            </div>  
             <div class="input-group">
               <label for="password">Senha:</label>
               <input type="password" id="password" name='password' required>

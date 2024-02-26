@@ -35,17 +35,7 @@ public class ConexaoDAO {
 
         return conn;
     }
-
-    private void createDatabase(Connection conn, String dbName) {
-        try {
-            Statement stmt = conn.createStatement();
-            String sql = "CREATE DATABASE IF NOT EXISTS " + dbName;
-            stmt.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
+    
     private void createTables(Connection conn) {
         try {
             Statement stmt = conn.createStatement();
@@ -98,7 +88,7 @@ public class ConexaoDAO {
         }
     }
     
-    public void inserirRegistro(UsuarioDAO usuario){
+    public int inserirRegistro(UsuarioDAO usuario){
         conn = openDatabase();
         String criar = "INSERT INTO usuarios (id, nome_usuario, senha_usuario, email_usuario) VALUES (?,?,?,?)";
         try{
@@ -110,15 +100,19 @@ public class ConexaoDAO {
                 pstm.setString(3, usuario.getSenha_usuario());
                 pstm.setString(4, usuario.getEmail_usuario());
                 pstm.executeUpdate();
+                
                 dados = 1;
+
+                return dados; 
             }
             else{
                 System.out.println("[!] - Erro: deu erro rapaziada");
-                dados = 0;
+                
             }
         } catch (Exception e) {
 			System.out.println("[!] - Erro: " + e);
 		}
+        return dados = 0;
     }
     
     public void salvarBanco(BancoDAO bancouser){
@@ -165,21 +159,26 @@ public class ConexaoDAO {
         }
     }
 
-    public void fazerLogin(UsuarioDAO usuario){
+    public int fazerLogin(UsuarioDAO usuario){
         try{
         String sql = "SELECT COUNT(*) FROM usuarios WHERE email_usuario = ? AND senha_usuario = ?";
             try{
                 if(dadosJaExistem(usuario)){
-                    System.out.println("[_/] - Encontrou conta");
+                    System.out.println("[_/] - Procurando conta");
                     Connection conn = openDatabase();
                     PreparedStatement pstm = conn.prepareStatement(sql);
                     pstm.setString(1, usuario.getEmail_usuario());
                     pstm.setString(2, usuario.getSenha_usuario());
                     ResultSet rs = pstm.executeQuery();
-                    rs.next();
-                    dados = 1;
+                    if(rs.next()){
+                        int result = rs.getInt(1);
+                        System.out.println(result);
+                        return result;
+                    }else{
+                        System.out.println("[!] - Erro no result set");
+                    }
+
                 }else{
-                    dados = 0;
                     System.out.println("[!] - Conta não encontrada");
                 }
             }finally{
@@ -188,8 +187,7 @@ public class ConexaoDAO {
         }catch (SQLException e){
             e.printStackTrace();
         }
-    
-    
+        return -1;
     }
 
     public ArrayList<UsuarioDAO> listarPerfil(HttpServletRequest request){
