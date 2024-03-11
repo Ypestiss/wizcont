@@ -6,7 +6,7 @@
 
 body {
   display: flex;
-  background-color: #0a0a0a;
+  background-color: #ff914d;
 }
 
 .particles {
@@ -171,7 +171,7 @@ body {
 
 #conteudo {
   color: #fff;
-  background-color: #0a0a0a0a;
+  background-color: whitesmoke;
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -382,8 +382,7 @@ input[type="file"] {
   align-items: center; /* Centraliza verticalmente */
   background-color: #222;
   border-radius: 8px;
-  box-shadow: 0 0 20px rgba(255, 135, 30, 0.5);
-  box-shadow: 0 0 30px rgba(255, 4, 4, 0.5);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   width: 800px; /* Define a largura do contêiner de configurações */
   max-width: 90%; /* Adiciona uma largura máxima para responsividade */
   height: 500px;

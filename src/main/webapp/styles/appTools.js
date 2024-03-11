@@ -18,11 +18,11 @@ document.addEventListener('DOMContentLoaded', function() {
   function applyStyles(isDarkMode) {
     const backgroundColor = isDarkMode ? 'rgba(255, 255, 255)' : 'rgba(34, 34, 34)';
     const textColor = isDarkMode ? '#000' : '#fff';
-    const backgroundImage = isDarkMode ? 'url("./backgrounds/Interface_Branca.png")' : 'url("./backgrounds/Interface_Preta.png")';
-
+    const contBGColor = isDarkMode ? 'whitesmoke' : 'black'
+    
     body.style.backgroundColor = backgroundColor;
     body.style.color = textColor;
-    conteudo.style.backgroundImage = backgroundImage;
+    conteudo.style.backgroundColor = contBGColor;
     configContent.style.backgroundColor = backgroundColor;
     configContent.style.color = textColor;
     perfil.style.backgroundColor = backgroundColor;

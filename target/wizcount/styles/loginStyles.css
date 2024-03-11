@@ -178,7 +178,7 @@ h2 {
   font-size: 50px;
   margin-left: 5%;
   margin-bottom: 5%;
-  margin-top: 0;
+  margin-top: 0px;
   padding-bottom: 5%;
   padding-top: 2%;
   font-family: 'Inter'
@@ -189,22 +189,31 @@ label {
 }
 
 .login {
-  background-color: #222;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 800px;
-  height: 400px;
+  background-color: whitesmoke;
+  padding: 0px;
+  width: 100%;
+  height: 100vh;
 }
 
 .login-form {
+  background-color: #222;
   width: 50%;
-  height: 100%;
-  margin-left: 50%;
+  height: 100vh; /* Definir altura como 100% da altura da viewport */
+  margin-left: 50%; /* Mover o formulário para a direita */
+  margin-right: auto; /* Mover o formulário para a esquerda */
+  display: flex; /* Usar flexbox */
+  flex-direction: column; /* Alinhar os itens verticalmente */
+  justify-content: center; /* Centralizar verticalmente os itens */
+  align-items: center; /* Centralizar horizontalmente os itens */
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: 0 0 20px #000;
 }
+
+
 .input-group {
   margin-bottom: 15px;
-  margin-left: 15%;
+  margin-left: 0%;
   margin-top: 5%;
 }
 
@@ -217,7 +226,7 @@ label {
 .input-group input[type="password"] {
   background-color: #0000;
   color: #fff;
-  width: 85%;
+  width: 100%;
   padding: 8px;
   border-radius: 15px;
   border: 1px solid #fff;
@@ -245,6 +254,7 @@ label {
 
 #msg {
   color:#fff;
+  width: 100%;
   text-align: center;
   padding-top: 4%;
   padding-left: 2%;

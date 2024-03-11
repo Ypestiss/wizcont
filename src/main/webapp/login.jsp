@@ -13,8 +13,8 @@
   <meta charset="utf-8">
   <title>Página de Login</title>
   <meta name="viewport" content="width=device-width">
-  <link type="text/css" rel="stylesheet" href="./styles/loginStyles.css">
-  <link rel="stylesheet" href="./styles/loginStyles.css">
+  <link type="text/css" rel="stylesheet" href="./styles/LoginStyles.css">
+  <link rel="stylesheet" href="./styles/LoginStyles.css">
   <script src="./styles/loginTools.js"></script>
   <script src="./styles/loginUserTools.js"></script>
   <script src="./styles/loginTools.js"></script>
@@ -22,8 +22,6 @@
 </head>
 
 <body id="background">
-  <div id="login_background">
-  </div>
  <header>
 
     <nav id="cab">
@@ -48,7 +46,6 @@
   </header>
 
   <div class="login">
-    <div><img src="."></div>
     <div class="login-form">
       <form name="loginForm" method="post" action="logar">
             <h2>LOGIN</h2>
@@ -69,7 +66,5 @@
       </form>
     </div>
   </div>
-
 </body>
-
 </html>
