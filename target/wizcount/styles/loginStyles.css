@@ -252,6 +252,10 @@ label {
   width: 80px;
 }
 
+button:hover {
+  background-color: whitesmoke;
+}
+
 #msg {
   color:#fff;
   width: 100%;
@@ -263,4 +267,8 @@ label {
 #linkCadastro {
   color: #FF914D;
   text-decoration: none;
+}
+
+#linkCadastro:hover {
+  color: white;
 }

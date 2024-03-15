@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <title>Página de Cadastro</title>
-  <link rel="stylesheet" href="./styles/SignupStyles.css">
+  <link rel="stylesheet" href="./styles/signupStyles.css">
   <script src="./styles/loginTools.js"></script>
   <script src="./styles/loginUserTools.js"></script>
 </head>
