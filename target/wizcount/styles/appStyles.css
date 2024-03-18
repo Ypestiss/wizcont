@@ -407,11 +407,12 @@ input[type="file"] {
 }
 
 .category button {
-  padding: 8px 12px;
-  margin-top: 8px;
+  padding: 2px 4px;
   cursor: pointer;
-  background-color: #4CAF50; /* Cor do botão */
-  color: #fff; /* Cor do texto do botão */
+  margin-bottom: 6.5px;
+  margin-left: 5px;
+  background-color: #fff;
+  color: #4CAF50;
   border: none;
   border-radius: 4px;
 }

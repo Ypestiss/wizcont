@@ -21,7 +21,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>WizCont.</title>
-    <link href="./styles/appStyles.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/AppStyles.css" rel="stylesheet" type="text/css" />
     <script>
       var itens = <%=jsonItensPerfil%>;
     </script>
