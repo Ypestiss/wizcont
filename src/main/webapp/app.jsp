@@ -21,7 +21,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>WizCont.</title>
-    <link href="./styles/AppStyles.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/appStyles.css" rel="stylesheet" type="text/css" />
     <script>
       var itens = <%=jsonItensPerfil%>;
     </script>
@@ -82,38 +82,38 @@
 
           <div class="category">
             <h2 class="subtitleestoque">Proteína animal</h2>
-            <div class="card-container" id='carnes-list'></div>
             <button onclick="adicionarItem('carnes')">+</button>
+            <div class="card-container" id='carnes-list'></div>
           </div>
 
           <div class="category">
             <h2 class="subtitleestoque">Frutas</h2>
-            <div class="card-container" id="frutas-list"></div>
             <button onclick="adicionarItem('frutas')">+</button>
+            <div class="card-container" id="frutas-list"></div>
           </div>
 
           <div class="category">
             <h2 class="subtitleestoque">Grãos</h2>
+            <button class="add" onclick="adicionarItem('graos')">+</button>
             <div class="card-container" id="graos-list"></div>
-            <button onclick="adicionarItem('graos')">+</button>
           </div>
 
           <div class="category">
             <h2 class="subtitleestoque">Legumes</h2>
-            <div class="card-container" id="legumes-list"></div>
             <button onclick="adicionarItem('legumes')">+</button>
+            <div class="card-container" id="legumes-list"></div>
           </div>
 
           <div class="category">
             <h2 class="subtitleestoque">Vegetais</h2>
-            <div class="card-container" id="vegetais-list"></div>
             <button onclick="adicionarItem('vegetais')">+</button>
+            <div class="card-container" id="vegetais-list"></div>
           </div>
 
           <div class="category">
             <h2 class="subtitleestoque">Verduras</h2>
-            <div class="card-container" id="verduras-list"></div>
             <button onclick="adicionarItem('verduras')">+</button>
+            <div class="card-container" id="verduras-list"></div>
           </div>
 
           
@@ -131,20 +131,20 @@
         
           <div class="category-limp">
             <h2 class="subtitleLimp">Piso</h2>
-            <div class="card-container" id="piso-list"></div>
             <button onclick="adicionarItemLimp('piso')">+</button>
+            <div class="card-container" id="piso-list"></div>
           </div>
           
           <div class="category-limp">
             <h2 class="subtitleLimp">Superfície de vidro</h2>
-            <div class="card-container" id="vidro-list"></div>
             <button onclick="adicionarItemLimp('vidro')">+</button>
+            <div class="card-container" id="vidro-list"></div>
           </div>
 
           <div class="category-limp">
             <h2 class="subtitleLimp">Superfície de metálica</h2>
-            <div class="card-container" id="metal-list"></div>
             <button onclick="adicionarItemLimp('metal')">+</button>
+            <div class="card-container" id="metal-list"></div>
           </div>
 
         <div class="container">

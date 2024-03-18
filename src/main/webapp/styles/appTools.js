@@ -233,6 +233,7 @@ function adicionarItem(categoria) {
     const botaoExcluir = document.createElement('button');
     botaoExcluir.style.backgroundColor = 'transparent';
     botaoExcluir.style.color = 'red';
+    botaoExcluir.style.marginLeft = '-20%'
     botaoExcluir.textContent = 'Excluir';
     botaoExcluir.onclick = function() {
       const index = nomeItensArray.findIndex(item => item[0] === novoItem[0] && item[1] === novoItem[1] && item[2] === novoItem[2]);
@@ -290,6 +291,7 @@ function adicionarItem(categoria) {
           botaoExcluirRecomendado.style.backgroundColor = 'transparent';
           botaoExcluirRecomendado.style.color = 'red';
           botaoExcluirRecomendado.textContent = 'Excluir';
+          botaoExcluirRecomendado.style.border = 'none';
           botaoExcluirRecomendado.onclick = function() {
             const index = nomeItensArray.findIndex(item => item[0] === novoItem[0] && item[1] === novoItem[1] && item[2] === novoItem[2]);
             console.log(item);
