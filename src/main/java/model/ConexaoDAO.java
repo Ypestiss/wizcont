@@ -1,6 +1,8 @@
 package model;
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,9 @@ public class ConexaoDAO {
     Connection conn;
     public Integer dados = 0;
     public Integer itens = 0;
+
+    private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@(.+)$";
+    private static final Pattern pattern = Pattern.compile(EMAIL_REGEX);
 
     public Connection openDatabase() {
         Connection conn = null;
@@ -96,8 +101,24 @@ public class ConexaoDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao fechar a conexão", e);
         }
-    }
+    } 
     
+    public static boolean validateEmail(String email){
+        
+        Matcher matcher = pattern.matcher(email);
+        
+        return matcher.matches();
+        
+        // if(Character.isAlphabetic((useremail.charAt(0))) 
+        // && Character.isAlphabetic((useremail.charAt(useremail.length() - 1)))){
+        //     System.out.println("Validação de caractéres no usuario");
+        //     return true;
+        // }
+        // else{
+        //     return false;
+        // }
+    }
+
     public void inserirRegistro(UsuarioDAO usuario){
         conn = openDatabase();
         String criar = "INSERT INTO usuarios (id, nome_usuario, senha_usuario, email_usuario) VALUES (?,?,?,?)";
@@ -105,15 +126,24 @@ public class ConexaoDAO {
             if(!dadosJaExistem(usuario)){
                 System.out.println("Conectado: " + conn);
                 PreparedStatement pstm = conn.prepareStatement(criar);
-                pstm.setString(1, usuario.getId_user());
-                pstm.setString(2, usuario.getNome_usuario());
-                pstm.setString(3, usuario.getSenha_usuario());
-                pstm.setString(4, usuario.getEmail_usuario());
-                pstm.executeUpdate();
-                dados = 1;
+                String validEmail = "";
+                String email = usuario.getEmail_usuario();
+                if(validateEmail(email)){
+                    validEmail = email;
+                    pstm.setString(1, usuario.getId_user());
+                    pstm.setString(2, usuario.getNome_usuario());
+                    pstm.setString(3, usuario.getSenha_usuario());
+                    pstm.setString(4, validEmail);
+                    pstm.executeUpdate();
+                    dados = 1;
+                }
+                else{ 
+                    System.out.println("Email inválido"); 
+                    dados = 0;
+                }
             }
             else{
-                System.out.println("[!] - Erro: deu erro rapaziada");
+                System.out.println("[!] - Erro: dados já existem!");
                 dados = 0;
             }
         } catch (Exception e) {
@@ -142,11 +172,27 @@ public class ConexaoDAO {
                     pstm.setString(4, bancouser.getCategoria_item());
                     pstm.executeUpdate();
                     System.out.println("Itens editados com sucesso!!");
-                    itens =1;
+                    itens = 1;
                 }
             }catch (SQLException e){
-                System.out.println("[!] - Erro ao salvar dados do armazem: " + e);
+                System.out.println("[!] - Erro ao salvar dados do estoque: " + e);
             }    
+    }
+
+    public void mudarNick(UsuarioDAO usuario){
+        conn = openDatabase();
+        String change = "UPDATE usuarios SET nome_usuario = ? WHERE email_usuario";
+        try{
+            PreparedStatement ptsm = conn.prepareStatement(change);
+            //pstm.setString(1, )
+
+        } catch (Exception e) {
+			System.out.println("[!] - Erro: " + e);
+		}
+    }
+    
+    public void mudarSenha(UsuarioDAO usuario){
+        
     }
 
     public void deletarItem(BancoDAO bancouser){

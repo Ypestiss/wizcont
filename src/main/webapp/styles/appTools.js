@@ -95,8 +95,25 @@ function previewImage(event) {
   if (input.files && input.files[0]) {
     reader.readAsDataURL(input.files[0]);
   }
+
 }
-  
+
+function changeNick(){''
+  const parentDiv = document.getElementById("trocarDados");
+  const changeCard = document.createElement('div');
+  changeCard.classList.add('menu-item');
+
+  const textCard = document.createElement('span');
+  textCard.textContent = 'Novo Nick';
+  const name = document.createElement("input");
+  name.setAttribute("type", "text");
+  name.setAttribute("placeholder", "Novo nome de usuario");
+
+  changeCard.appendChild(textCard);
+  changeCard.appendChild(name);
+  parentDiv.appendChild(changeCard);
+  return changeCard;
+}
 // ------------------------------------Barra de Navegação------------------------------------//
   document.addEventListener('DOMContentLoaded', function() {
     const list = document.querySelectorAll('.list');

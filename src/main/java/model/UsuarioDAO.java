@@ -45,6 +45,8 @@ public class UsuarioDAO {
     public void setEmail_usuario(String email_usuario) {
         this.email_usuario = email_usuario;
     }
+    /// Validações / / /
 
+    
     
 }
