@@ -95,8 +95,60 @@ function previewImage(event) {
   if (input.files && input.files[0]) {
     reader.readAsDataURL(input.files[0]);
   }
+
 }
-  
+
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+]
+
+
+function changeEmail(){
+  const emailRegex = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/, "gm");
+  const parentDiv = document.getElementById("trocarDados");
+  const buttonEmail = document.getElementById('emailButton');
+  const changeCard = document.createElement('div');
+  changeCard.classList.add('menu-item');
+
+
+  const textCard = document.createElement('span');
+  textCard.textContent = 'Novo Nick';
+  const email = document.createElement("input");
+  email.setAttribute("type", "text");
+  email.setAttribute("placeholder", "Novo email");
+  const saveButton = document.createElement("button")
+  saveButton.setAttribute("placeholder", "Salvar");
+  saveButton.setAttribute("id", "saveButton");
+  saveButton.addEventListener("click", save);
+  function save() {
+    if(emailRegex.test(email.value)){
+      console.log('Foi')
+    };
+    email.value;
+    console.log(email.value);
+    buttonEmail.style.display = 'block';
+    changeCard.remove();
+  }  
+
+
+  buttonEmail.style.display = 'none';
+  changeCard.appendChild(textCard);
+  changeCard.appendChild(email);
+  changeCard.appendChild(saveButton);
+  parentDiv.appendChild(changeCard);
+  return changeCard;
+}
 // ------------------------------------Barra de Navegação------------------------------------//
   document.addEventListener('DOMContentLoaded', function() {
     const list = document.querySelectorAll('.list');
@@ -180,6 +232,7 @@ const nomeItensArray = [];
 const quantidadeItensArray = [];
 const nomeCategoriasArray = [];
 const novoItem = [];
+const newEmail = '';
 let quantidadeAtual;
 
 // ------------------------------------Funções do Estoque------------------------------------//
@@ -494,73 +547,116 @@ function setArrays(){
   xhr.send(jsonArray);
 }
 
+function updateData(){
+  const data = newEmail
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'getarray', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 && xhr.status == 200){
+      console.log('Arrays enviadas com sucesso!!');
+    }
+  };
+  const jsonArray = JSON.stringify(arrayObj);
+  xhr.send(jsonArray);
+}
+
+function domReady(fn){
+  if(document.readyState === "complete" || document.readyState === "interactive"){
+    setTimeout(fn,1);
+  }else{
+    document.addEventListener("DOMContentLoaded", fn)
+  }
+}
+
+domReady(function() {
+  var myQrcode = document.getElementById('qr-result');
+  var lastResult, countResults = 0;
+
+  function onScanSuccess(decodeText, decodeResults){
+    if(decodeText !== lastResult){
+      ++countResults;
+      lastResult = decodeText;
+
+      alert("Your qrcode is: " + decodeText,decodeResults);
+
+      var htmlscanner = new Html5QrcodeScanner("qr-reader",{fps:10,qrbox:250})
+      htmlscanner.render(onScanSuccess)
+
+    }
+  }
+})
+
+
 //-----------------------Configurações do Cardápio------------------//
 
-document.addEventListener("DOMContentLoaded", function() {
-  const menuData = [
-    { name: "Hamburguer", price: "15.00", description: "Delicioso hamburguer com queijo, alface e tomate." },
-    { name: "Pizza", price: "20.00", description: "Pizza margherita feita com ingredientes frescos." },
-    { name: "Salada", price: "10.00", description: "Salada fresca com alface, tomate, pepino e azeitonas." },
-    { name: "Sushi", price: "25.00", description: "Sushi variado com peixe fresco e arroz temperado." }
-  ];
+// document.addEventListener("DOMContentLoaded", function() {
+//   const menuData = [
+//     { name: "Hamburguer", price: "15.00", description: "Delicioso hamburguer com queijo, alface e tomate." },
+//     { name: "Pizza", price: "20.00", description: "Pizza margherita feita com ingredientes frescos." },
+//     { name: "Salada", price: "10.00", description: "Salada fresca com alface, tomate, pepino e azeitonas." },
+//     { name: "Sushi", price: "25.00", description: "Sushi variado com peixe fresco e arroz temperado." }
+//   ];
 
-  const menuContainer = document.getElementById("menu");
+//   const menuContainer = document.getElementById("menu");
 
-  function createMenuItem(item) {
-    const menuItem = document.createElement("div");
-    menuItem.classList.add("menu-item");
+//   function createMenuItem(item) {
+//     const menuItem = document.createElement("div");
+//     menuItem.classList.add("menu-item");
 
-    const name = document.createElement("input");
-    name.setAttribute("type", "text");
-    name.setAttribute("placeholder", "Nome do item");
-    name.value = item.name;
+//     const name = document.createElement("input");
+//     name.setAttribute("type", "text");
+//     name.setAttribute("placeholder", "Nome do item");
+//     name.value = item.name;
 
-    const price = document.createElement("input");
-    price.setAttribute("type", "number");
-    price.setAttribute("step", "0.01");
-    price.setAttribute("placeholder", "Preço");
-    price.value = item.price;
+//     const price = document.createElement("input");
+//     price.setAttribute("type", "number");
+//     price.setAttribute("step", "0.01");
+//     price.setAttribute("placeholder", "Preço");
+//     price.value = item.price;
 
-    const quantity = document.createElement("input");
-    quantity.setAttribute("type", "number");
-    quantity.setAttribute("step", "1");
-    quantity.setAttribute("min", "0");
-    quantity.setAttribute("placeholder", "Quantidade");
-    quantity.value = 0;
+//     const quantity = document.createElement("input");
+//     quantity.setAttribute("type", "number");
+//     quantity.setAttribute("step", "1");
+//     quantity.setAttribute("min", "0");
+//     quantity.setAttribute("placeholder", "Quantidade");
+//     quantity.value = 0;
 
-    const description = document.createElement("input");
-    description.setAttribute("type", "text");
-    description.setAttribute("placeholder", "Descrição");
-    description.value = item.description;
+//     const description = document.createElement("input");
+//     description.setAttribute("type", "text");
+//     description.setAttribute("placeholder", "Descrição");
+//     description.value = item.description;
 
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Excluir";
-    deleteButton.addEventListener("click", function() {
-      menuItem.remove();
-    });
+//     const deleteButton = document.createElement("button");
+//     deleteButton.textContent = "Excluir";
+//     deleteButton.addEventListener("click", function() {
+//       menuItem.remove();
+//     });
 
-    menuItem.appendChild(name);
-    menuItem.appendChild(price);
-    menuItem.appendChild(quantity);
-    menuItem.appendChild(description);
-    menuItem.appendChild(deleteButton);
+//     menuItem.appendChild(name);
+//     menuItem.appendChild(price);
+//     menuItem.appendChild(quantity);
+//     menuItem.appendChild(description);
+//     menuItem.appendChild(deleteButton);
 
-    return menuItem;
-  }
+//     return menuItem;
+//   }
 
-  function addNewMenuItem() {
-    const newItem = createMenuItem({ name: "", price: "", description: "" });
-    menuContainer.appendChild(newItem);
-  }
+//   function addNewMenuItem() {
+//     const newItem = createMenuItem({ name: "", price: "", description: "" });
+//     menuContainer.appendChild(newItem);
+//   }
 
-  menuData.forEach(item => {
-    const menuItem = createMenuItem(item);
-    menuContainer.appendChild(menuItem);
-  });
+//   menuData.forEach(item => {
+//     const menuItem = createMenuItem(item);
+//     menuContainer.appendChild(menuItem);
+//   });
 
-  const addNewButton = document.createElement("button");
-  addNewButton.textContent = "Adicionar Novo Produto";
-  addNewButton.addEventListener("click", addNewMenuItem);
-  menuContainer.appendChild(addNewButton);
-});
+//   const addNewButton = document.createElement("button");
+//   addNewButton.textContent = "Adicionar Novo Produto";
+//   addNewButton.addEventListener("click", addNewMenuItem);
+//   menuContainer.appendChild(addNewButton);
+// });
 

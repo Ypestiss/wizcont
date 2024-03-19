@@ -182,8 +182,10 @@
           </div>
               <div id="opcoesPerfil">
                 <p id="assinatura"><a href="#">Assinatura</a></p>
-                <p id="altNome"><a href="altenick">Alterar Nome</a></p>
-                <p id="altSenha"><a href="altpass">Alterar senha</a></p>
+                
+                <div id="trocarDados">
+                  <button id='emailButton' onclick="changeEmail()">Alterar email</button>
+                </div>
               </div>
               <form action='logout'>
                 <button type='submit'>Desconectar</button>

@@ -416,6 +416,14 @@ input[type="file"] {
   border-radius: 4px;
 }
 
+.saveButton {
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  background-color: #45a049;
+  border: none;
+  border-radius: 12px;
+}
+
 .category button:hover {
   background-color: #45a049;
 }
@@ -718,6 +726,16 @@ div::-webkit-scrollbar-thumb {
 
 .menu-item input {
   margin-bottom: 5px;
+}
+.menu-item button{
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  margin-left: 10px;
+  width: auto;
+  height: auto;
+  background-color: #45a049;
+  border: none;
+  border-radius: 12px;
 }
 
 .menu-item h2 {
