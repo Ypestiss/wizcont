@@ -134,11 +134,12 @@ function changeEmail(){
   function save() {
     if(emailRegex.test(email.value)){
       console.log('Foi')
+      console.log(email.value);
+      buttonEmail.style.display = 'block';
+      changeCard.remove();
+    }else{
+      alert('Erro, email inválido');
     };
-    email.value;
-    console.log(email.value);
-    buttonEmail.style.display = 'block';
-    changeCard.remove();
   }  
 
 
@@ -180,7 +181,7 @@ function changeEmail(){
       div.style.display = 'none';
     });
     // Exibe a div de conteúdo específica para Metas
-    document.getElementById('cardapio').style.display = 'block';
+    document.getElementById('qr-container').style.display = 'block';
   }
 
   function mostrarNotificacao() {
@@ -189,7 +190,7 @@ function changeEmail(){
       div.style.display = 'none';
     });
     // Exibe a div de conteúdo específica para Metas
-    document.getElementById('notificacao').style.display = 'block';
+    document.getElementById('qr-generator').style.display = 'block';
   }
 
   function mostrarPerfil() {
@@ -232,7 +233,7 @@ const nomeItensArray = [];
 const quantidadeItensArray = [];
 const nomeCategoriasArray = [];
 const novoItem = [];
-const newEmail = '';
+const scanItensArray = [];
 let quantidadeAtual;
 
 // ------------------------------------Funções do Estoque------------------------------------//
@@ -563,34 +564,87 @@ function updateData(){
   xhr.send(jsonArray);
 }
 
-function domReady(fn){
-  if(document.readyState === "complete" || document.readyState === "interactive"){
-    setTimeout(fn,1);
-  }else{
-    document.addEventListener("DOMContentLoaded", fn)
-  }
+function generateQR(){
+  const array = {
+    Itens: nomeItensArray
+  };
+  var jsonString = JSON.stringify(array);
+
+  let qrcode = new QRCode(document.getElementById('generator-result'), jsonString);
+  console.log(qrcode)
 }
 
-domReady(function() {
-  var myQrcode = document.getElementById('qr-result');
-  var lastResult, countResults = 0;
+function scanQR(){
+  const scanner = new Html5QrcodeScanner('reader', { 
+    qrbox: {
+        width: 250,
+        height: 250,
+    }, 
+    fps: 20,
+});
 
-  function onScanSuccess(decodeText, decodeResults){
-    if(decodeText !== lastResult){
-      ++countResults;
-      lastResult = decodeText;
+  scanner.render(success, error);
+  document.getElementById('scanQR-button').style.display = 'none';
+  // Starts scanner
 
-      alert("Your qrcode is: " + decodeText,decodeResults);
-
-      var htmlscanner = new Html5QrcodeScanner("qr-reader",{fps:10,qrbox:250})
-      htmlscanner.render(onScanSuccess)
-
+  function success(result) {
+    var objeto = JSON.parse(result);
+    var arrays = objeto.Itens;
+    
+    var htmlItens = '';
+    for (var i = 0; i < arrays.length; i++) {
+        var itensArray = arrays[i];
+        console.log('Array' + (i + 1) + ':');
+        for (var j = 0; j < itensArray.length; j++) {
+            htmlItens += itensArray[j];
+            console.log(itensArray[j]);
+        }
     }
+
+    // Exibir os itens na página HTML
+    document.getElementById('result').innerHTML = `
+        <h2>Success!</h2>
+        <div>${htmlItens}</div>
+    `;
+      document.getElementById('complete-scan').style.display = 'block';
+      document.getElementById('complete-scan').addEventListener('click', () =>{
+        console.log(arrays)
+        console.log(itensArray[1])
+        scanArrays(arrays);
+      })
+      scanner.clear();
+
+      document.getElementById('reader').remove();
+
   }
-})
 
+  function error(err) {
+      console.error(err);
+      // Prints any errors to the console
+  }
 
-//-----------------------Configurações do Cardápio------------------//
+}
+
+async function scanArrays(arrays){
+  const arrayObj = {
+    Itens: arrays
+  };
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'getarray', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 && xhr.status == 200){
+      console.log('Arrays enviadas com sucesso!!');
+    }
+  };
+  const jsonArray = JSON.stringify(arrayObj);
+  xhr.send(jsonArray);
+}
+
+//-----------------------Configurações do leitor QR------------------//
+
 
 // document.addEventListener("DOMContentLoaded", function() {
 //   const menuData = [

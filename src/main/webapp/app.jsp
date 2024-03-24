@@ -25,7 +25,9 @@
     <script>
       var itens = <%=jsonItensPerfil%>;
     </script>
-    
+    <script src="./styles/instascan.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   </head>
   <body id="light-theme">
@@ -154,18 +156,39 @@
 
         </div>
 
-        <!-- Conteúdo da página de Cardápio -->
-        <div id="cardapio" style="display: none;">                   
+        <!-- Conteúdo da página do leitor de QR -->
+        <div id="qr-container" style="display: none;">                   
           <div class="menu-container">
-            <h1>Cardápio</h1>
-            <div id="menu"></div>
+            <h1>Leitor QR-CODE</h1>
+            <style>
+              #cam-menu {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+              }
+              #reader {
+                  width: 600px;
+              }
+              #result {
+                  text-align: center;
+                  font-size: 1.5rem;
+              }
+            </style>
+            <button id="scanQR-button" onclick="scanQR()">Scan</button>        
+            <div id ="cam-menu">
+              <div id="reader"></div>
+              <div id="result"></div>
+            </div>
+            <button id="complete-scan" display='none' ">Salvar</button>
           </div>
         </div>
 
-        <!-- Conteúdo da página de Notificação -->
-        <div id="notificacao" style="display: none;">
-          <h2>Notificações</h2>
-          <p>Conteúdo da página de Notificações...</p>
+        <!-- Conteúdo da página de Gerador de QR -->
+        <div id="qr-generator" style="display: none;">
+          <h2>Gerador QRcode</h2>
+          <button id="generateQR-button" onclick="generateQR()">gerar QR</button>
+          <div id="generator-result"></div>
+
         </div>
 
         <!-- Conteúdo da página de Perfil -->
@@ -199,7 +222,7 @@
 
           <input type="checkbox" id="darklight" class="darklight">
 
-          <div class="setting-item">
+          <div class="setting-item"> 
             <a id="sair" href="index.html">Sair</a>
         </div>
         <!-- Adicione outras seções conforme necessário -->
@@ -207,5 +230,5 @@
 
 
   </body>
-  <script src="./styles/AppTools.js"></script>
+  <script src="./styles/appTools.js"></script>
 </html>

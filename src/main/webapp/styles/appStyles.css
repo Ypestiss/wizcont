@@ -151,7 +151,7 @@ body {
   color: #fff;
 }
 
-#metas {
+#qr-container {
   color: #fff;
 }
 
@@ -159,7 +159,7 @@ body {
   color: #fff;
 }
 
-#notificacao {
+#qr-generator {
   color: #fff;
 }
 
@@ -416,9 +416,11 @@ input[type="file"] {
   border-radius: 4px;
 }
 
-.saveButton {
+#scanQR-button {
   padding: 8px 12px;
   margin-bottom: 6px;
+  width: 200px;
+  height: 100px;
   background-color: #45a049;
   border: none;
   border-radius: 12px;

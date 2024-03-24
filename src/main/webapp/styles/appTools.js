@@ -181,7 +181,7 @@ function changeEmail(){
       div.style.display = 'none';
     });
     // Exibe a div de conteúdo específica para Metas
-    document.getElementById('cardapio').style.display = 'block';
+    document.getElementById('qr-container').style.display = 'block';
   }
 
   function mostrarNotificacao() {
@@ -190,7 +190,7 @@ function changeEmail(){
       div.style.display = 'none';
     });
     // Exibe a div de conteúdo específica para Metas
-    document.getElementById('notificacao').style.display = 'block';
+    document.getElementById('qr-generator').style.display = 'block';
   }
 
   function mostrarPerfil() {
@@ -233,7 +233,7 @@ const nomeItensArray = [];
 const quantidadeItensArray = [];
 const nomeCategoriasArray = [];
 const novoItem = [];
-const newEmail = '';
+const scanItensArray = [];
 let quantidadeAtual;
 
 // ------------------------------------Funções do Estoque------------------------------------//
@@ -564,73 +564,153 @@ function updateData(){
   xhr.send(jsonArray);
 }
 
-//-----------------------Configurações do Cardápio------------------//
+function generateQR(){
+  const array = {
+    Itens: nomeItensArray
+  };
+  var jsonString = JSON.stringify(array);
 
-document.addEventListener("DOMContentLoaded", function() {
-  const menuData = [
-    { name: "Hamburguer", price: "15.00", description: "Delicioso hamburguer com queijo, alface e tomate." },
-    { name: "Pizza", price: "20.00", description: "Pizza margherita feita com ingredientes frescos." },
-    { name: "Salada", price: "10.00", description: "Salada fresca com alface, tomate, pepino e azeitonas." },
-    { name: "Sushi", price: "25.00", description: "Sushi variado com peixe fresco e arroz temperado." }
-  ];
+  let qrcode = new QRCode(document.getElementById('generator-result'), jsonString);
+  console.log(qrcode)
+}
 
-  const menuContainer = document.getElementById("menu");
-
-  function createMenuItem(item) {
-    const menuItem = document.createElement("div");
-    menuItem.classList.add("menu-item");
-
-    const name = document.createElement("input");
-    name.setAttribute("type", "text");
-    name.setAttribute("placeholder", "Nome do item");
-    name.value = item.name;
-
-    const price = document.createElement("input");
-    price.setAttribute("type", "number");
-    price.setAttribute("step", "0.01");
-    price.setAttribute("placeholder", "Preço");
-    price.value = item.price;
-
-    const quantity = document.createElement("input");
-    quantity.setAttribute("type", "number");
-    quantity.setAttribute("step", "1");
-    quantity.setAttribute("min", "0");
-    quantity.setAttribute("placeholder", "Quantidade");
-    quantity.value = 0;
-
-    const description = document.createElement("input");
-    description.setAttribute("type", "text");
-    description.setAttribute("placeholder", "Descrição");
-    description.value = item.description;
-
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Excluir";
-    deleteButton.addEventListener("click", function() {
-      menuItem.remove();
-    });
-
-    menuItem.appendChild(name);
-    menuItem.appendChild(price);
-    menuItem.appendChild(quantity);
-    menuItem.appendChild(description);
-    menuItem.appendChild(deleteButton);
-
-    return menuItem;
-  }
-
-  function addNewMenuItem() {
-    const newItem = createMenuItem({ name: "", price: "", description: "" });
-    menuContainer.appendChild(newItem);
-  }
-
-  menuData.forEach(item => {
-    const menuItem = createMenuItem(item);
-    menuContainer.appendChild(menuItem);
-  });
-
-  const addNewButton = document.createElement("button");
-  addNewButton.textContent = "Adicionar Novo Produto";
-  addNewButton.addEventListener("click", addNewMenuItem);
-  menuContainer.appendChild(addNewButton);
+function scanQR(){
+  const scanner = new Html5QrcodeScanner('reader', { 
+    qrbox: {
+        width: 250,
+        height: 250,
+    }, 
+    fps: 20,
 });
+
+  scanner.render(success, error);
+  document.getElementById('scanQR-button').style.display = 'none';
+  // Starts scanner
+
+  function success(result) {
+    var objeto = JSON.parse(result);
+    var arrays = objeto.Itens;
+    
+    var htmlItens = '';
+    for (var i = 0; i < arrays.length; i++) {
+        var itensArray = arrays[i];
+        console.log('Array' + (i + 1) + ':');
+        for (var j = 0; j < itensArray.length; j++) {
+            htmlItens += itensArray[j];
+            console.log(itensArray[j]);
+        }
+    }
+
+    // Exibir os itens na página HTML
+    document.getElementById('result').innerHTML = `
+        <h2>Success!</h2>
+        <div>${htmlItens}</div>
+    `;
+      document.getElementById('complete-scan').style.display = 'block';
+      document.getElementById('complete-scan').addEventListener('click', () =>{
+        console.log(arrays)
+        console.log(itensArray[1])
+        scanArrays(arrays);
+      })
+      scanner.clear();
+
+      document.getElementById('reader').remove();
+
+  }
+
+  function error(err) {
+      console.error(err);
+      // Prints any errors to the console
+  }
+
+}
+
+async function scanArrays(arrays){
+  const arrayObj = {
+    Itens: arrays
+  };
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'getarray', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 && xhr.status == 200){
+      console.log('Arrays enviadas com sucesso!!');
+    }
+  };
+  const jsonArray = JSON.stringify(arrayObj);
+  xhr.send(jsonArray);
+}
+
+//-----------------------Configurações do leitor QR------------------//
+
+
+// document.addEventListener("DOMContentLoaded", function() {
+//   const menuData = [
+//     { name: "Hamburguer", price: "15.00", description: "Delicioso hamburguer com queijo, alface e tomate." },
+//     { name: "Pizza", price: "20.00", description: "Pizza margherita feita com ingredientes frescos." },
+//     { name: "Salada", price: "10.00", description: "Salada fresca com alface, tomate, pepino e azeitonas." },
+//     { name: "Sushi", price: "25.00", description: "Sushi variado com peixe fresco e arroz temperado." }
+//   ];
+
+//   const menuContainer = document.getElementById("menu");
+
+//   function createMenuItem(item) {
+//     const menuItem = document.createElement("div");
+//     menuItem.classList.add("menu-item");
+
+//     const name = document.createElement("input");
+//     name.setAttribute("type", "text");
+//     name.setAttribute("placeholder", "Nome do item");
+//     name.value = item.name;
+
+//     const price = document.createElement("input");
+//     price.setAttribute("type", "number");
+//     price.setAttribute("step", "0.01");
+//     price.setAttribute("placeholder", "Preço");
+//     price.value = item.price;
+
+//     const quantity = document.createElement("input");
+//     quantity.setAttribute("type", "number");
+//     quantity.setAttribute("step", "1");
+//     quantity.setAttribute("min", "0");
+//     quantity.setAttribute("placeholder", "Quantidade");
+//     quantity.value = 0;
+
+//     const description = document.createElement("input");
+//     description.setAttribute("type", "text");
+//     description.setAttribute("placeholder", "Descrição");
+//     description.value = item.description;
+
+//     const deleteButton = document.createElement("button");
+//     deleteButton.textContent = "Excluir";
+//     deleteButton.addEventListener("click", function() {
+//       menuItem.remove();
+//     });
+
+//     menuItem.appendChild(name);
+//     menuItem.appendChild(price);
+//     menuItem.appendChild(quantity);
+//     menuItem.appendChild(description);
+//     menuItem.appendChild(deleteButton);
+
+//     return menuItem;
+//   }
+
+//   function addNewMenuItem() {
+//     const newItem = createMenuItem({ name: "", price: "", description: "" });
+//     menuContainer.appendChild(newItem);
+//   }
+
+//   menuData.forEach(item => {
+//     const menuItem = createMenuItem(item);
+//     menuContainer.appendChild(menuItem);
+//   });
+
+//   const addNewButton = document.createElement("button");
+//   addNewButton.textContent = "Adicionar Novo Produto";
+//   addNewButton.addEventListener("click", addNewMenuItem);
+//   menuContainer.appendChild(addNewButton);
+// });
 
