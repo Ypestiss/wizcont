@@ -230,10 +230,11 @@ const recomendacoes = {
 };
 
 const nomeItensArray = [];
-const quantidadeItensArray = [];
-const nomeCategoriasArray = [];
-const novoItem = [];
-const scanItensArray = [];
+var itensOriginais = [];
+var itensScan = [];
+var novoItem = [];
+var diff = 0;
+const itensModificados = [];
 let quantidadeAtual;
 
 // ------------------------------------Funções do Estoque------------------------------------//
@@ -281,6 +282,7 @@ function adicionarItem(categoria) {
       categoria
     ];
 
+
     nomeItensArray.push(novoItem);
     cardContainer.appendChild(novoCard);
 
@@ -315,6 +317,7 @@ function adicionarItem(categoria) {
       }
     };
     novoCard.appendChild(botaoExcluir);
+
 
     quantidadeInput.addEventListener('input', function() {
       // Obtém o valor atualizado do campo de quantidade e adiciona à array global
@@ -374,11 +377,13 @@ function adicionarItem(categoria) {
   }
 }
 
+// carregamento dos itens no banco
 for(var i = 0; i < itens.length; i++){
   var item = itens[i];
   console.log('teste');
   var categoria = item.categoria_item;
   var quantidade = item.qtd_item;
+  var medida = item.medida_item;
   var cardContainer = document.getElementById(`${categoria}-list`);
   var card = document.createElement('div');
   card.classList.add('card');
@@ -433,6 +438,9 @@ for(var i = 0; i < itens.length; i++){
     };
   card.appendChild(botaoExcluir);
   nomeItensArray.push(novoItem);
+  itensOriginais = JSON.parse(JSON.stringify(nomeItensArray))
+  
+  console.log("valor de itensOriginais: "+ itensOriginais)
 
   quantidadeInput.addEventListener('input', function() {
     // Obtém o valor atualizado do campo de quantidade e adiciona à array global
@@ -445,96 +453,17 @@ for(var i = 0; i < itens.length; i++){
   }
 }
 
-function trocarSecao() {
-  const estoque = document.getElementById('estoque');
-  const estoqueLimp = document.getElementById('estoque-limp');
-
-  if (estoque.style.display !== 'none') {
-    // Se a seção de estoque estiver sendo exibida, oculta e mostra a seção de limpeza
-    estoque.style.display = 'none';
-    estoqueLimp.style.display = 'block';
-
-    // Adicionar animação de rolagem (exemplo com scrollIntoView)
-    estoqueLimp.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  } else {
-    // Se a seção de limpeza estiver sendo exibida, oculta e mostra a seção de estoque
-    estoqueLimp.style.display = 'none';
-    estoque.style.display = 'block';
-
-    // Adicionar animação de rolagem (exemplo com scrollIntoView)
-    estoque.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
-
-// Função para adicionar itens à lista de produtos de limpeza
-function adicionarItemLimp(categoria) {
-  const nomeItem = prompt(`Digite o nome do item de ${categoria}:`);
-  if (nomeItem) {
-    const itemPadronizado = removerAcentos(capitalizeFirstLetter(nomeItem.toLowerCase())); // Padronizando o item inserido
-
-    const cardContainer = document.getElementById(`${categoria}-list`);
-    const novoCard = document.createElement('div');
-    novoCard.classList.add('card');
-
-    const textoItem = document.createElement('span');
-    textoItem.textContent = capitalizeFirstLetter(nomeItem); // Texto com primeira letra em maiúsculo
-    const nomeItemPadronizado = capitalizeFirstLetter(nomeItem); // Nome padronizado para comparar
-
-    const quantidadeInput = document.createElement('input');
-    quantidadeInput.type = 'number';
-    quantidadeInput.placeholder = 'Quantidade';
-    quantidadeInput.style.width = '80px';
-    quantidadeInput.style.backgroundColor = '#f2f2f2';
-
-    novoCard.appendChild(textoItem);
-    novoCard.appendChild(quantidadeInput);
-
-    const botaoExcluir = document.createElement('button');
-    botaoExcluir.style.backgroundColor = 'transparent';
-    botaoExcluir.style.color = 'red';
-    botaoExcluir.textContent = 'Excluir';
-    botaoExcluir.onclick = function() {
-      const index = nomeItensArray.findIndex(item => item[0] === novoItem[0] && item[1] === novoItem[1] && item[2] === novoItem[2]);
-      console.log(item);
-
-      if(index !== -1){
-        nomeItensArray.splice(index,  1);
-        console.log('foi')
-
-        fetch('/delitem', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(novoItem)
-        })
-        .then(response => {
-          if(!response.ok) {
-            throw new Error(`HTTP error! Status ${response.status}`);
-          }
-          return response.json();
-        }) 
-        this.parentNode.remove();
-      }
-    };
-
-    novoCard.appendChild(botaoExcluir);
-    cardContainer.appendChild(novoCard);
-    
-    quantidadeInput.addEventListener('input', function() {
-      // Obtém o valor atualizado do campo de quantidade e adiciona à array global
-      quantidadeAtual = quantidadeInput.value.toString();
-    });
-
-    nomeCategoriasArray.push(categoria)
-
-    // Lógica de recomendação de itens de limpeza pode ser adicionada aqui
-  }
-}
-
+//Função para salvar os itens
 function setArrays(){
   const arrayObj = {
     Itens: nomeItensArray
   };
 
+  // itensModificados1 = moddedItens(itens);
+  const itensModificados = moddedItens(nomeItensArray);
+
+
+  // enviar pro servidor 
   const xhr = new XMLHttpRequest();
   xhr.open('POST', 'getarray', true);
   xhr.setRequestHeader('Content-Type', 'application/json');
@@ -545,7 +474,39 @@ function setArrays(){
     }
   };
   const jsonArray = JSON.stringify(arrayObj);
+  console.log("Valor de jsonArray: " + jsonArray)
+  console.log("Valor de itensModificados: " + itensModificados)
   xhr.send(jsonArray);
+}
+
+function moddedItens(itens) {
+  let itensModificados = [];
+  if(itensOriginais.length > 0){
+      for (let i = 0; i < itens.length; i++) {
+          let itemOriginal = itensOriginais[i];
+          let itemModificado = itens[i].slice(); // Cria uma cópia do item modificado
+
+          // Verifica individualmente se houve modificação
+          let modificado = false;
+          if (itemOriginal[0] !== itemModificado[0]) { // Nome modificado
+              modificado = true;
+          }
+          if (itemOriginal[1] !== itemModificado[1]) { // Quantidade modificada
+              itemModificado[1] -= itemOriginal[1]; // Calcula a diferença diretamente
+              modificado = true;
+          }
+          if (itemOriginal[2] !== itemModificado[2]) { // Categoria modificada
+              modificado = true;
+          }
+
+          if (modificado) {
+              console.log("Item modificado na função moddedItens: ", itemModificado);
+              itensModificados.push(itemModificado);
+              generateQR(itensModificados);
+          }
+      }
+  }
+  return itensModificados;
 }
 
 function updateData(){
@@ -564,10 +525,11 @@ function updateData(){
   xhr.send(jsonArray);
 }
 
-function generateQR(){
+function generateQR(itensModificados){
   const array = {
-    Itens: nomeItensArray
+    Itens: itensModificados
   };
+
   var jsonString = JSON.stringify(array);
 
   let qrcode = new QRCode(document.getElementById('generator-result'), jsonString);

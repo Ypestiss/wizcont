@@ -4,6 +4,7 @@ public class BancoDAO {
     private String id_user;
     private String nome_item;
     private Integer qtd_item;
+    // private String medida_item;
     private String categoria_item;
 
     public BancoDAO(){
@@ -37,6 +38,12 @@ public class BancoDAO {
     public String getCategoria_item(){
         return categoria_item;
     }
+    // public String getMedida_item() {
+    //     return medida_item;
+    // }
+    // public void setMedida_item(String medida_item) {
+    //     this.medida_item = medida_item;
+    // }
     public void setId_user(String id_user){
         this.id_user = id_user;
     }
