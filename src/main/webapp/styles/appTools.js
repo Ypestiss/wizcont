@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const perfil = document.getElementById('perfil');
   const estoqueLimp = document.getElementById('estoque-limp');
   const titleLimp = document.getElementById('titleLimp');
+  const navigation = document.querySelector('.navigation');
+
 
   // Recuperar o estado do modo do armazenamento local ao carregar a página
   const isDarkModeSaved = localStorage.getItem('darkMode');
@@ -18,10 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
   function applyStyles(isDarkMode) {
     const backgroundColor = isDarkMode ? 'rgba(255, 255, 255)' : 'rgba(34, 34, 34)';
     const textColor = isDarkMode ? '#000' : '#fff';
-    const contBGColor = isDarkMode ? 'whitesmoke' : 'black'
+    const contBGColor = isDarkMode ? 'whitesmoke' : 'black';
+    const navigationBGColor = isDarkMode ? 'black' : '#101010';
     
     body.style.backgroundColor = backgroundColor;
     body.style.color = textColor;
+    navigation.style.backgroundColor = navigationBGColor;
     conteudo.style.backgroundColor = contBGColor;
     configContent.style.backgroundColor = backgroundColor;
     configContent.style.color = textColor;
@@ -34,6 +38,18 @@ document.addEventListener('DOMContentLoaded', function() {
     estoqueLimp.style.backgroundColor = backgroundColor;
     estoqueLimp.style.color = textColor;
     titleLimp.style.color = textColor;
+
+    const indicator = document.querySelectorAll('.indicator');
+    indicator.forEach(function(element) {
+      element.style.borderColor = navigationBGColor;
+
+      if (isDarkMode) {
+        element.classList.remove('white');
+    } else {
+        element.classList.add('white');
+    }
+
+    });
 
     const subtitleestoque = document.querySelectorAll('.subtitleestoque');
     subtitleestoque.forEach(function(element) {
@@ -235,6 +251,7 @@ function adicionarItem(categoria) {
     botaoExcluir.style.color = 'red';
     botaoExcluir.style.marginLeft = '-20%'
     botaoExcluir.textContent = 'Excluir';
+    botaoExcluir.style.borderColor = 'transparent';
     botaoExcluir.onclick = function() {
       const index = nomeItensArray.findIndex(item => item[0] === novoItem[0] && item[1] === novoItem[1] && item[2] === novoItem[2]);
       console.log("Teste index:" + index);
@@ -291,7 +308,7 @@ function adicionarItem(categoria) {
           botaoExcluirRecomendado.style.backgroundColor = 'transparent';
           botaoExcluirRecomendado.style.color = 'red';
           botaoExcluirRecomendado.textContent = 'Excluir';
-          botaoExcluirRecomendado.style.border = 'none';
+          botaoExcluirRecomendado.style.borderColor = 'red';
           botaoExcluirRecomendado.onclick = function() {
             const index = nomeItensArray.findIndex(item => item[0] === novoItem[0] && item[1] === novoItem[1] && item[2] === novoItem[2]);
             console.log(item);

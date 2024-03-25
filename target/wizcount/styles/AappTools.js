@@ -10,8 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const perfil = document.getElementById('perfil');
   const estoqueLimp = document.getElementById('estoque-limp');
   const titleLimp = document.getElementById('titleLimp');
-  const navigation = document.querySelector('.navigation');
-
 
   // Recuperar o estado do modo do armazenamento local ao carregar a página
   const isDarkModeSaved = localStorage.getItem('darkMode');
@@ -19,13 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Função para aplicar estilos com base no modo escuro/claro
   function applyStyles(isDarkMode) {
     const backgroundColor = isDarkMode ? 'rgba(255, 255, 255)' : 'rgba(34, 34, 34)';
+    const backgroundImage = isDarkMode ? 'C:\\Users\\Lenovo22\\Documents\\GitHub\\wizcont\\src\\main\\webapp\\backgrounds\\Interface_Preta.png' : 'C:\\Users\\Lenovo22\\Documents\\GitHub\\wizcont\\src\\main\\webapp\\backgrounds\\Interface_Branca.png';
     const textColor = isDarkMode ? '#000' : '#fff';
-    const contBGColor = isDarkMode ? 'whitesmoke' : 'black';
-    const navigationBGColor = isDarkMode ? 'black' : '#101010';
+    const contBGColor = isDarkMode ? 'whitesmoke' : 'black'
     
+    body.style.backgroundImage = backgroundImage;
     body.style.backgroundColor = backgroundColor;
     body.style.color = textColor;
-    navigation.style.backgroundColor = navigationBGColor;
     conteudo.style.backgroundColor = contBGColor;
     configContent.style.backgroundColor = backgroundColor;
     configContent.style.color = textColor;
@@ -38,18 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
     estoqueLimp.style.backgroundColor = backgroundColor;
     estoqueLimp.style.color = textColor;
     titleLimp.style.color = textColor;
-
-    const indicator = document.querySelectorAll('.indicator');
-    indicator.forEach(function(element) {
-      element.style.borderColor = navigationBGColor;
-
-      if (isDarkMode) {
-        element.classList.remove('white');
-    } else {
-        element.classList.add('white');
-    }
-
-    });
 
     const subtitleestoque = document.querySelectorAll('.subtitleestoque');
     subtitleestoque.forEach(function(element) {
