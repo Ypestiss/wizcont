@@ -13,7 +13,6 @@
   <meta charset="utf-8">
   <title>Página de Login</title>
   <meta name="viewport" content="width=device-width">
-  <link type="text/css" rel="stylesheet" href="./styles/LoginStyles.css">
   <link rel="stylesheet" href="./styles/loginStyles.css">
   <script src="./styles/loginTools.js"></script>
   <script src="./styles/loginUserTools.js"></script>
@@ -47,7 +46,7 @@
 
   <div class="login">
     <div class="login-form">
-      <form name="loginForm" method="post" action="logar">
+      <form name="loginForm" method="post" action="loginCheck">
             <h2>LOGIN</h2>
             <div class="input-group">
               <label for="username">Usuário ou E-mail:</label>

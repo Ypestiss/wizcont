@@ -25,13 +25,12 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 
-@WebServlet(urlPatterns = {"/Controller", "/main", "/login", "/logar", "/logout",
-                            "/getarray", "/delitem","/signup", "/registrar", "/perfil"})
+@WebServlet(urlPatterns = {"/Controller", "/main",
+                            "/getarray", "/delitem", "/perfil"})
 public class Controller extends HttpServlet {
 
     Integer dados;
 
-    private static final long serialVersionUID = 1L;
     ConexaoDAO connDAO = new ConexaoDAO();
     UsuarioDAO userDAO = new UsuarioDAO();
     BancoDAO bancoDAO = new BancoDAO();
@@ -44,21 +43,22 @@ public class Controller extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String action = request.getServletPath();
+        HttpSession session = request.getSession();
         System.out.println("Método: " + action + "\nValor de dados: " + connDAO.dados);
         if (action.equals("/main")){
             acessarcanal("main.jsp", request, response);
             System.out.println("\n[T] - Teste /main");
-        }else if(action.equals("/login")){
-            acessarcanal("login.jsp", request, response);
-            System.out.println("[T] - Teste /login");
-        }else if(action.equals("/logout")){
-            deslogar(request, response);
-        }else if(action.equals("/signup")){
-            acessarcanal("signup.jsp", request, response);
-            System.out.println("[T] - Teste /signup");
+        // }else if(action.equals("/login")){
+        //     acessarcanal("login.jsp", request, response);
+        //     System.out.println("[T] - Teste /login");
+        // }else if(action.equals("/logout")){
+        //     deslogar(request, response);
+        // }else if(action.equals("/signup")){
+        //     acessarcanal("signup.jsp", request, response);
+        //     System.out.println("[T] - Teste /signup");
         }else if(action.equals("/perfil")){
-            if(connDAO.dados == 1){
-                comecar(request,response); 
+            if((Integer) session.getAttribute("statusLogin") != 0){
+                comecar(request,response);
                 System.out.println("\n[T] - Teste /perfil");
             }else{
                 acessarcanal("login.jsp", request, response);
@@ -71,13 +71,14 @@ public class Controller extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getServletPath();
-        if (action.equals("/logar")){
-            logar(request,response); 
-            System.out.println("\n[T] - Logado");
-        }else if(action.equals("/registrar")){
-            registrar(request, response);
-            System.out.println("\n[T] - Registrado ");
-        }else if(action.equals("/getarray")){
+        // if (action.equals("/logar")){
+        //     logar(request,response); 
+        //     System.out.println("\n[T] - Logado");
+        // }else if(action.equals("/registrar")){
+        //     registrar(request, response);
+        //     System.out.println("\n[T] - Registrado ");
+        // }else
+            if(action.equals("/getarray")){
             setarArrays(request, response);
             System.out.println("\n[T] - Arrays salvas");
         }else if(action.equals("/delitem")){
@@ -130,8 +131,11 @@ public class Controller extends HttpServlet {
         session.setAttribute("user_email", email);
         
         dados = connDAO.dados;
+        session.setAttribute("statusLogin", dados);
+        System.out.println("Valor de dados na função logar: " + dados);
         if(dados == 1){
-            response.sendRedirect("main");
+            response.sendRedirect("perfil");
+            System.out.println("Foi pro main");
         }
         else{
             response.sendRedirect("login");

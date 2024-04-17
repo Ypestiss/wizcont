@@ -177,7 +177,9 @@ public class ConexaoDAO {
                     pstm.setString(2, usuario.getSenha_usuario());
                     ResultSet rs = pstm.executeQuery();
                     rs.next();
+                    
                     dados = 1;
+                    System.out.println("dados na função fazerLogin: " + dados);
                 }else{
                     dados = 0;
                     System.out.println("[!] - Conta não encontrada");

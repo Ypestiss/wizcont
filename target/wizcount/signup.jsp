@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <title>Página de Cadastro</title>
-  <link rel="stylesheet" href="./styles/SignupStyles.css">
+  <link rel="stylesheet" href="./styles/signupStyles.css">
   <script src="./styles/loginTools.js"></script>
   <script src="./styles/loginUserTools.js"></script>
 </head>
@@ -37,7 +37,7 @@
   </header>
 
   
-  <form name="loginForm" method="post" action="registrar">
+  <form name="loginForm" method="post" action="registerCheck">
     <div class="login-container">
       <h2>Junte-se a nós! ;)</h2>
       <div class="input-group">

@@ -480,31 +480,30 @@ function setArrays(){
 }
 
 function moddedItens(itens) {
-  let itensModificados = [];
+  var itensModificados = [];
   if(itensOriginais.length > 0){
       for (let i = 0; i < itens.length; i++) {
-          let itemOriginal = itensOriginais[i];
-          let itemModificado = itens[i].slice(); // Cria uma cópia do item modificado
+          var itemOriginal = itensOriginais[i];
+          var itemModificado = itens[i].slice(); // Cria uma cópia do item modificado
 
           // Verifica individualmente se houve modificação
-          let modificado = false;
+          var modificado = false;
           if (itemOriginal[0] !== itemModificado[0]) { // Nome modificado
               modificado = true;
           }
           if (itemOriginal[1] !== itemModificado[1]) { // Quantidade modificada
-              itemModificado[1] -= itemOriginal[1]; // Calcula a diferença diretamente
+              itemModificado[1] = Math.abs(itemModificado[1] - itemOriginal[1]); // Calcula a diferença diretamente
               modificado = true;
           }
           if (itemOriginal[2] !== itemModificado[2]) { // Categoria modificada
               modificado = true;
           }
-
           if (modificado) {
               console.log("Item modificado na função moddedItens: ", itemModificado);
               itensModificados.push(itemModificado);
-              generateQR(itensModificados);
           }
       }
+      generateQR(itensModificados);
   }
   return itensModificados;
 }
