@@ -13,10 +13,10 @@
   <meta charset="utf-8">
   <title>Página de Login</title>
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="./styles/loginStyles.css">
-  <script src="./styles/loginTools.js"></script>
-  <script src="./styles/loginUserTools.js"></script>
-  <script src="./styles/loginTools.js"></script>
+  <link type="text/css" rel="stylesheet" href="./styles/css/LoginStyles.css">
+  <script src="./styles/js/loginTools.js"></script>
+  <script src="./styles/js/loginUserTools.js"></script>
+  <script src="./styles/js/loginTools.js"></script>
   
 </head>
 

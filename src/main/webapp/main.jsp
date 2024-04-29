@@ -13,9 +13,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>WizCont</title>
-  <link href="./styles/mainStyles.css" rel="stylesheet" type="text/css" />
-  <script src="./styles/mainTools.js"></script>
-  <script src="./styles/userTools.js"></script>
+  <link href="./styles/css/main/MainStyles.css" rel="stylesheet" type="text/css" />
+  <link href="./styles/css/main/mainDesc.css" rel="stylesheet" type="text/css" />
+  <link href="./styles/css/main/mainUser.css" rel="stylesheet" type="text/css" />
+  <script src="./styles/js/mainTools.js"></script>
+  <script src="./styles/js/mainUser.js"></script>
 </head>
 
 <body id="background">
@@ -47,7 +49,7 @@
 
   </header>
 
-  <!--Conteúdo principal-->
+  <!----------------------------------------------Conteúdo principal------------------------------------------>
 
   <div id="main_content">
     <h1 id="title"></h1>
@@ -64,9 +66,11 @@
   </div>
 
   <div id="more">
-    <h1 id="more_title"  class="hidden">O que é WizCont?</h1>
-    <p id="more_subtitle"  class="hidden">WizCont é uma ferramenta gratuita<br> que te ajuda a gerenciar seu estoque<br> e seus
+    <h1 id="intro"  class="hidden">O que é WizCont?</h1>
+    <p id="sub_intro"  class="hidden">WizCont é uma ferramenta gratuita<br> que te ajuda a gerenciar seu estoque<br> e seus
       produtos, além de calcular<br>preços e descontos! Incrível né?</p>
+    <h1 id="func"  class="hidden">aaaaaaaaaa</h1>
+    <p id="sub_func"  class="hidden">aaaaaaaaaaaaaaaaaa</p>
   </div>
 
 </body>

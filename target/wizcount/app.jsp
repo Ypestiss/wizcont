@@ -21,11 +21,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>WizCont.</title>
-    <link href="./styles/appStyles.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/css/AppStyles.css" rel="stylesheet" type="text/css" />
     <script>
       var itens = <%=jsonItensPerfil%>;
     </script>
-    <script src="./styles/instascan.min.js"></script>
+    <script src="./styles/js/app/instascan.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -100,7 +100,7 @@
           <div class="category">
             <h2 class="subtitleestoque">Grãos</h2>
             <div class="card-container" id="graos-list"></div>
-            <button onclick="adicionarItem('graos')">+</button>
+            <button class="add" onclick="adicionarItem('graos')">+</button>
           </div>
 
           <div class="category">
@@ -233,5 +233,10 @@
 
 
   </body>
-  <script src="./styles/appTools.js"></script>
+  <script src="./styles/js/app/appTools.js"></script>
+  <script src="./styles/js/app/appTheme.js"></script>
+  <script src="./styles/js/app/appConfig.js"></script>
+  <script src="./styles/js/app/appUser.js"></script>
+  <script src="./styles/js/app/navBar.js"></script>
+  <script src="./styles/js/app/estoque/formatação.js"></script>
 </html>
