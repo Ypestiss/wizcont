@@ -21,7 +21,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>WizCont.</title>
-    <link href="./styles/css/AppStyles.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/css/appStyles.css" rel="stylesheet" type="text/css" />
     <script>
       var itens = <%=jsonItensPerfil%>;
     </script>
@@ -47,25 +47,25 @@
           <!-----------------------------Indicador do cardápio------------------------------>
           <li class="list active">
             <a href="#" onclick="mostrarCardapio()">
-              <span class="icon"><img src="icons/MetaIcon.svg" id="metaIcon" width="25px" height="25px"></span>
+              <span class="icon"><img src="./icons/MetaIcon.svg" id="metaIcon" width="25px" height="25px"></span>
               <span class="text">Cardápio</span>
             </a>
           </li>
           <li class="list active">
             <a href="#" onclick="mostrarNotificacao()">
-              <span class="icon"><img src="icons/BellIcon.svg" id="metaIcon" width="25px" height="25px"></span>              <span class="text">Notificações</span>
+              <span class="icon"><img src="./icons/BellIcon.svg" id="metaIcon" width="25px" height="25px"></span>              <span class="text">Notificações</span>
             </a>
           </li>
           <!-----------------------------Indicador do perfil------------------------------>
           <li class="list active">
             <a href="#" onclick="mostrarPerfil()">
-              <span class="icon"><img src="icons/icon.svg" id="metaIcon" width="25px" height="25px"></span>
+              <span class="icon"><img src="./icons/icon.svg" id="metaIcon" width="25px" height="25px"></span>
               <span class="text">Perfil</span>
             </a>
           </li>
           <li class="list active">
             <a href="#" onclick="mostrarConfiguracao()">           
-              <span class="icon"><img src="icons/ConfigIcon.svg" id="metaIcon" width="25px" height="25px"></span>
+              <span class="icon"><img src="./icons/ConfigIcon.svg" id="metaIcon" width="25px" height="25px"></span>
               <span class="text">Configurações</span>
             </a>
           </li>
