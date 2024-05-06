@@ -23,7 +23,7 @@ back-end do projeto usando java, apache maven e tomcat, desenvolvo as rotas das 
 # Escaneamento e geração de QrCode
 - O usuario podera gerar relatorios de mudanças no estoque, juntamente sera gerado também um QrCode com a diferença do item antes de ser alterado e do item alterado
 
-#Analíse de estoque/Dashboard
+# Analíse de estoque/Dashboard
 - No projeto também temos uma dashboard para analisar visualmente a partir de gráficos e dados percentuais as mudanças no estoque e ou vendas.
 
 # Sistema de funcionários
@@ -33,10 +33,10 @@ back-end do projeto usando java, apache maven e tomcat, desenvolvo as rotas das 
 - Aplicativo exclusivo para funcionários cadastrados no sistema de funcionários do site, cada funcionário receberá um Id e uma Senha para conseguir logar no app para processar as mudanças físicas no digital. Ou seja, o app funciona basicamente para enviar as mudanças no estoque para o Site que é exclusivo para membros da adminstração/Gerencia
 
 # Tecnologias Utilizadas no BackEnd
--- Java Spring MVC
--- Thymeleaf
--- JPA
--- Hibernate
--- JDBC (Mysql)
+- Java Spring MVC
+- Thymeleaf
+- JPA
+- Hibernate
+- JDBC (Mysql)
 # Contato
 Email para contato: Gabrielth1104@gmail.com / Discord: ypestis.
