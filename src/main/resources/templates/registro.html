@@ -1,0 +1,64 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Página de Cadastro</title>
+  <link type="text/css" rel="stylesheet" th:href="@{styles/css/signupStyles.css}">
+  <script th:src="@{styles/js/login/loginUserTools.js}"></script>
+  <script th:src="@{styles/js/login/loginTools.js}"></script>
+</head>
+
+<body>
+  <header>
+
+    <nav id="cab">
+
+      <ul>
+
+        <li class="home"><a style="float: left;" id="home" th:href="@{main}">Home</a></li>
+
+        <li class="user">
+          <span id="linkSpan" style="float: right; position: relative;">
+            <img src="icons/icon.svg" id="user" width="35px" height="35px">
+            <div class="user-options" id="userOptions" style="display: none; position: absolute; top: 40px; right: 0;">
+              <a th:href="@{login}">Entrar</a>
+              <a th:href="@{registro}">Cadastrar</a>
+            </div>
+          </span>
+        </li>        
+        
+      </ul>
+        
+    </nav>
+
+  </header>
+
+  
+  <form name="loginForm" method="post" th:action="registrar">
+    <div class="login-container">
+      <h2>Junte-se a nós! ;)</h2>
+      <div class="input-group">
+        <label for="email">E-mail:</label>
+        <input type="text" id="email_usuario" th:name='email_usuario' required>
+      </div>
+      <div class="input-group">
+        <label for="username">Nome de Usuário:</label>
+        <input type="text" id="username" th:name='nome'required>
+      </div>
+      <div class="input-group">
+        <label for="password">Senha:</label>
+        <input type="password" id="senha" th:name='senha'required >
+      </div>
+      <div class="input-group">
+        <button type="submit" >Registrar</button>
+      </div>
+      <div>
+      <p id="msg">Já é cadastrado? <a th:href= "@{login}"id="linkLogin">Entre!</a><p>
+      </div>
+    </div>
+  </form>
+
+</body>
+
+</html>
