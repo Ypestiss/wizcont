@@ -1,4 +1,8 @@
 // ------------------------------------Funções do Estoque------------------------------------//
+var nomeItensArray = [];
+var itensOriginal = [];
+var itensModificados = [];
+var item = [];
 // Função para adicionar itens, considerando variações de capitalização e acentuação
 function adicionarItem(categoria) {
   const nomeItem = prompt(`Digite o nome do item de ${categoria}:`);
@@ -44,6 +48,7 @@ function adicionarItem(categoria) {
 
 
     nomeItensArray.push(novoItem);
+    itensOriginais = nomeItensArray.splice()
     cardContainer.appendChild(novoCard);
 
     const botaoExcluir = document.createElement('button');
@@ -89,6 +94,10 @@ function adicionarItem(categoria) {
 
 //Função para salvar os itens
 function saveItens(){
+  const card = document.getElementById('card');
+  const datas = card.getAttribute('data-idItem');
+  const newDatas = card.getAttribute('newData-qtdItem');
+  
   const form = document.createElement('form');
     form.setAttribute('method', 'post');
     form.setAttribute('action', '/app/saveItens');
@@ -118,54 +127,68 @@ function saveItens(){
         inputMedida.setAttribute('value', item[3]);
         form.appendChild(inputMedida);
     }
+
     document.body.appendChild(form);
     form.submit();
 }
 
+function showit(categoria){
+// Carregar itens 
+  document.querySelectorAll('[data-categoria="' + categoria + '"]').forEach(card =>{
+    var idItem = card.getAttribute('data-idItem');
+    var nomeItem = card.getAttribute('data-nome');
+    var qtdItem = card.getAttribute('data-qtdItem');
+    var categoria = card.getAttribute('data-categoria');
+    var medida = card.getAttribute('data-medidaItem');
+    var item = {
+      idItem: idItem,
+      nomeItem: nomeItem,
+      qtdItem: qtdItem,
+      categoria: categoria,
+      medida: medida
+    };
+    itensOriginal.push(item);
+  });
+  moddedItens(itensOriginal);
+} 
+
+
 function moddedItens(itens) {
   let itensModificados = [];
-  if(itensOriginais.length > 0){
-      for (let i = 0; i < itens.length; i++) {
-          let itemOriginal = itensOriginais[i];
-          let itemModificado = itens[i].slice(); // Cria uma cópia do item modificado
 
-          // Verifica individualmente se houve modificação
+  for (let i = 0; i < itens.length; i++) {
+      var qtdItemInput = document.getElementById("qtdItemInput-" + itens[i].idItem);
+      if (qtdItemInput) {
+          var newQtdItem = qtdItemInput.getAttribute("newData-qtdItem");
+          let itemOriginal = itensOriginal[i];
+          let itemModificado = itens[i];
+          itemModificado.qtdItem = newQtdItem;
           let modificado = false;
-          if (itemOriginal[0] !== itemModificado[0]) { // Nome modificado
+          console.log("ItemModificado: " + itemModificado.qtdItem + "\n" + "ItemOriginal: " + itemOriginal.qtdItem);
+          if (itemOriginal.nomeItem !== itemModificado.nomeItem) {
+              itemOriginal.nomeItem = itemModificado.nomeItem;
               modificado = true;
           }
-          if (itemOriginal[1] !== itemModificado[1]) { // Quantidade modificada
-              itemModificado[1] -= itemOriginal[1]; // Calcula a diferença diretamente
+          if (itemOriginal.qtdItem !== itemModificado.qtdItem) {
+              itemModificado.qtdItem -= itemOriginal.qtdItem;
+              console.log(itemModificado);
               modificado = true;
           }
-          if (itemOriginal[2] !== itemModificado[2]) { // Categoria modificada
+          if (itemOriginal.categoria !== itemModificado.categoria) {
+              modificado = true;
+          }
+          if (itemOriginal.medida !== itemModificado.medida) {
               modificado = true;
           }
 
           if (modificado) {
               console.log("Item modificado na função moddedItens: ", itemModificado);
               itensModificados.push(itemModificado);
-              generateQR(itensModificados);
-          }
+          }  
       }
   }
+
   return itensModificados;
-}
-
-function updateData(){
-  const data = newEmail
-
-  const xhr = new XMLHttpRequest();
-  xhr.open('POST', 'getarray', true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 && xhr.status == 200){
-      console.log('Arrays enviadas com sucesso!!');
-    }
-  };
-  const jsonArray = JSON.stringify(arrayObj);
-  xhr.send(jsonArray);
 }
 
 function generateQR(itensModificados){

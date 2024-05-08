@@ -43,14 +43,16 @@ public class BancoDAO {
     @Override
     public String toString() {
         return "Item{" +
+                "idItem='" + id_Item + '\'' +
                 "iduser='" + id_user + '\'' +
                 ", nome_item='" + nome_item + '\'' +
                 ", quantidade_item=" + qtd_item + '\'' +
                 ", categoria='" + categoria + '\'' +
-                ", medida_item='" + medida + '\'' +
+                ", medida_item='" + medida +
                 '}';
     }
-    public BancoDAO(String id_user, String nome_item, Integer qtd_item, StatusCategoria categoria, StatusMedida medida){
+    public BancoDAO(String id_Item, String id_user, String nome_item, Integer qtd_item, StatusCategoria categoria, StatusMedida medida){
+        this.id_Item = id_Item;
         this.id_user = id_user;
         this.nome_item = nome_item;
         this.qtd_item = qtd_item;
@@ -88,5 +90,12 @@ public class BancoDAO {
     public void setMedida(StatusMedida medida) {
         this.medida = medida;
     }
+    public String getId_Item() {
+        return id_Item;
+    }
+
+    public void setId_Item(String id_Item) {
+        this.id_Item = id_Item;
+    } 
 
 }

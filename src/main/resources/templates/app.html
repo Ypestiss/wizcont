@@ -65,26 +65,45 @@
           <div class="category">
             <h2 class="subtitleestoque">Proteína animal</h2>
             <div class="card-container" id='Carnes-list'>
-              <div th:each="item : ${itensBanco}">
-                <th:block th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Carnes}">
+              <div class="card"  id="cards" th:each="item : ${itensBanco}" th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Carnes}" th:attr="data-idItem=${item.id_Item}, data-nome=${item.nome_item}, data-qtdItem=${item.qtd_item}, data-medidaItem=${item.medida}, data-categoria=${item.categoria}">
                   <td th:text="${item.nome_item}"></td>
-                  <input type="number" th:placeholder="${item.qtd_item}" th:value="${item.qtd_item}" style="width: 80px; background-color: #f2f2f2;">
-                  <button style="background-color: transparent; color: red;" th:text="Excluir" th:attr="data-nome-excluir=${item.nome_item}" class="btn-excluir"></button>
-                </th:block>
+                  <input th:id="'qtdItemInput-' + ${item.id_Item}" type="number" th:placeholder="${item.qtd_item}" th:value="${item.qtd_item}" style="width: 80px; background-color: #f2f2f2;">
+                  <select th:name="'medidaItem_' + ${itemStat.index}">
+                    <option th:each="medida : ${T(com.webapp.Wizcont.model.enums.StatusMedida).values()}" th:value="${medida}" th:text="${medida.name()}"></option>
+                    <option th:selected="${item.medida == medida}" th:value="${item.medida}" th:text="${item.medida.name()}"></option>
+                </select>
+                  <button th:onclick="showit([[${item.categoria}]])" style="background-color: transparent; color: red;" th:text="Excluir"  class="btn-excluir"></button>
+                  <script>
+                    document.getElementById('qtdItemInput-[[${item.id_Item}]]').addEventListener('input', function() {
+                        var newValue = this.value;
+                        this.setAttribute('newData-qtdItem', newValue);
+                    });
+                </script>
               </div>
-            </div>
+            </div>  
             <button onclick="adicionarItem('Carnes')">+</button>
           </div>
 
           <div class="category">
             <h2 class="subtitleestoque">Frutas</h2>
-            <div class="card-container" id="Frutas-list"></div>
-            <div th:each="item : ${itensBanco}">
-              <th:block th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Frutas}">
-                <td th:text="${item.nome_item}"></td>
-                <input type="number" th:placeholder="${item.qtd_item}" th:value="${item.qtd_item}" style="width: 80px; background-color: #f2f2f2;">
-                <button style="background-color: transparent; color: red;" th:text="Excluir" th:attr="data-nome-excluir=${item.nome_item}" class="btn-excluir"></button>
-              </th:block>
+            <div class="card-container" id="Frutas-list">
+              <div class="card" id="cards" th:each="item : ${itensBanco}" th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Frutas}">
+                <!-- <th:block th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Frutas}"> -->
+                  <td id="Item" th:text="${item.nome_item}"></td>
+                  <input id="qtdItemInput" type="number" th:placeholder="${item.qtd_item}" th:value="${item.qtd_item}" style="width: 80px; background-color: #f2f2f2;">
+                  <script>
+                    document.getElementById('qtdItemInput').addEventListener('input', function() {
+                        var newValue = this.value;
+                        document.querySelector('[newData-qtdItem]').setAttribute('newData-qtdItem', newValue);
+                    });
+                  </script>
+                  <select  :name="'medidaItem_' + ${itemStat.index}">
+                    <option th:each="medida : ${T(com.webapp.Wizcont.model.enums.StatusMedida).values()}" th:value="${medida}" th:text="${medida.name()}"></option>
+                    <option th:selected="${item.medida == medida}" th:value="${item.medida}" th:text="${item.medida.name()}"></option>
+                </select>
+                  <button style="background-color: transparent; color: red;" th:text="Excluir" th:attr="data-nome-excluir=${item.nome_item}" class="btn-excluir"></button>
+                <!-- </th:block> -->
+              </div>
             </div>
             <button onclick="adicionarItem('Frutas')">+</button>
           </div>
@@ -92,12 +111,14 @@
           <div class="category">
             <h2 class="subtitleestoque">Grãos</h2>
             <div class="card-container" id="Grãos-list"></div>
-            <div th:each="item : ${itensBanco}">
-              <th:block th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Grãos}">
-                <td th:text="${item.nome_item}"></td>
+            <div class="card" id="cards" th:each="item : ${itensBanco}" th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Grãos}">
+                <td id="Item" th:text="${item.nome_item}"></td>
                 <input type="number" th:placeholder="${item.qtd_item}" th:value="${item.qtd_item}" style="width: 80px; background-color: #f2f2f2;">
+                <select th:name="'medidaItem_' + ${itemStat.index}">
+                  <option th:each="medida : ${T(com.webapp.Wizcont.model.enums.StatusMedida).values()}" th:value="${medida}" th:text="${medida.name()}"></option>
+                  <option th:selected="${item.medida == medida}" th:value="${item.medida}" th:text="${item.medida.name()}"></option>
+              </select>
                 <button style="background-color: transparent; color: red;" th:text="Excluir" th:attr="data-nome-excluir=${item.nome_item}" class="btn-excluir"></button>
-              </th:block>
             </div>
             <button onclick="adicionarItem('Grãos')">+</button>
           </div>
@@ -105,12 +126,14 @@
           <div class="category">
             <h2 class="subtitleestoque">Legumes</h2>
             <div class="card-container" id="Legumes-list"></div>
-            <div th:each="item : ${itensBanco}">
-              <th:block th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Legumes}">
-                <td th:text="${item.nome_item}"></td>
+            <div class="card" id="cards" th:each="item : ${itensBanco}" th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Legumes}">
+                <td id="Item" th:text="${item.nome_item}"></td>
                 <input type="number" th:placeholder="${item.qtd_item}" th:value="${item.qtd_item}" style="width: 80px; background-color: #f2f2f2;">
+                <select th:name="'medidaItem_' + ${itemStat.index}">
+                  <option th:each="medida : ${T(com.webapp.Wizcont.model.enums.StatusMedida).values()}" th:value="${medida}" th:text="${medida.name()}"></option>
+                  <option th:selected="${item.medida == medida}" th:value="${item.medida}" th:text="${item.medida.name()}"></option>
+              </select>
                 <button style="background-color: transparent; color: red;" th:text="Excluir" th:attr="data-nome-excluir=${item.nome_item}" class="btn-excluir"></button>
-              </th:block>
             </div>
             <button onclick="adicionarItem('Legumes')">+</button>
           </div>
@@ -118,12 +141,14 @@
           <div class="category">
             <h2 class="subtitleestoque">Vegetais</h2>
             <div class="card-container" id="Vegetais-list"></div>
-            <div th:each="item : ${itensBanco}">
-              <th:block th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Vegetais}">
-                <td th:text="${item.nome_item}"></td>
+            <div class="card" id="cards"th:each="item : ${itensBanco}" th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Vegetais}">
+                <td id="Item" th:text="${item.nome_item}"></td>
                 <input type="number" th:placeholder="${item.qtd_item}" th:value="${item.qtd_item}" style="width: 80px; background-color: #f2f2f2;">
+                <select th:name="'medidaItem_' + ${itemStat.index}">
+                  <option th:each="medida : ${T(com.webapp.Wizcont.model.enums.StatusMedida).values()}" th:value="${medida}" th:text="${medida.name()}"></option>
+                  <option th:selected="${item.medida == medida}" th:value="${item.medida}" th:text="${item.medida.name()}"></option>
+                </select>
                 <button style="background-color: transparent; color: red;" th:text="Excluir" th:attr="data-nome-excluir=${item.nome_item}" class="btn-excluir"></button>
-              </th:block>
             </div>
             <button onclick="adicionarItem('Vegetais')">+</button>
           </div>
@@ -131,12 +156,14 @@
           <div class="category">
             <h2 class="subtitleestoque">Verduras</h2>
             <div class="card-container" id="Verduras-list"></div>
-            <div th:each="item : ${itensBanco}">
-              <th:block th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Verduras}">
+            <div class="card" th:each="item : ${itensBanco}" th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Verduras}">
                 <td th:text="${item.nome_item}"></td>
                 <input type="number" th:placeholder="${item.qtd_item}" th:value="${item.qtd_item}" style="width: 80px; background-color: #f2f2f2;">
+                <select th:name="'medidaItem_' + ${itemStat.index}">
+                  <option th:each="medida : ${T(com.webapp.Wizcont.model.enums.StatusMedida).values()}" th:value="${medida}" th:text="${medida.name()}"></option>
+                  <option th:selected="${item.medida == medida}" th:value="${item.medida}" th:text="${item.medida.name()}"></option>
+              </select>
                 <button style="background-color: transparent; color: red;" th:text="Excluir" th:attr="data-nome-excluir=${item.nome_item}" class="btn-excluir"></button>
-              </th:block>
             </div>
             <button onclick="adicionarItem('Verduras')">+</button>
           </div>

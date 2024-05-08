@@ -16,11 +16,3 @@
     carnes: ['carne moída', 'frango', 'carne bovina', 'carne suína', 'ovo']
   };
   
-  const nomeItensArray = [];
-  var itensOriginais = [];
-  var itensScan = [];
-  var novoItem = [];
-  var diff = 0;
-  const itensModificados = [];
-  let quantidadeAtual;
-  
