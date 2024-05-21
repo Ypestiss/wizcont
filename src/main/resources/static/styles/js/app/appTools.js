@@ -1,6 +1,7 @@
 // ------------------------------------Funções do Estoque------------------------------------//
 var nomeItensArray = [];
 var itensOriginal = [];
+var itensOriginais = [];
 var itensModificados = [];
 var item = [];
 // Função para adicionar itens, considerando variações de capitalização e acentuação
@@ -38,17 +39,15 @@ function adicionarItem(categoria) {
     novoCard.appendChild(textoItem);
     novoCard.appendChild(quantidadeInput);
     novoCard.appendChild(medidaSelect);
-    
     const novoItem = [
       nomeItem,
       quantidadeInput.value.toString(),
       categoria,
-      medidaSelect.value.toString()
+      medidaSelect.value
     ];
 
-
     nomeItensArray.push(novoItem);
-    itensOriginais = nomeItensArray.splice()
+    itensOriginais = nomeItensArray.slice()
     cardContainer.appendChild(novoCard);
 
     const botaoExcluir = document.createElement('button');
@@ -88,53 +87,41 @@ function adicionarItem(categoria) {
       // Obtém o valor atualizado do campo de quantidade e adiciona à array global
       novoItem[1] = quantidadeInput.value.toString();
     });
+    medidaSelect.addEventListener('change', function() {
+      novoItem[3] = medidaSelect.value;
+    });
   }
 }
 
+const deleteButtons = document.querySelectorAll('.btn-excluir');
+// Adiciona um evento de clique a cada botão
+deleteButtons.forEach(button => {
+  button.addEventListener('click', deleteItens);
+});
 
+function deleteItens(){
+  const deleteForm = document.createElement('form');
+    deleteForm.setAttribute('method', 'post');
+    deleteForm.setAttribute('action', '/app/deleteItens');
+    const card = this.closest('.card');
+    var idItem = card.getAttribute('data-idItem');
+    const inputIdItem = document.createElement('input');
+    inputIdItem.setAttribute('type', 'hidden');
+    inputIdItem.setAttribute('name', 'idItem');
+    inputIdItem.setAttribute('value', idItem);
+    console.log(inputIdItem.value);
+    deleteForm.appendChild(inputIdItem);
+    document.body.appendChild(deleteForm);
+    console.log("delete Form submitado");
+    card.remove();
+    deleteForm.submit();
+};
+ 
 //Função para salvar os itens
 function saveItens(){
-  const card = document.getElementById('card');
-  const datas = card.getAttribute('data-idItem');
-  const newDatas = card.getAttribute('newData-qtdItem');
-  
-  const form = document.createElement('form');
-    form.setAttribute('method', 'post');
-    form.setAttribute('action', '/app/saveItens');
-    
-    for (const item of nomeItensArray) {
-        const inputNome = document.createElement('input');
-        inputNome.setAttribute('type', 'hidden');
-        inputNome.setAttribute('name', 'nomeItem');
-        inputNome.setAttribute('value', item[0]);
-        form.appendChild(inputNome);
-
-        const inputQuantidade = document.createElement('input');
-        inputQuantidade.setAttribute('type', 'hidden');
-        inputQuantidade.setAttribute('name', 'quantidadeItem');
-        inputQuantidade.setAttribute('value', item[1]);
-        form.appendChild(inputQuantidade);
-
-        const inputCategoria = document.createElement('input');
-        inputCategoria.setAttribute('type', 'hidden');
-        inputCategoria.setAttribute('name', 'categoriaItem');
-        inputCategoria.setAttribute('value', item[2]);
-        form.appendChild(inputCategoria);
-
-        const inputMedida = document.createElement('input');
-        inputMedida.setAttribute('type', 'hidden');
-        inputMedida.setAttribute('name', 'medidaItem');
-        inputMedida.setAttribute('value', item[3]);
-        form.appendChild(inputMedida);
-    }
-
-    document.body.appendChild(form);
-    form.submit();
-}
-
-function showit(categoria){
+  itensOriginal = [];
 // Carregar itens 
-  document.querySelectorAll('[data-categoria="' + categoria + '"]').forEach(card =>{
+  document.querySelectorAll('[data-categoria]').forEach(card =>{
     var idItem = card.getAttribute('data-idItem');
     var nomeItem = card.getAttribute('data-nome');
     var qtdItem = card.getAttribute('data-qtdItem');
@@ -148,41 +135,122 @@ function showit(categoria){
       medida: medida
     };
     itensOriginal.push(item);
+    itensOriginais = itensOriginal.slice()
   });
-  moddedItens(itensOriginal);
-} 
 
+  itensModificados = moddedItens(itensOriginais);
+
+  const saveForm = document.createElement('form');
+  const createForm = document.createElement('form');
+  saveForm.setAttribute('method', 'post');
+  saveForm.setAttribute('action', '/app/saveItens');
+  createForm.setAttribute('method', 'post');
+  createForm.setAttribute('action', '/app/createItens');
+  console.log("Esta fora do modded itens + itensModificados: " + itensModificados);
+
+  //CRIAR O ITEM
+  for(const item of nomeItensArray){
+    console.log(item);
+    const inputNome = document.createElement('input');
+      inputNome.setAttribute('type', 'hidden');
+      inputNome.setAttribute('name', 'nomeItem');
+      inputNome.setAttribute('value', item[0]);
+      createForm.appendChild(inputNome);
+
+      const inputQuantidade = document.createElement('input');
+      inputQuantidade.setAttribute('type', 'hidden');
+      inputQuantidade.setAttribute('name', 'quantidadeItem');
+      inputQuantidade.setAttribute('value', item[1]);
+      createForm.appendChild(inputQuantidade);
+
+      const inputCategoria = document.createElement('input');
+      inputCategoria.setAttribute('type', 'hidden');
+      inputCategoria.setAttribute('name', 'categoriaItem');
+      inputCategoria.setAttribute('value', item[2]);
+      createForm.appendChild(inputCategoria);
+
+      const inputMedida = document.createElement('input');
+      inputMedida.setAttribute('type', 'hidden');
+      inputMedida.setAttribute('name', 'medidaItem');
+      inputMedida.setAttribute('value', item[3]);
+      console.log(inputMedida.value);
+      createForm.appendChild(inputMedida);
+  }
+  // ATUALIZAR/MODIFICAR O ITEM
+  for(const item of itensModificados){
+    console.log(item);
+    const inputNome = document.createElement('input');
+      inputNome.setAttribute('type', 'hidden');
+      inputNome.setAttribute('name', 'nomeItem');
+      inputNome.setAttribute('value', item.nomeItem);
+      saveForm.appendChild(inputNome);
+
+      const inputItemId = document.createElement('input');
+      inputItemId.setAttribute('type', 'hidden');
+      inputItemId.setAttribute('name', 'idItem');
+      inputItemId.setAttribute('value', item.idItem);
+      saveForm.appendChild(inputItemId);
+
+      const inputQuantidade = document.createElement('input');
+      inputQuantidade.setAttribute('type', 'hidden');
+      inputQuantidade.setAttribute('name', 'quantidadeItem');
+      inputQuantidade.setAttribute('value', item.qtdItem);
+      saveForm.appendChild(inputQuantidade);
+
+      const inputCategoria = document.createElement('input');
+      inputCategoria.setAttribute('type', 'hidden');
+      inputCategoria.setAttribute('name', 'categoriaItem');
+      inputCategoria.setAttribute('value', item.categoria);
+      saveForm.appendChild(inputCategoria);
+
+      const inputMedida = document.createElement('input');
+      inputMedida.setAttribute('type', 'hidden');
+      inputMedida.setAttribute('name', 'medidaItem');
+      inputMedida.setAttribute('value', item.medida);
+      console.log(inputMedida.value);
+      saveForm.appendChild(inputMedida);
+  }
+    
+    if(saveForm.childElementCount > 0){
+      document.body.appendChild(saveForm);
+      console.log("Save form submitado");
+      saveForm.submit();
+    }
+    if(createForm.childElementCount > 0){
+      document.body.appendChild(createForm);
+      console.log("create form submitado");
+      createForm.submit();
+    }
+    
+}
 
 function moddedItens(itens) {
   let itensModificados = [];
-
   for (let i = 0; i < itens.length; i++) {
       var qtdItemInput = document.getElementById("qtdItemInput-" + itens[i].idItem);
       if (qtdItemInput) {
           var newQtdItem = qtdItemInput.getAttribute("newData-qtdItem");
-          let itemOriginal = itensOriginal[i];
-          let itemModificado = itens[i];
+          let itemOriginal = { ...itensOriginal[i] };
+          let itemModificado = { ...itens[i] };
           itemModificado.qtdItem = newQtdItem;
           let modificado = false;
-          console.log("ItemModificado: " + itemModificado.qtdItem + "\n" + "ItemOriginal: " + itemOriginal.qtdItem);
-          if (itemOriginal.nomeItem !== itemModificado.nomeItem) {
-              itemOriginal.nomeItem = itemModificado.nomeItem;
+          //console.log("ItemModificado: " + itemModificado.qtdItem + "\n" + "ItemOriginal: " + itemOriginal.qtdItem);
+          if (itemOriginal.nomeItem !== itemModificado.nomeItem && itemModificado.qtdItem !== null) {
               modificado = true;
           }
-          if (itemOriginal.qtdItem !== itemModificado.qtdItem) {
-              itemModificado.qtdItem -= itemOriginal.qtdItem;
-              console.log(itemModificado);
+          if (itemOriginal.qtdItem !== itemModificado.qtdItem && itemModificado.qtdItem !== null){
+            console.log("Item modificado na função moddedItens: " + "item[" + i + "] : " +  itemModificado.qtdItem);
+            modificado = true;
+          }
+          if (itemOriginal.categoria !== itemModificado.categoria && itemModificado.qtdItem !== null) {
               modificado = true;
           }
-          if (itemOriginal.categoria !== itemModificado.categoria) {
-              modificado = true;
-          }
-          if (itemOriginal.medida !== itemModificado.medida) {
+          if (itemOriginal.medida !== itemModificado.medida && itemModificado.qtdItem !== null) {
               modificado = true;
           }
 
-          if (modificado) {
-              console.log("Item modificado na função moddedItens: ", itemModificado);
+          if (modificado && itemModificado.qtdItem !== null) {
+              console.log("Item modificado na função moddedItens: " + "item[" + i + "] : " +  itemModificado);
               itensModificados.push(itemModificado);
           }  
       }

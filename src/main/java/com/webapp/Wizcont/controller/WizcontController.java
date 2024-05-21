@@ -120,31 +120,40 @@ public class WizcontController {
 
     }   
 
-    
-    @PostMapping("/save")
-    public String saveEstoque(@RequestBody List<BancoDAO> arrayObjList, Model model, RedirectAttributes rdAtt, @ModelAttribute("usuario") UsuarioDAO usuario){        ObjectMapper mapper = new ObjectMapper();
-        BancoDAO arrayObj = mapper.convertValue(arrayObjList, BancoDAO.class);
-
-        System.out.println("Valor de array obj: " + arrayObj);
-        model.addAttribute("ItensBanco", arrayObj);
-
-       // BancoDAO banco = new BancoDAO();
-        // if(usuario != null && usuario.getStatus() == StatusUser.ATIVO){
-        //     banco.setId_user(usuario.getId_user());
-        //     banco.setNome_item();
-        //     banco.setMedida(medida);
-        //     banco.setQtd_item(qtd_item);
-        //     banco.setCategoria(categoria);
-        //     bancodb.save(banco);
-        //     model.addAttribute("itensBanco", banco);
-        //     return "redirect:/estoque";
-        // }
-        
-        
-        return "redirect:/estoque";
-    }
     @PostMapping("/app/saveItens")
     public String saveItens(@RequestParam("nomeItem") List<String> nomesItens, 
+                        @RequestParam("idItem") List<String> idsItem, 
+                        @RequestParam("quantidadeItem") List<Integer> quantidadesItens,
+                        @RequestParam("categoriaItem") List<String> categoriasItens,
+                        @RequestParam("medidaItem") List<String> medidasItens,
+                        @ModelAttribute("itensBanco") BancoDAO userBanco,
+                        @ModelAttribute("usuario") UsuarioDAO user) {
+        List<BancoDAO> newItens = new ArrayList<>();
+
+        for(int i = 0; i< nomesItens.size(); i++){
+            BancoDAO newItem = new BancoDAO();
+            newItem.setId_Item(idsItem.get(i));
+            newItem.setNome_item(nomesItens.get(i));
+            newItem.setQtd_item(quantidadesItens.get(i));
+            newItem.setMedida(StatusMedida.valueOf(medidasItens.get(i)));
+            newItem.setCategoria(StatusCategoria.valueOf(categoriasItens.get(i)));
+            newItem.setId_user(user.getId_user());
+            newItens.add(newItem);
+
+            System.out.println("valor de new itens 1 " + newItens);
+        }
+        System.out.println("valor de new itens 2 " + newItens);
+        for(BancoDAO item : newItens){
+            System.out.println(item);
+            bancodb.save(item);
+        }        
+        if(newItens.size() > 0){
+            return "redirect:/app#estoque"; 
+        }
+        return "redirect:/error";
+    }
+    @PostMapping("/app/createItens")
+    public String createItens(@RequestParam("nomeItem") List<String> nomesItens, 
                         @RequestParam("quantidadeItem") List<Integer> quantidadesItens,
                         @RequestParam("categoriaItem") List<String> categoriasItens,
                         @RequestParam("medidaItem") List<String> medidasItens,
@@ -169,7 +178,29 @@ public class WizcontController {
             bancodb.save(item);
         }        
         if(newItens.size() > 0){
-            return "redirect:/app"; 
+            return "redirect:/app#estoque"; 
+        }
+        return "redirect:/error";
+    }
+
+    @PostMapping("/app/deleteItens")
+    public String deleteItens(@RequestParam("idItem") List<String> idsItem){
+        List<BancoDAO> newItens = new ArrayList<>();
+
+        for(int i = 0; i< idsItem.size(); i++){
+            BancoDAO newItem = new BancoDAO();
+            newItem.setId_Item(idsItem.get(i));
+            newItens.add(newItem);
+
+            System.out.println("valor de new itens 1 " + newItens);
+        }
+        System.out.println("valor de new itens 2 " + newItens);
+        for(BancoDAO item : newItens){
+            System.out.println(item);
+            bancodb.delete(item);
+        }        
+        if(newItens.size() > 0){
+            return "redirect:/app#estoque"; 
         }
         return "redirect:/error";
     }
