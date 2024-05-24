@@ -14,7 +14,7 @@ back-end do projeto usando java, apache maven e tomcat, desenvolvo as rotas das 
 
 # Gerenciamento de estoque
 
-<img width="960" alt="Captura de tela 2024-03-14 111446" src="https://github.com/Ypestiss/wizcont/assets/106290708/50d65708-9f2e-437b-a342-8023074dbed7">
+![image](https://github.com/Ypestiss/wizcont/assets/106290708/a911ad9e-74a3-472f-ba87-33174f547ee6)
 
 
 # Perfil de Usuario
