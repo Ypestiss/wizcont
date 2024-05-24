@@ -34,7 +34,6 @@
         <div id="estoque" style="display: none;">
           
           <h2 id="titleestoque">Alimentos</h2>
-          
           <div class="category">
             <div class="sub-box">
               <h2 class="subtitleestoque">Proteína animal</h2>
@@ -164,13 +163,10 @@
                   });
               </script>             
               </div>
-          </div>
-
-          <div class="container">
-            <button th:onclick="trocarSecao()">Trocar Seção</button>
-            <button onclick="saveItens()">Salvar</button>
-          </div>
-          
+          </div>  
+        </div>
+        <div id="id-container" style="display: none;" class="container">
+          <button class="add-product" onclick="saveItens()">Salvar</button>
         </div>
 
         <!------- Limpeza ------->

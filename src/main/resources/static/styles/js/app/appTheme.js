@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const inputcard = document.querySelectorAll('.input-card');
     const profiletext = document.getElementById('profile-text');
     const card = document.querySelectorAll('.card');
+    const cardtext = document.querySelectorAll('.itemName');
     // Recuperar o estado do modo do armazenamento local ao carregar a página
     const isDarkModeSaved = localStorage.getItem('darkMode');
   
@@ -45,7 +46,11 @@ document.addEventListener('DOMContentLoaded', function() {
       inputcard.forEach(element => {
         element.style.color = textColor;
       });
-      card
+      cardtext.forEach(element => {
+        element.style.backgroundColor = profileBGColor;
+        element.style.color = textColor;
+      });
+      
 
   
       estoqueLimp.style.backgroundColor = backgroundColor;
