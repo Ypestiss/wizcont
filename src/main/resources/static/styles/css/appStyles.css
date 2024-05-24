@@ -7,10 +7,10 @@
 body {
   display: flex;
   font-family: Arial, sans-serif;
-  background-color: #ff914d;
 }
+
 .sidebar {
-  width: 200px;
+  width: 20vw;
   background-color: #161a1d;
   color: #fff;
   height: 100vh;
@@ -19,11 +19,21 @@ body {
 
 .profile {
   padding: 20px;
-  background-color: #495057;
+  width: 100vh;
+  background-color: #ced2d9;
+  display: table-cell;
   text-align: center;
 }
-.profile p{
+
+#nav-text{
+  color: #fff;
+}
+
+.profile p {
   border: 3px solid whitesmoke;
+  color: rgb(65 65 65);
+  font-size: 12px;
+  padding: 4.9px;
   border-radius: 2.5vh;
 }
 
@@ -48,7 +58,7 @@ body {
   display: block;
   font-size: 12px;
   padding: 10px;
-  color: #fff;
+  color: rgb(65 65 65);
   text-decoration: none;
 }
 
@@ -215,7 +225,6 @@ body {
 
 #conteudo {
   color: #fff;
-  /* background-image: url('WC.png'); */
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -235,12 +244,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #222;
+  background-color: rgb(21 24 26 / 74%);
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 400px;
+  width: 50vw;
   max-width: 90%;
-  height: 300px;
+  height: 50vh;
   max-height: 90%;
   padding: 20px;
 }
@@ -352,7 +361,11 @@ label {
 /* Ajuste no tamanho da imagem e estilização do input de arquivo */
 .profile-info {
   display: flex;
-  align-items: flex-end; /* Alinha verticalmente */
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 /* Estilos para a imagem */
@@ -424,9 +437,8 @@ input[type="file"] {
   flex-direction: column; /* Para ajustar os elementos verticalmente */
   justify-content: center; /* Centraliza horizontalmente */
   align-items: center; /* Centraliza verticalmente */
-  background-color: #222;
+  background-color: rgba(0, 0, 0, 0.285);
   border-radius: 8px;
-  box-shadow: 0 0 20px rgba(99, 97, 97, 0.233);
   width: fit-content; /* Define a largura do contêiner de configurações */
   max-width: 90%; /* Adiciona uma largura máxima para responsividade */
   height: 50vh;
@@ -491,6 +503,7 @@ input[type="file"] {
   display: none;
   color: #fff; /* Ajuste a cor do texto conforme seu estilo */
   overflow-y: auto;
+  overflow-x: auto;
 }
 
 #titleestoque {
@@ -565,16 +578,18 @@ input[type="file"] {
 
 /*Alteração da barra de scroll*/
 
+
 div::-webkit-scrollbar {
-  width: 4px;               /* width of the entire scrollbar */
+  width: 4px;    /* width of the entire scrollbar */
+  height: 4px;           /*height of the entire scrollbar*/
 }
 
 div::-webkit-scrollbar-track {
-  background: transparent;        /* color of the tracking area */
+  background: #495057;        /* color of the tracking area */
 }
 
 div::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #6c757d, #adb5bd);    /* color of the scroll thumb */
+  background: linear-gradient(to bottom, #42484d, #6a6f74);    /* color of the scroll thumb */
   border-radius: 20px;       /* roundness of the scroll thumb */
 }
 
@@ -639,6 +654,7 @@ div::-webkit-scrollbar-thumb {
   display: none;
   color: #fff; /* Ajuste a cor do texto conforme seu estilo */
   overflow-y: auto;
+  overflow-x: auto;
 }
 
 #titleLimp {
@@ -734,12 +750,11 @@ div::-webkit-scrollbar-thumb {
 .itemName {
   place-content: center;
   height: 100%;
-  box-shadow: inset 0 2px 11px rgba(254, 254, 254, 0.1), inset 0 2px 100px rgba(255, 255, 255, 0.1), inset 0 2px 2px rgba(48, 40, 40, 0.5);
   text-align-last: center;
   width: 15vh;
   color: whitesmoke;
   border-radius: 1vh;
-  background-color: #161a1d;
+  background-color: #0b0c0e;
 }
 
 .sub-box {
@@ -752,7 +767,7 @@ div::-webkit-scrollbar-thumb {
 }
 
 .card {
-  background-color: #161a1d;
+  background-color: #00000024;
   border-radius: 10px;
   color: #000000;
   gap: 1vh;
@@ -763,9 +778,9 @@ div::-webkit-scrollbar-thumb {
   min-height: fit-content;
   max-height: 100vh;
   display: flex;
-  box-shadow: inset 0 2px 1px rgba(254, 254, 254, 0.1), inset 0 2px 8px rgba(255, 255, 255, 0.1), inset 0 2px 5px rgba(48, 40, 40, 0.5);
   flex-wrap: wrap;
   align-content: flex-start;
+  border: 3px solid #00000024;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;

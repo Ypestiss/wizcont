@@ -10,15 +10,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const perfil = document.getElementById('perfil');
     const estoqueLimp = document.getElementById('estoque-limp');
     const titleLimp = document.getElementById('titleLimp');
-  
+    const sidebar = document.getElementById('sidebar');
+    const profile = document.getElementById('profile');
+    const navtext = document.querySelectorAll('.nav-text');
+    const inputcard = document.querySelectorAll('.input-card');
+    const profiletext = document.getElementById('profile-text');
+    const card = document.querySelectorAll('.card');
     // Recuperar o estado do modo do armazenamento local ao carregar a página
     const isDarkModeSaved = localStorage.getItem('darkMode');
   
     // Função para aplicar estilos com base no modo escuro/claro
     function applyStyles(isDarkMode) {
-      const backgroundColor = isDarkMode ? 'rgba(255, 255, 255)' : '#161a1d';
-      const textColor = isDarkMode ? '#000' : '#fff';
-      const contBGColor = isDarkMode ? '#b1a7a6' : '#212529'
+      const backgroundColor = isDarkMode ? '#e2e4e8' : '#161a1d';
+      const textColor = isDarkMode ? 'rgb(65 65 65)' : '#fff';
+      const contBGColor = isDarkMode ? 'whitesmoke' : 'rgb(33, 37, 41)';
+      const profileBGColor = isDarkMode ? '#ced2d9' : '#343a40';
       
       body.style.backgroundColor = backgroundColor;
       body.style.color = textColor;
@@ -30,6 +36,17 @@ document.addEventListener('DOMContentLoaded', function() {
       estoque.style.backgroundColor = backgroundColor;
       estoque.style.color = textColor;
       titleestoque.style.color = textColor;
+      sidebar.style.backgroundColor =  backgroundColor;
+      profile.style.backgroundColor = profileBGColor;
+      profiletext.style.color = textColor;
+      navtext.forEach(element => {
+        element.style.color = textColor;
+      });
+      inputcard.forEach(element => {
+        element.style.color = textColor;
+      });
+      card
+
   
       estoqueLimp.style.backgroundColor = backgroundColor;
       estoqueLimp.style.color = textColor;
