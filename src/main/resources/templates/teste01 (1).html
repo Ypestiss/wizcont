@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Estoque</title>
+</head>
+<body>
+
+    <!--  Navbar  -->
+    <div class="sidebar">
+        <div class="profile">
+            <div class="profile-image"></div>
+            <div class="profile-info">
+                <p>Nome da Pessoa</p>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Estoque</a></li>
+            <li><a href="#">Cardápio</a></li>
+            <li><a href="#">Notificações</a></li>
+            <li><a href="#">Perfil</a></li>
+            <li><a href="#">Configurações</a></li>
+        </ul>
+    </div>
+
+    <!-- Box produto -->
+
+    <div class="category">
+        <div class="box">
+            <div class="product-info">
+                <h2>Título</h2>
+                <p>Subtítulo</p>
+                <button class="add-unit green">Adicionar Unidade</button>
+                <input type="text" class="unit-value" placeholder="Valor">
+                <button class="delete">Excluir</button>
+                <select class="measurements">
+                    <option value="unidade">Unidade</option>
+                    <option value="kg">Quilograma</option>
+                    <option value="g">Grama</option>
+                </select>
+
+                <!--  Imagem do produto -->
+            </div>
+            <img src="carne-moida-patin22222.jpg" alt="Imagem do Produto">
+        </div>
+        <button class="add-product">Adicionar Produto</button>
+    </div>
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #FAA307;
+    color: #fff;
+    height: 100vh;
+    float: left;
+}
+
+.profile {
+    padding: 20px;
+    text-align: center;
+}
+
+.profile-image {
+    width: 50px;
+    height: 50px;
+    background-color: #fff; /* Adicione a imagem de perfil aqui */
+    border-radius: 50%;
+    margin: 0 auto 10px;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-bottom: 10px;
+}
+
+.nav-links a {
+    display: block;
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.content {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+
+.box {
+    color: #f0f0f0;
+    width: 100vh;
+    background-color: #03071E;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex; /* Ativa o layout flexível */
+    align-items: center; /* Alinha os itens verticalmente */
+    border-radius: 15px;
+}
+
+.product-info {
+    flex: 1; /* Ocupa todo o espaço disponível na flexbox */
+}
+
+.box img {
+    max-width: 100px; /* Define a largura máxima da imagem */
+    max-height: 100px; /* Define a altura máxima da imagem */
+    margin-left: 20px; /* Adiciona um espaço à esquerda da imagem */
+}
+
+/* Config dos botões + a cor do botão excluir */
+
+.add-unit, .delete, .add-product {
+    padding: 10px;
+    margin-right: 10px;
+    background-color: #9D0208;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Cores dos botões separaddos hein */
+
+.add-product{
+    background-color: #E85D04;
+}
+.green {
+    background-color: green;
+}
+
+.unit-value, .measurements {
+    margin-right: 10px;
+}
+
+    </style>
+</body>
+</html>

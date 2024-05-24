@@ -6,52 +6,8 @@
 
 body {
   display: flex;
-  font-family: Arial, sans-serif;
   background-color: #ff914d;
 }
-.sidebar {
-  width: 200px;
-  background-color: #161a1d;
-  color: #fff;
-  height: 100vh;
-  float: left;
-}
-
-.profile {
-  padding: 20px;
-  background-color: #495057;
-  text-align: center;
-}
-.profile p{
-  border: 3px solid whitesmoke;
-  border-radius: 2.5vh;
-}
-
-.profile-image {
-  width: 50px;
-  height: 50px;
-  background-color: #fff; /* Adicione a imagem de perfil aqui */
-  border-radius: 50%;
-  margin: 0 auto 10px;
-}
-
-.nav-links {
-  list-style: none;
-  padding: 0;
-}
-
-.nav-links li {
-  margin-bottom: 10px;
-}
-
-.nav-links a {
-  display: block;
-  font-size: 12px;
-  padding: 10px;
-  color: #fff;
-  text-decoration: none;
-}
-
 
 .particles {
   position: fixed;
@@ -215,7 +171,7 @@ body {
 
 #conteudo {
   color: #fff;
-  /* background-image: url('WC.png'); */
+  background-color: whitesmoke;
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -404,13 +360,13 @@ input[type="file"] {
 
 #opcoesPerfil p {
   padding-top: 10px;
-
 }
 
 #opcoesPerfil a {
   color: #fff;
   text-decoration: none;
 }
+
 
 
 /* Estilo para a seção de Gerenciamento de Estoque */
@@ -426,13 +382,12 @@ input[type="file"] {
   align-items: center; /* Centraliza verticalmente */
   background-color: #222;
   border-radius: 8px;
-  box-shadow: 0 0 20px rgba(99, 97, 97, 0.233);
-  width: fit-content; /* Define a largura do contêiner de configurações */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  width: 800px; /* Define a largura do contêiner de configurações */
   max-width: 90%; /* Adiciona uma largura máxima para responsividade */
-  height: 50vh;
+  height: 500px;
   max-height: 90%;
-  bottom: 25vh;
-  padding: 10px;
+  padding: 20px;
 }
 
 .category {
@@ -453,15 +408,13 @@ input[type="file"] {
 }
 
 .category button {
-  padding: 3px 8px;
-  margin-top: 2vh;
+  padding: 8px 12px;
+  margin-top: 8px;
   cursor: pointer;
-  width: fit-content;
-  background-color: #343a40;
-  border: 1.5px solid green;
-  color: #fff;
-  /* border: none; */
-  border-radius: 1.4vh;
+  background-color: #4CAF50; /* Cor do botão */
+  color: #fff; /* Cor do texto do botão */
+  border: none;
+  border-radius: 4px;
 }
 
 #scanQR-button {
@@ -496,7 +449,7 @@ input[type="file"] {
 #titleestoque {
   width: 100%;
   text-align: center;
-  font-size: 16px;
+  font-size: 28px;
   font-family: Arial, sans-serif;
 }
 
@@ -511,7 +464,7 @@ input[type="file"] {
 }
 
 /* Estilo para o botão de exclusão */
-#botao-excluir {
+.botao-excluir {
   padding: 8px 12px;
   margin-top: 8px;
   cursor: pointer;
@@ -521,7 +474,7 @@ input[type="file"] {
   border-radius: 4px;
 }
 
-#botao-excluir:hover {
+.botao-excluir:hover {
   background-color: #cc0000; /* Cor vermelha mais escura no hover */
 }
 
@@ -550,6 +503,36 @@ input[type="file"] {
   padding-right: 10px; /* Adiciona espaço para a barra de rolagem não se sobrepor aos cards */
 }
 
+.card {
+  background-color: rgba(255, 255, 255);
+  padding: 10px;
+  border-radius: 25px;
+  border: 2px solid #000000;
+  color: #000000;
+  width: 300px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: inset 0 2px 60px rgba(0, 0, 0, 0.1),
+  inset 0 2px 8px rgb(0, 0, 0, 0.1),
+  inset 0 2px 8px rgb(0, 0, 0, 0.5);
+}
+
+.card input {
+  margin-top: 10px;
+  padding: 8px;
+  margin-left: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-style: none;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 18px;
+  background-color: transparent !important; /* Adicionando !important para forçar a prioridade */
+  font-family: 'Arial', sans-serif;
+  color: #000000;
+}
 
 
 /*Estiliza o input de adicionar categoria*/
@@ -566,7 +549,7 @@ input[type="file"] {
 /*Alteração da barra de scroll*/
 
 div::-webkit-scrollbar {
-  width: 4px;               /* width of the entire scrollbar */
+  width: 10px;               /* width of the entire scrollbar */
 }
 
 div::-webkit-scrollbar-track {
@@ -574,7 +557,7 @@ div::-webkit-scrollbar-track {
 }
 
 div::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #6c757d, #adb5bd);    /* color of the scroll thumb */
+  background: linear-gradient(to bottom, #ff3131, #ff914d);    /* color of the scroll thumb */
   border-radius: 20px;       /* roundness of the scroll thumb */
 }
 
@@ -659,19 +642,13 @@ div::-webkit-scrollbar-thumb {
 }
 
 /* Estilo para o botão de exclusão */
-#botao-excluir {
-  padding: 10px;
-  margin-bottom: 2vh;
-  margin-right: 1.5vh;
+.botao-excluir {
+  padding: 8px 12px;
+  margin-top: 8px;
   cursor: pointer;
-  background-color: #343a40;
-  border: 1.5px solid red;
-  color: #fff;
-  max-width: fit-content;
-  min-width: fit-content;
-  max-height: fit-content;
-  min-height: fit-content;
-  /* border: none; */
+  background-color: #ff0000; /* Cor vermelha */
+  color: #fff; /* Cor do texto do botão */
+  border: none;
   border-radius: 4px;
 }
 
@@ -690,7 +667,7 @@ div::-webkit-scrollbar-thumb {
 }
 
 .category h2 {
-  font-size: 14px;
+  font-size: 24px;
   margin-bottom: 10px;
   color: #000;
 }
@@ -699,91 +676,40 @@ div::-webkit-scrollbar-thumb {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  max-height: 100vh;
-  min-width: 100vh;
-  max-width: 100vw;
-  overflow-y: auto;
-  padding-right: 10px;
-  flex-direction: column-reverse;
-  align-content: flex-start;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.add-product {
-  padding: 10px;
-  margin-left: 20vh;
-  max-width: fit-content;
-  max-height: fit-content;
-  position: relative;
-  right: 17vh;
-  background-color: #9D0208;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-
-.unit-value, .measurements {
-  margin-right: 10px;
-  color: whitesmoke;
-  background-color: #161a1d;
-}
-
-.itemName {
-  place-content: center;
-  height: 100%;
-  box-shadow: inset 0 2px 11px rgba(254, 254, 254, 0.1), inset 0 2px 100px rgba(255, 255, 255, 0.1), inset 0 2px 2px rgba(48, 40, 40, 0.5);
-  text-align-last: center;
-  width: 15vh;
-  color: whitesmoke;
-  border-radius: 1vh;
-  background-color: #161a1d;
-}
-
-.sub-box {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-content: stretch;
-  align-items: baseline;
-  justify-content: flex-start;
+  max-height: 300px; /* Altura máxima do contêiner para a barra de rolagem */
+  overflow-y: auto; /* Adiciona barra de rolagem quando necessário */
+  padding-right: 10px; /* Adiciona espaço para a barra de rolagem não se sobrepor aos cards */
 }
 
 .card {
-  background-color: #161a1d;
-  border-radius: 10px;
+  background-color: rgba(255, 255, 255);
+  padding: 10px;
+  border-radius: 25px;
+  border: 2px solid #000000;
   color: #000000;
-  gap: 1vh;
-  width: 109vh;
-  max-width: fit-content;
-  height: 20vh;
-  min-width: 35vh;
-  min-height: fit-content;
-  max-height: 100vh;
+  width: 150px;
+  height: 150px;
   display: flex;
-  box-shadow: inset 0 2px 1px rgba(254, 254, 254, 0.1), inset 0 2px 8px rgba(255, 255, 255, 0.1), inset 0 2px 5px rgba(48, 40, 40, 0.5);
-  flex-wrap: wrap;
-  align-content: flex-start;
-  justify-content: space-between;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  box-shadow: inset 0 2px 60px rgba(0, 0, 0, 0.1),
+  inset 0 2px 8px rgb(0, 0, 0, 0.1),
+  inset 0 2px 8px rgb(0, 0, 0, 0.5);
 }
 
 .card input {
   margin-top: 10px;
   padding: 8px;
   margin-left: 12px;
-  /* border: 1px solid #da1818; */
-  border-radius: 10px;
-  /* border-style: none; */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-style: none;
   text-align: center;
   box-sizing: border-box;
   font-size: 18px;
-  background-color: transparent !important;
+  background-color: transparent !important; /* Adicionando !important para forçar a prioridade */
   font-family: 'Arial', sans-serif;
-  color: whitesmoke;
+  color: #000000;
 }
 
 /* ---------------------Cardápio------------------*/
@@ -795,7 +721,7 @@ div::-webkit-scrollbar-thumb {
 }
 
 .menu-item {
-  border: 1px solid #210101;
+  border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
@@ -806,7 +732,7 @@ div::-webkit-scrollbar-thumb {
 }
 .menu-item button{
   padding: 8px 12px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   margin-left: 10px;
   width: auto;
   height: auto;

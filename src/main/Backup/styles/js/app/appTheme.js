@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Função para aplicar estilos com base no modo escuro/claro
     function applyStyles(isDarkMode) {
-      const backgroundColor = isDarkMode ? 'rgba(255, 255, 255)' : '#161a1d';
+      const backgroundColor = isDarkMode ? 'rgba(255, 255, 255)' : 'rgba(34, 34, 34)';
       const textColor = isDarkMode ? '#000' : '#fff';
-      const contBGColor = isDarkMode ? '#b1a7a6' : '#212529'
+      const contBGColor = isDarkMode ? 'whitesmoke' : 'black'
       
       body.style.backgroundColor = backgroundColor;
       body.style.color = textColor;

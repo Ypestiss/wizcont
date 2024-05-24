@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -66,9 +67,9 @@ public class WizcontController {
         }
     }
     @GetMapping("/logoff")
-    public String logoff(@ModelAttribute("usuario") UsuarioDAO status, Model model){
+    public String logoff(@ModelAttribute("usuario") UsuarioDAO status, Model model, SessionStatus sStatus){
         if(status != null){
-            status.setStatus(StatusUser.INATIVO);
+            sStatus.isComplete();
             return "redirect:/login";
         }else{  
             System.out.println(status);

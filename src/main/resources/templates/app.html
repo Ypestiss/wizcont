@@ -10,68 +10,44 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   </head>
-  <body id="light-theme">
-    <!-- Barra de Navegação -->
-    <div class="container">
-      <div class="navigation">
-        <ul>
-          <!-----------------------------Indicador do estoque------------------------------>
-          <li class="list active">
-            <a href="#estoque" onclick="mostrarEstoque()">
-              <span class="icon">
-                <img src="./icons/StockWhite.svg" id="stockIcon" width="25px" height="25px">
-              </span>
-              <span class="text">Estoque</span>
-            </a>
-          </li>
-          <!-----------------------------Indicador do cardápio------------------------------>
-          <li class="list active">
-            <a href="#qrcode" onclick="mostrarCardapio()">
-              <span class="icon"><img src="icons/MetaIcon.svg" id="metaIcon" width="25px" height="25px"></span>
-              <span class="text">Cardápio</span>
-            </a>
-          </li>
-          <li class="list active">
-            <a href="#qrcode2" onclick="mostrarNotificacao()">
-              <span class="icon"><img src="icons/BellIcon.svg" id="metaIcon" width="25px" height="25px"></span>              <span class="text">Notificações</span>
-            </a>
-          </li>
-          <!-----------------------------Indicador do perfil------------------------------>
-          <li class="list active">
-            <a href="#perfil" onclick="mostrarPerfil()">
-              <span class="icon"><img src="icons/icon.svg" id="metaIcon" width="25px" height="25px"></span>
-              <span class="text">Perfil</span>
-            </a>
-          </li>
-          <li class="list active">
-            <a href="#config" onclick="mostrarConfiguracao()">           
-              <span class="icon"><img src="icons/ConfigIcon.svg" id="metaIcon" width="25px" height="25px"></span>
-              <span class="text">Configurações</span>
-            </a>
-          </li>
-          <div class="indicator"></div>
-        </ul>  
+  <body id="light-theme">   
+    <div class="sidebar">
+      <div class="profile">
+          <div class="profile-image"></div>
+          <div class="profile-info">
+              <p>Nome da Pessoa</p>
+          </div>
       </div>
-    </div>
+      <ul class="nav-links">
+          <li><a href="#estoque" onclick="mostrarEstoque()"   >Estoque</a></li>
+          <li><a href="#cardapio" onclick="mostrarCardapio()" >Cardápio</a></li>
+          <li><a href="#notificacao" onclick="mostrarNotificacao()" >Notificações</a></li>
+          <li><a href="#perfil" onclick="mostrarPerfil()" >Perfil</a></li>
+          <li><a href="#config" onclick="mostrarConfiguracao()" >Configurações</a></li>
+      </ul>
+  </div>
 
     <!-- Conteúdos -->
-
     <div id="conteudo">
       <!-- Conteúdo da página de Estoque -->
         <!------- Alimentos ------->
         <div id="estoque" style="display: none;">
           
           <h2 id="titleestoque">Alimentos</h2>
+          
           <div class="category">
-            <h2 class="subtitleestoque">Proteína animal</h2>
+            <div class="sub-box">
+              <h2 class="subtitleestoque">Proteína animal</h2>
+              <button class="add-product" onclick="adicionarItem('Carnes')">Adicionar</button>
+            </div>
             <div class="card-container" id='Carnes-list'>
               <div class="card"  id="cards" th:each="item : ${itensBanco}" th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Carnes}" th:attr="data-idItem=${item.id_Item}, data-nome=${item.nome_item}, data-qtdItem=${item.qtd_item}, data-medidaItem=${item.medida}, data-categoria=${item.categoria}">
-                  <td th:text="${item.nome_item}"></td>
+                  <a class="itemName" th:text="${item.nome_item}"></a>
                   <input th:id="'qtdItemInput-' + ${item.id_Item}" type="number" th:placeholder="${item.qtd_item}" th:value="${item.qtd_item}" style="width: 80px; background-color: #f2f2f2;">
-                  <select th:name="'medidaItem_' + ${itemStat.index}">
+                  <select  class="measurements" th:name="'medidaItem_' + ${itemStat.index}">
                     <option th:each="medida : ${T(com.webapp.Wizcont.model.enums.StatusMedida).values()}" th:value="${medida.name()}" th:text="${medida.name()}" th:selected="${item.medida.name() == medida.name()}"></option>
                 </select>
-                  <button style="background-color: transparent; color: red;" th:text="Excluir"  class="btn-excluir"></button>
+                  <button th:text="Excluir"  id="botao-excluir" class="btn-excluir"></button>
                   <script>
                     document.getElementById('qtdItemInput-[[${item.id_Item}]]').addEventListener('input', function() {
                         var newValue = this.value;
@@ -80,7 +56,6 @@
                 </script>
               </div>
             </div>  
-            <button onclick="adicionarItem('Carnes')">+</button>
           </div>
 
           <div class="category">
@@ -128,10 +103,10 @@
             <div class="card-container" id="Legumes-list"></div>
             <div class="card" id="cards" th:each="item : ${itensBanco}" th:if="${item.categoria == T(com.webapp.Wizcont.model.enums.StatusCategoria).Legumes}" th:attr="data-idItem=${item.id_Item}, data-nome=${item.nome_item}, data-qtdItem=${item.qtd_item}, data-medidaItem=${item.medida}, data-categoria=${item.categoria}">
                 <td id="Item" th:text="${item.nome_item}"></td>
-                <input th:id="'qtdItemInput-' + ${item.id_Item}" type="number" th:placeholder="${item.qtd_item}" th:value="${item.qtd_item}" style="width: 80px; background-color: #f2f2f2;">
                 <select th:name="'medidaItem_' + ${itemStat.index}">
                   <option th:each="medida : ${T(com.webapp.Wizcont.model.enums.StatusMedida).values()}" th:value="${medida}" th:text="${medida.name()}" th:selected="${item.medida == medida}"></option>
               </select>
+              <input th:id="'qtdItemInput-' + ${item.id_Item}" type="number" th:placeholder="${item.qtd_item}" th:value="${item.qtd_item}" style="width: 80px; background-color: #f2f2f2;">
               <button style="background-color: transparent; color: red;" th:text="Excluir"  class="btn-excluir"></button>
               <script>
                   document.getElementById('qtdItemInput-[[${item.id_Item}]]').addEventListener('input', function() {
